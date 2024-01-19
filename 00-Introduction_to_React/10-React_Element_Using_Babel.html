@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Element</title>
+    <!-- Link React and ReactDOM Library -->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <!-- Link Babel for Using the JSX Syntax -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- 
+        Just Linking of Babel is not enough we need to tell explicitly that 
+        which code or what is the line of code need to convert using Babel so
+        for Doing this javascript file which we link, we need to add an attribute
+        type="text/babel"
+    -->
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="10-React_Element_Using_Babel.js" type="text/babel"></script>
+  </body>
+</html>
