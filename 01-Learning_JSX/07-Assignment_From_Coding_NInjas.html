@@ -19,10 +19,7 @@
 
     <script type="text/babel">
       function totalRevenue(itemsSold) {
-        console.log(itemsSold);
         return itemsSold.reduce((acc, current) => {
-          //   console.log(acc, current);
-          //   console.log();
           return acc + current.price * current.qty;
         }, 0);
       }
