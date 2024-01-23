@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Turnary Operator</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      console.log("Script is connected !!");
+      const abc = false;
+
+      function App() {
+        /*
+            Inside JSX we can't write if else statement because if else doesn't 
+            return anything and if we wirte return statement inside a return statement
+            then we will faced error that is return statement is not allowed inside
+            the return so for that we can use the turnary operator which is return
+            value by checking the condition 
+        */
+        return (
+          <>
+            <h1>Hello {abc == true ? "User" : "Alexa"}</h1>
+          </>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>
