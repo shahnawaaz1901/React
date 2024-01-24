@@ -50,6 +50,15 @@ function increaseScore(num) {
 
 function increaseWicket() {
   wicket += 1;
+  if (wicket == 10) {
+    element.render(
+      <>
+        <h1>Score Keeper</h1>
+        <h2>Final Score : {score}</h2>
+      </>
+    );
+    return;
+  }
   element.render(<App />);
 }
 function App() {
