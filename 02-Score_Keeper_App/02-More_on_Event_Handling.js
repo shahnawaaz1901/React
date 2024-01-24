@@ -42,13 +42,20 @@ function incrementSix() {
 
 */
 
+//* Store Every Score of A Ball in a Single Array
+const scoreBallWise = [];
+
 /* Only Single function for All types of Score Increment */
 function increaseScore(num) {
+  scoreBallWise.push(num);
   score += num;
   element.render(<App />);
+  console.log(scoreBallWise);
 }
 
 function increaseWicket() {
+  scoreBallWise.push("W");
+  console.log(scoreBallWise);
   wicket += 1;
   if (wicket == 10) {
     element.render(
@@ -61,6 +68,67 @@ function increaseWicket() {
   }
   element.render(<App />);
 }
+
+//* Always write first character of the Component in Capital letter for Rendering using the Angular brackets
+const ScoreButtons = () => (
+  <>
+    <button
+      onClick={() => {
+        increaseScore(0);
+      }}
+    >
+      0
+    </button>
+    <button
+      /* 
+        Just Pass the Arrow function So that we can able to fetch which 
+        number user click 
+        */
+      onClick={() => {
+        increaseScore(1);
+      }}
+    >
+      1
+    </button>
+    <button
+      onClick={() => {
+        increaseScore(2);
+      }}
+    >
+      2
+    </button>
+    <button
+      onClick={() => {
+        increaseScore(3);
+      }}
+    >
+      3
+    </button>
+    <button
+      onClick={() => {
+        increaseScore(4);
+      }}
+    >
+      4
+    </button>
+    <button
+      onClick={() => {
+        increaseScore(5);
+      }}
+    >
+      5
+    </button>
+    <button
+      onClick={() => {
+        increaseScore(6);
+      }}
+    >
+      6
+    </button>
+    <button onClick={increaseWicket}>Wicket</button>
+  </>
+);
+
 function App() {
   return (
     <>
@@ -69,53 +137,11 @@ function App() {
         Score : {score}/{wicket}
       </h2>
       <div>
-        <button
-          /* 
-            Just Pass the Arrow function So that we can able to fetch which 
-            number user click 
-            */
-          onClick={() => {
-            increaseScore(1);
-          }}
-        >
-          1
-        </button>
-        <button
-          onClick={() => {
-            increaseScore(2);
-          }}
-        >
-          2
-        </button>
-        <button
-          onClick={() => {
-            increaseScore(3);
-          }}
-        >
-          3
-        </button>
-        <button
-          onClick={() => {
-            increaseScore(4);
-          }}
-        >
-          4
-        </button>
-        <button
-          onClick={() => {
-            increaseScore(5);
-          }}
-        >
-          5
-        </button>
-        <button
-          onClick={() => {
-            increaseScore(6);
-          }}
-        >
-          6
-        </button>
-        <button onClick={increaseWicket}>Wicket</button>
+        {/* 
+            For Render a Component using Angular bracket we need to create 
+            component function Using Capital Letter 
+        */}
+        <ScoreButtons />
       </div>
     </>
   );
