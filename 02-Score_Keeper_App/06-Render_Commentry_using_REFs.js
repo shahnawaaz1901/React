@@ -6,40 +6,28 @@ let wicket = 0;
 //* For Storing the Score or Wicket Value
 let hit = 0;
 
-//* For Storing the Commentry
+//* For Storing the Commentry (Only in Case of onChange Event)
 let commentry = "";
 
-//* Store Every Score of A Ball in a Single Array
+//* Use the React Reference to access the value of commentry input field
+//* createRef using React Constructor
+let inputRef = React.createRef();
+
+//* Store Every Ball
 const scoreBallWise = [];
 
 /* Only Single function for All types of Score Increment */
 function increaseScore(num) {
-  //   scoreBallWise.push(num);
-  //   score += num;
   hit = num;
   console.log(hit);
   element.render(<App />);
 }
 
 function increaseWicket() {
-  //   scoreBallWise.push("W");
-  //   console.log(scoreBallWise);
-  //   wicket += 1;
-  //   if (wicket == 10) {
-  //     element.render(
-  //       <>
-  //         <h1>Score Keeper</h1>
-  //         <h2>Final Score : {score}</h2>
-  //       </>
-  //     );
-  //     return;
-  //   }
   hit = "W";
   console.log(hit);
   element.render(<App />);
 }
-
-function handleButtonClicks(num) {}
 
 //* Always write first character of the Component in Capital letter for Rendering using the Angular brackets
 const ScoreButtons = () => (
@@ -134,10 +122,36 @@ function handleFormSubmit(event) {
     tag
   */
   event.preventDefault();
-  scoreBallWise.unshift(hit);
-  console.log({ hit, commentry });
-  commentry = "";
+  scoreBallWise.unshift(<span>{`${hit}, ${inputRef.current.value}`}</span>);
+  /* 
+    Access Input Ref using the variable name but actual value is stores 
+    in current object which is inside th inputRef Object   
+*/
+  if (hit != "W") {
+    score += hit;
+  } else {
+    wicket += 1;
+    if (wicket == 10) {
+      element.render(
+        <>
+          <h1>Score Keeper</h1>
+          <h2>Final Score : {score}</h2>
+        </>
+      );
+      return;
+    }
+  }
   hit = 0;
+  /* 
+        We Need to set this inputRef.current.value equal to zero because
+        reference in React is not component based that's why value of
+        this inputRef.current.value is not set automatically again we need 
+        to set this manually, so that we can say react reference is not
+        component based or component controlled it's uncontrolled and not
+        dependent on react components
+    */
+  inputRef.current.value = "";
+
   element.render(<App />);
 }
 
@@ -155,11 +169,24 @@ function Form() {
       <form onSubmit={handleFormSubmit}>
         <input type="text" id="run" value={hit} />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {/* 
+            We Can access value of this input field which id is commentry by 
+            adding the onChange event and collect the event from 
+            handleCommentryForm function and access the value of input field 
+            but instead of this we access the value of the field by using React 
+            references which provides us to access the value from any node in 
+            DOM and use it whenever we want 
         <input
           type="text"
           id="commentry"
           placeholder="Commentry"
-          value={inputField}
+          onChange={handleCommentryForm}
+    />*/}
+        <input
+          type="text"
+          id="commentry"
+          placeholder="Commentry"
+          ref={inputRef}
         />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input type="submit" value="submit" id="submit-btn" />
@@ -174,7 +201,13 @@ function Result() {
     <div>
       {scoreBallWise.map((b, index) => (
         <>
-          <div key={index}>{b ? b : "."}</div>
+          <div key={index}>
+            {/* 
+                Access Reference value using the variable name and inside the 
+                current object  
+            */}
+            {b}
+          </div>
         </>
       ))}
     </div>
