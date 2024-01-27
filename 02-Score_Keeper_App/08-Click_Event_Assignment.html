@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>React App</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      // Create handlers to increase and decrease vehicle count here
+      let car = 0;
+      let bike = 0;
+      let scooty = 0;
+      let bicycle = 0;
+
+      function handleClick(section, point) {
+        if (section == "car") {
+          car += point;
+        } else if (section == "bike") {
+          bike += point;
+        } else if (section == "scooty") {
+          scooty += point;
+        } else {
+          bicycle += point;
+        }
+      }
+
+      const App = () => (
+        <>
+          <p>List of all the vehicles count in the parking.</p>
+          <ol>
+            <li>
+              <p>
+                <b>Car: {car}</b> &emsp;
+                {/* Add increase and decrease count buttons here */}
+                <button onClick={() => handleClick("car", 1)}>Increase</button>
+                &emsp;
+                <button onClick={() => handleClick("car", -1)}>Decrease</button>
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Bike: {bike}</b> &emsp;
+                {/* Add increase and decrease count buttons here */}
+                <button>Increase</button>&emsp;<button>Decrease</button>
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Scooty: {scooty}</b> &emsp;
+                {/* Add increase and decrease count buttons here */}
+                <button>Increase</button>&emsp;<button>Decrease</button>
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Bicycle: {bicycle}</b> &emsp;
+                {/* Add increase and decrease count buttons here */}
+                <button>Increase</button>&emsp;<button>Decrease</button>
+              </p>
+            </li>
+          </ol>
+        </>
+      );
+
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
+    </script>
+  </body>
+</html>
