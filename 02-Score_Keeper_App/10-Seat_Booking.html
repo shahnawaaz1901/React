@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link rel="stylesheet" href="10-Seat_Booking.css" />
+    <title>React App</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      let customers = [];
+      const capacity = 25;
+      let seatsLeft = 25;
+
+      let guestCount = React.createRef();
+      let primaryGuest = React.createRef();
+      let phoneNumber = React.createRef();
+
+      function handleSubmit(event) {
+        event.preventDefault();
+        seatsLeft -= guestCount.current.value;
+        customers.push({
+          count: guestCount.current.value,
+          primaryGuest: primaryGuest.current.value,
+          phone: phoneNumber.current.value,
+          checkIn: new Date().toLocaleTimeString(),
+          checkOut: undefined,
+        });
+        console.log(customers);
+        clearInput();
+        rootElement.render(<App />);
+      }
+
+      function clearInput() {
+        guestCount.current.value = "";
+        primaryGuest.current.value = "";
+        phoneNumber.current.value = "";
+      }
+
+      function removeEntry(index) {
+        customers.splice(index, 1);
+        rootElement.render(<App />);
+      }
+
+      function checkOut(index) {
+        let freeRooms = customers[index].count;
+        seatsLeft += Number(freeRooms);
+        customers[index].checkOut = new Date().toLocaleTimeString();
+        // guestCount += customers[index].count;
+        rootElement.render(<App />);
+      }
+      // Create form submit handler here
+      const Form = () => (
+        <>
+          <form onSubmit={handleSubmit}>
+            <input type="number" placeholder="Guest Count" ref={guestCount} />
+            <input
+              type="text"
+              placeholder="Primary Guest Name"
+              ref={primaryGuest}
+            />
+            <input type="number" placeholder="Phone Number" ref={phoneNumber} />
+            <input type="submit" value="Add Entry" />
+          </form>
+        </>
+      );
+      const App = () => (
+        <div className="App" style={{ textAlign: "center" }}>
+          <div>
+            <h2>Total Capacity: {capacity}</h2>
+            <h2>Seats Left: {seatsLeft}</h2>
+          </div>
+
+          {/* Create a form here */}
+          <Form />
+          {/* Complete table to show records of customers */}
+          <table border="1px" style={{ margin: "auto" }}>
+            <thead>
+              <tr>
+                <th>Count</th>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Check in</th>
+                <th>Check out</th>
+                <th>Status</th>
+                <th>Remove Entry</th>
+              </tr>
+            </thead>
+            <tbody>
+              {customers.map((each, index) => (
+                <tr key={index}>
+                  <td>{each.count}</td>
+                  <td>{each.primaryGuest}</td>
+                  <td>{each.phone}</td>
+                  <td>{each.checkIn}</td>
+                  <td>{each.checkOut ? each.checkOut : "-"}</td>
+                  <td onClick={() => checkOut(index)}>
+                    {each.checkOut ? "Served" : "Click to CheckOut"}
+                  </td>
+                  <td onClick={() => removeEntry(index)}>Delete</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
+    </script>
+  </body>
+</html>
