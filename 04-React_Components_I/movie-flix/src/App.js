@@ -1,6 +1,12 @@
 import React from "react";
+import MovieCard from "./movieCard.js";
+
 export default class App extends React.Component {
   render() {
-    return <h1>This is a Movie List app</h1>;
+    return (
+      <>
+        <MovieCard />
+      </>
+    );
   }
 }
