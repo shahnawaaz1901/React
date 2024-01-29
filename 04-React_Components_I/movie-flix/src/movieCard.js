@@ -33,7 +33,24 @@ export default class MovieCard extends React.Component {
             <div className="price">99/- INR</div>
             <div className="footer">
               <div className="rating">8.9/10</div>
-              <div className="stars">*</div>
+              <div className="star-dis">
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/9210/9210950.png"
+                  alt="decrease"
+                  className="stars"
+                />
+                <img
+                  src="https://cdn-icons-png.flaticon.com/128/10134/10134048.png"
+                  alt="star"
+                  className="stars"
+                />
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/8162/8162972.png"
+                  alt="increase"
+                  className="stars"
+                />
+                <span className="starCount">5</span>
+              </div>
               <button className="favourite-btn">Favourite</button>
               <button className="cart-bt">Add to Cart</button>
             </div>
