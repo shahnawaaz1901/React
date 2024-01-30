@@ -26,14 +26,31 @@ export default class MovieCard extends React.Component {
       plot: "Super Natural Power Shown in the Movie",
       price: 99,
       ratings: "8.9",
+      stars: 0,
     };
+  }
+  /*
+  If we dont want to bind the explicitly then we can write using the arrow function
+  because arrow function not contains the any value of this so that it look for parent
+  because parent is our class so it reffer to the this class object
+  increaseStars = () => {
+    console.log("Star is Increased !!", this.state.stars);
+  };
+  */
+
+  increaseStars() {
+    console.log("Star is Increased !!", this.state.stars);
+  }
+
+  decreaseStars() {
+    console.log("Star is Decreased !!", this.state.stars);
   }
 
   render() {
     /*
       We can also create variables for title, plot, images by using the 
       object destructuring like this :
-      
+
       const { title, image, plot, price, ratings } = this.state;
     */
     /* 
@@ -62,6 +79,17 @@ export default class MovieCard extends React.Component {
                   src="https://cdn-icons-png.flaticon.com/128/9210/9210950.png"
                   alt="decrease"
                   className="stars"
+                  /*
+                    onClick={this.decreaseStars} we are not pass the function because passing 
+                    of the function is responsible for value of this is nulll so we need to call 
+                    explicitly inside the arrow function
+                  */
+                  /* we can use arrow function like this or we can bind this  
+                    onClick={() => this.decreaseStars()}
+                 */
+                  //* Bind decreaseStars function to the object using "this" keyword
+                  /* Without binding value of "this" will be lost */
+                  onClick={this.decreaseStars.bind(this)}
                 />
                 <img
                   src="https://cdn-icons-png.flaticon.com/128/10134/10134048.png"
@@ -72,6 +100,13 @@ export default class MovieCard extends React.Component {
                   src="https://cdn-icons-png.flaticon.com/512/8162/8162972.png"
                   alt="increase"
                   className="stars"
+                  /*
+                    onClick={this.increaseStars}  we are not pass the function because passing 
+                    of the function is responsible for value of this is nulll so we need to call 
+                    explicitly inside the arrow function
+                  */
+                  // onClick={() => this.increaseStars()}
+                  onClick={this.increaseStars.bind(this)}
                 />
                 <span className="starCount">5</span>
               </div>
