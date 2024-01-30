@@ -39,10 +39,58 @@ export default class MovieCard extends React.Component {
   */
 
   increaseStars() {
+    /*
+      We can use increase or decrease the stars like this which we did previously but 
+      problem is after changing anything we need to rerender the component so
+      we need to re render the our main component App but how can we re render from
+      here because this Moviecard is the child component of the main App so we need to
+      call again a function from here which re render the App component but instead
+      of this, react provides us another functionalities, through states we can change
+      state and render it without re render the whole App component, so for this we
+      need to use the setState function for changes the property of state 
+      
+      this.state.stars += 1;
+    */
+
+    //* Set State
+    /* 
+      Two Variations of setState function is exist one is which taking the object 
+      as parameter which object takes the updated values of the properties
+    */
+    //* One form of setState function
+    // this.setState({ stars: this.state.stars + 0.5 });
+
+    //* Second form of setState function
+    /* 
+      This callback function methods takes an argument of previous state which is
+      equivalent to this.state in our code and we need to return an object which
+      contains the property which we want to change or update
+    */
+    this.setState((prevState) => {
+      return {
+        stars: prevState.stars + 0.5,
+      };
+    });
+    /* 
+      Now the Qestion is where to use which state because we have both states
+      so conclusion is when we require previous state reference to update the 
+      state then we can use callback function setState function and when we 
+      doesn't require any previous reference then we can use the direct passing
+      object method to update the state
+    */
     console.log("Star is Increased !!", this.state.stars);
   }
 
   decreaseStars() {
+    //* One form of setState function
+    // this.setState({ stars: this.state.stars - 0.5 });
+
+    //* Second form of setState function
+    this.setState((prevState) => {
+      return {
+        stars: prevState.stars - 0.5,
+      };
+    });
     console.log("Star is Decreased !!", this.state.stars);
   }
 
@@ -108,7 +156,7 @@ export default class MovieCard extends React.Component {
                   // onClick={() => this.increaseStars()}
                   onClick={this.increaseStars.bind(this)}
                 />
-                <span className="starCount">5</span>
+                <span className="starCount">{this.state.stars}</span>
               </div>
               <button className="favourite-btn">Favourite</button>
               <button className="cart-bt">Add to Cart</button>
