@@ -39,6 +39,9 @@ export default class MovieCard extends React.Component {
   */
 
   increaseStars() {
+    if (this.state.stars >= 5) {
+      return;
+    }
     /*
       We can use increase or decrease the stars like this which we did previously but 
       problem is after changing anything we need to rerender the component so
@@ -78,20 +81,21 @@ export default class MovieCard extends React.Component {
       doesn't require any previous reference then we can use the direct passing
       object method to update the state
     */
-    console.log("Star is Increased !!", this.state.stars);
   }
 
   decreaseStars() {
     //* One form of setState function
     // this.setState({ stars: this.state.stars - 0.5 });
 
+    if (this.state.stars <= 0) {
+      return;
+    }
     //* Second form of setState function
     this.setState((prevState) => {
       return {
         stars: prevState.stars - 0.5,
       };
     });
-    console.log("Star is Decreased !!", this.state.stars);
   }
 
   render() {
