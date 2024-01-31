@@ -14,6 +14,7 @@ export default class MovieCard extends React.Component {
       price: 99,
       ratings: "8.9",
       stars: 0,
+      fav: false,
     };
   }
 
@@ -39,6 +40,10 @@ export default class MovieCard extends React.Component {
         stars: prevState.stars - 0.5,
       };
     });
+  }
+
+  handleFav() {
+    this.setState({ fav: !this.state.fav });
   }
 
   render() {
@@ -74,8 +79,36 @@ export default class MovieCard extends React.Component {
                 />
                 <span className="starCount">{this.state.stars}</span>
               </div>
-              <button className="favourite-btn">Favourite</button>
-              <button className="cart-bt">Add to Cart</button>
+              {/* {this.state.fav ? (
+                <button
+                  className="favourite-btn"
+                  // Bind this keyword in handleFav to "this" objects
+                  onClick={this.handleFav.bind(this)}
+                >
+                  Favourite
+                </button>
+              ) : (
+                <button
+                  className="unfavourite-btn"
+                  // Bind this keyword in handleFav to "this" object
+                  onClick={this.handleFav.bind(this)}
+                >
+                  Un-favourite
+                </button>
+              )} 
+               <button className="favourite-btn">Favourite</button>
+              <button className="unfavourite-btn">Un-favourite</button> */}
+              {/* 
+                We Can Add Conditional Rendering by just adding the conditions on 
+                classname and content
+              */}
+              <button
+                className={this.state.fav ? "favourite-btn" : "unfavourite-btn"}
+                onClick={this.handleFav.bind(this)}
+              >
+                {this.state.fav ? <>Favourite</> : <>Un-favourite</>}
+              </button>
+              <button className="cart-btn">Add to Cart</button>
             </div>
           </div>
         </div>
