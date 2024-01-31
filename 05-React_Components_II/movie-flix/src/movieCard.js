@@ -15,6 +15,7 @@ export default class MovieCard extends React.Component {
       ratings: "8.9",
       stars: 0,
       fav: false,
+      cart: false,
     };
   }
 
@@ -46,6 +47,9 @@ export default class MovieCard extends React.Component {
     this.setState({ fav: !this.state.fav });
   }
 
+  handleCart() {
+    this.setState((prevState) => ({ cart: !prevState.cart }));
+  }
   render() {
     return (
       <div className="main">
@@ -106,9 +110,11 @@ export default class MovieCard extends React.Component {
                 className={this.state.fav ? "favourite-btn" : "unfavourite-btn"}
                 onClick={this.handleFav.bind(this)}
               >
-                {this.state.fav ? <>Favourite</> : <>Un-favourite</>}
+                {this.state.fav ? <>Un-favourite</> : <>Favourite</>}
               </button>
-              <button className="cart-btn">Add to Cart</button>
+              <button className="cart-btn" onClick={this.handleCart.bind(this)}>
+                {this.state.cart ? <>Remove From Cart</> : <>Add to Cart</>}
+              </button>
             </div>
           </div>
         </div>
