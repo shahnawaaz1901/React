@@ -2,10 +2,15 @@ import React from "react";
 import "./styles.css";
 
 export default class MovieCard extends React.Component {
+  /* 
+    Because we Define State in the Parent and get the Data as props from the 
+    parent so we don't need to write constructor because constructor withOut 
+    state is useless
+  
   //* Define the Constructor for using the State
   constructor() {
     super();
-    /* Please remember that state is the object */
+    Please remember that state is the object 
     this.state = {
       title: "The Avengers",
       image:
@@ -18,7 +23,7 @@ export default class MovieCard extends React.Component {
       isInCart: false,
     };
   }
-
+  */
   increaseStars() {
     if (this.state.stars >= 5) {
       return;
@@ -51,18 +56,20 @@ export default class MovieCard extends React.Component {
     this.setState((prevState) => ({ isInCart: !prevState.isInCart }));
   }
   render() {
+    const { title, image, plot, price, ratings, stars, fav, isInCart } =
+      this.props.movies;
     return (
       <div className="main">
         <div className="movie-card">
           <div className="left">
-            <img alt="MovieLogo" src={this.state.image} />
+            <img alt="MovieLogo" src={image} />
           </div>
           <div className="right">
-            <div className="title">{this.state.title}</div>
-            <div className="plot">{this.state.plot}</div>
-            <div className="price">{this.state.price}/- INR</div>
+            <div className="title">{title}</div>
+            <div className="plot">{plot}</div>
+            <div className="price">{price}/- INR</div>
             <div className="footer">
-              <div className="rating">{this.state.ratings}/10</div>
+              <div className="rating">{ratings}/10</div>
               <div className="star-dis">
                 <img
                   src="https://cdn-icons-png.flaticon.com/128/9210/9210950.png"
@@ -81,7 +88,7 @@ export default class MovieCard extends React.Component {
                   className="stars"
                   onClick={this.increaseStars.bind(this)}
                 />
-                <span className="starCount">{this.state.stars}</span>
+                <span className="starCount">{stars}</span>
               </div>
               {/* {this.state.fav ? (
                 <button
@@ -99,24 +106,24 @@ export default class MovieCard extends React.Component {
                 >
                   Un-favourite
                 </button>
-              )} 
+              )}
                <button className="favourite-btn">Favourite</button>
               <button className="unfavourite-btn">Un-favourite</button> */}
-              {/* 
-                We Can Add Conditional Rendering by just adding the conditions on 
+              {/*
+                We Can Add Conditional Rendering by just adding the conditions on
                 classname and content
               */}
               <button
-                className={this.state.fav ? "unfavourite-btn" : "favourite-btn"}
+                className={fav ? "unfavourite-btn" : "favourite-btn"}
                 onClick={this.handleFav.bind(this)}
               >
-                {this.state.fav ? <>Un-favourite</> : <>Favourite</>}
+                {fav ? <>Un-favourite</> : <>Favourite</>}
               </button>
               <button
-                className={this.state.isInCart ? "unfavourite-btn" : "cart-btn"}
+                className={isInCart ? "unfavourite-btn" : "cart-btn"}
                 onClick={this.handleCart.bind(this)}
               >
-                {this.state.isInCart ? <>Remove from Cart</> : <>Add to Cart</>}
+                {isInCart ? <>Remove from Cart</> : <>Add to Cart</>}
               </button>
             </div>
           </div>

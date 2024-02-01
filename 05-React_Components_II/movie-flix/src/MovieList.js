@@ -1,9 +1,21 @@
 import React from "react";
 import MovieCard from "./MovieCard.js";
 export default class MovieList extends React.Component {
+  //* Define the Constructor for using the State
   constructor() {
     super();
-    this.state = {};
+    // Please remember that state is the object
+    this.state = {
+      title: "The Avengers",
+      image:
+        "https://m.media-amazon.com/images/W/MEDIAX_849526-T1/images/I/516FQSpAR8L._SX300_SY300_QL70_FMwebp_.jpg",
+      plot: "Super Natural Power Shown in the Movie",
+      price: 99,
+      ratings: "8.9",
+      stars: 0,
+      fav: false,
+      isInCart: false,
+    };
   }
 
   render() {
@@ -21,12 +33,23 @@ export default class MovieList extends React.Component {
     */
     return (
       <>
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
+        <MovieCard movies={this.state} />
+        <MovieCard movies={this.state} />
+        <MovieCard movies={this.state} />
+        <MovieCard movies={this.state} />
+        <MovieCard movies={this.state} />
       </>
     );
   }
 }
+
+// MovieCard.defaultProps = {
+//   title: this.state.title,
+//   image: this.state.image,
+//   plot: this.state.plot,
+//   price: this.state.price,
+//   ratings: this.state.ratings,
+//   stars: this.state.stars,
+//   fav: this.state.fav,
+//   isInCart: this.state.isInCart,
+// };

@@ -9,6 +9,7 @@ export default class App extends React.Component {
       movieCard component is used inside the movieList component because movielist
       contains the movieCard component
     */
+
     return (
       <>
         <MovieList />
