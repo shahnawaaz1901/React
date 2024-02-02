@@ -24,6 +24,11 @@ export default class MovieCard extends React.Component {
     };
   }
   */
+  /* 
+    Because state is not available in our child component anymore we use 
+    only the props so we don't require this function to anymore we require 
+    create handlers on the component which have the states
+  
   increaseStars() {
     if (this.state.stars >= 5) {
       return;
@@ -55,11 +60,15 @@ export default class MovieCard extends React.Component {
   handleCart() {
     this.setState((prevState) => ({ isInCart: !prevState.isInCart }));
   }
+  */
+
   render() {
     const { title, image, plot, price, ratings, stars, fav, isInCart } =
       this.props.movies;
+    /* Get the functions and id of the movie */
+    const { id, addStars, decStars, updateFav, handleCart } = this.props;
     return (
-      <div className="main">
+      <div className="main" key={id}>
         <div className="movie-card">
           <div className="left">
             <img alt="MovieLogo" src={image} />
@@ -75,7 +84,8 @@ export default class MovieCard extends React.Component {
                   src="https://cdn-icons-png.flaticon.com/128/9210/9210950.png"
                   alt="decrease"
                   className="stars"
-                  onClick={this.decreaseStars.bind(this)}
+                  onClick={() => decStars(id)}
+                  // onClick={this.decreaseStars.bind(this)}
                 />
                 <img
                   src="https://cdn-icons-png.flaticon.com/128/10134/10134048.png"
@@ -86,7 +96,8 @@ export default class MovieCard extends React.Component {
                   src="https://cdn-icons-png.flaticon.com/512/8162/8162972.png"
                   alt="increase"
                   className="stars"
-                  onClick={this.increaseStars.bind(this)}
+                  onClick={() => addStars(id)}
+                  // onClick={this.increaseStars.bind(this)}
                 />
                 <span className="starCount">{stars}</span>
               </div>
@@ -115,13 +126,15 @@ export default class MovieCard extends React.Component {
               */}
               <button
                 className={fav ? "unfavourite-btn" : "favourite-btn"}
-                onClick={this.handleFav.bind(this)}
+                // onClick={this.handleFav.bind(this)}
+                onClick={() => updateFav(id)}
               >
                 {fav ? <>Un-favourite</> : <>Favourite</>}
               </button>
               <button
                 className={isInCart ? "unfavourite-btn" : "cart-btn"}
-                onClick={this.handleCart.bind(this)}
+                onClick={() => handleCart(id)}
+                // onClick={this.handleCart.bind(this)}
               >
                 {isInCart ? <>Remove from Cart</> : <>Add to Cart</>}
               </button>
