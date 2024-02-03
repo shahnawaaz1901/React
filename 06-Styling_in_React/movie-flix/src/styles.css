@@ -121,7 +121,24 @@ footer .starCount {
   text-shadow: none;
   margin: 5px;
 }
-
+/* 
 nav {
-  text-align: center;
+  width: 100%;
+  height: 70px;
+  background-color: rgb(20, 20, 96);
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 30px;
+  box-sizing: border-box;
+} */
+
+.cart {
+  height: 40px;
+  width: 40px;
+}
+
+.cart img {
+  height: 80%;
+  width: 80%;
 }
