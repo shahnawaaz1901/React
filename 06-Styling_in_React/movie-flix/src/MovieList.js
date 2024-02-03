@@ -67,7 +67,6 @@ export default class MovieList extends React.Component {
   }
 
   increaseStars = (movie) => {
-    console.log(movie);
     const index = this.state.data.indexOf(movie);
     const { data: movies } = this.state;
     if (movies[index].stars >= 5) {
@@ -122,7 +121,7 @@ export default class MovieList extends React.Component {
         {data.map((each, index) => (
           <MovieCard
             movies={each}
-            id={index}
+            key={index}
             addStars={this.increaseStars}
             decStars={this.decreaseStars}
             updateFav={this.handleFav}

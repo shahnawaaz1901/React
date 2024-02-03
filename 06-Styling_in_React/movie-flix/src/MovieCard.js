@@ -6,9 +6,9 @@ export default class MovieCard extends React.Component {
     const { title, image, plot, price, ratings, stars, fav, isInCart } =
       this.props.movies;
     /* Get the functions and id of the movie */
-    const { id, addStars, decStars, updateFav, handleCart } = this.props;
+    const { addStars, decStars, updateFav, handleCart } = this.props;
     return (
-      <div className="main" key={id}>
+      <div className="main">
         <div className="movie-card">
           <div className="left">
             <img alt="MovieLogo" src={image} />
