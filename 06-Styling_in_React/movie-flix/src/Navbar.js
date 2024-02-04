@@ -59,14 +59,44 @@ const styles = {
 /* 
   For Writing Styles using the styled component we need to use style keyword 
 */
-const Nav = styled.nav`    width: 100%,
-background-color: rgb(20, 20, 96),
-color: white,
-height: 70px,
-display: flex,
-justify-content: space-between,
-padding: 10px 30px,
-box-sizing: border-box,`;
+const Nav = styled.nav`
+  width: 100%;
+  background-image: linear-gradient(170deg, #1bc059, #0d47a1);
+  /*rgb(20, 20, 96))*/
+  color: white;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 30px;
+  box-sizing: border-box;
+`;
+const Title = styled.div`
+  font-size: 30px;
+  color: #fff;
+  font-weight: 600;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  margin-left: 20px;
+`;
+const CartContainer = styled.div`
+  position: relative;
+  cursor: pointer;
+`;
+
+const Image = styled.img`
+  height: 48px;
+  margin-right: 20;
+`;
+
+const CartCount = styled.span`
+  background-color: orange;
+  border-radius: 50%;
+  padding: 4px 8px;
+  position: absolute;
+  right: 10;
+  top: -5;
+  font-size: 12px;
+`;
 export default class Navbar extends React.Component {
   render() {
     return (
@@ -85,15 +115,14 @@ export default class Navbar extends React.Component {
         for multiple elements
     */
       <Nav>
-        <div>Movie Flix</div>
-        {/* <div style={styles.cartContainer}>
-          <img
+        <Title>Movie Flix</Title>
+        <CartContainer>
+          <Image
             src="https://cdn-icons-png.flaticon.com/128/4290/4290854.png"
             alt="Cart-Icon"
-            style={styles.cartIcon}
           />
-          <span style={styles.cartCount}>0</span>
-        </div> */}
+          <CartCount>0</CartCount>
+        </CartContainer>
       </Nav>
     );
   }
