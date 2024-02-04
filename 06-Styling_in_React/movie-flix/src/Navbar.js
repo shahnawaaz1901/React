@@ -77,10 +77,26 @@ const Title = styled.div`
   font-family: sans-serif;
   text-transform: uppercase;
   margin-left: 20px;
+  transition: all 0.1s ease;
+  /*
+    For using the seudo classes we need to write ampersant seprated by the colon 
+    same single or double color which we give in css for seudo elements and after
+    the seudo elements white styles in the bracket
+  */
+  &:hover {
+    color: yellow;
+    cursor: pointer;
+    margin-top: 8px;
+  }
 `;
 const CartContainer = styled.div`
   position: relative;
   cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  &:hover {
+    margin-top: -5px;
+    margin-left: -5px;
+  }
 `;
 
 const Image = styled.img`
@@ -89,13 +105,26 @@ const Image = styled.img`
 `;
 
 const CartCount = styled.span`
-  background-color: orange;
+  /*
+    Internally props is recieved as argument so that we can use props to 
+    change color or add styles dynamically, this can be changed using the
+    through props which is very powerful tool of react
+  */
+  /*
+    This is One way how we can set Visiblity in CSS
+    background-color: ${(props) => (props.show ? props.color : "transparent")};
+    color: ${(props) => (props.show ? "white" : "transparent")};
+  */
+
+  background-color: ${(props) => props.color};
   border-radius: 50%;
   padding: 4px 8px;
   position: absolute;
   right: 10;
   top: -5;
   font-size: 12px;
+  /* Another method by set the visiblity property to hidden */
+  visibility: ${(props) => (props.show ? "visible" : "hidden")};
 `;
 export default class Navbar extends React.Component {
   render() {
@@ -121,7 +150,14 @@ export default class Navbar extends React.Component {
             src="https://cdn-icons-png.flaticon.com/128/4290/4290854.png"
             alt="Cart-Icon"
           />
-          <CartCount>0</CartCount>
+          {/* 
+            Suppose if we want change color dynamically then how can we do this we 
+            do by using the props which is automatically passed when we specify any
+            attribute in the styled component
+          */}
+          <CartCount color="green" show={true}>
+            0
+          </CartCount>
         </CartContainer>
       </Nav>
     );

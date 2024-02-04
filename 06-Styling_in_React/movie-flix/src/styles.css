@@ -14,6 +14,7 @@ body {
   padding: 0 20px;
   box-sizing: border-box;
 }
+
 .movie-card {
   background: #fff;
   padding: 0;
@@ -21,7 +22,18 @@ body {
   border-radius: 10px;
   /* box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #f1f1f1; */
   display: flex;
+  cursor: pointer;
 }
+
+.movie-card:hover {
+  background-image: linear-gradient(
+    180deg,
+    rgb(46, 61, 154),
+    rgb(28, 239, 248)
+  );
+  color: white;
+}
+
 .movie-card:not(:first-child) {
   margin-top: 20px;
 }
@@ -133,7 +145,7 @@ nav {
   box-sizing: border-box;
 } */
 
-.cart {
+/* .cart {
   height: 40px;
   width: 40px;
 }
@@ -141,4 +153,4 @@ nav {
 .cart img {
   height: 80%;
   width: 80%;
-}
+} */
