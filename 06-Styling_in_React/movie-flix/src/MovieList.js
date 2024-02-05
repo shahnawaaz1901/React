@@ -2,9 +2,13 @@ import React from "react";
 import MovieCard from "./MovieCard.js";
 export default class MovieList extends React.Component {
   //* Define the Constructor for using the State
+  /* 
+    Transfer all Movies data from this to App data so we can pass data as 
+    props in navbar
+  
   constructor() {
     super();
-    // Please remember that state is the object
+    Please remember that state is the object
     this.state = {
       data: [
         {
@@ -65,7 +69,6 @@ export default class MovieList extends React.Component {
       ],
     };
   }
-
   increaseStars = (movie) => {
     const index = this.state.data.indexOf(movie);
     const { data: movies } = this.state;
@@ -101,7 +104,7 @@ export default class MovieList extends React.Component {
     movies[index].isInCart = !movies[index].isInCart;
     this.setState({ movies: movies });
   };
-
+*/
   render() {
     /*
       If we write the movieCard like this then we can able to render multiple
@@ -115,17 +118,19 @@ export default class MovieList extends React.Component {
       another concept Called the Props helps us to pass the data from one component
       to another and maintain the states
     */
-    const data = this.state.data;
+    // const data = this.state.data;
+    const data = this.props.movies;
+    const { incStars, decStars, handleCart, handleFav } = this.props.fn;
     return (
       <>
         {data.map((each, index) => (
           <MovieCard
             movies={each}
             key={index}
-            addStars={this.increaseStars}
-            decStars={this.decreaseStars}
-            updateFav={this.handleFav}
-            handleCart={this.handleCart}
+            addStars={incStars}
+            decStars={decStars}
+            updateFav={handleFav}
+            handleCart={handleCart}
           />
         ))}
       </>

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import styles from "./Navbar.module.css";
 /*
 Inline Styling is the makes code very messi and Lengthy so instead of passing
 object like this we can create seprate object of styling called styles and
@@ -57,12 +58,13 @@ const styles = {
 
 //* Add Styling using the Styled Component
 /* 
-  For Writing Styles using the styled component we need to use style keyword 
+  For Writing Styles using the styled component we need to use styled keyword 
 */
+/*
 const Nav = styled.nav`
   width: 100%;
   background-image: linear-gradient(170deg, #1bc059, #0d47a1);
-  /*rgb(20, 20, 96))*/
+  //rgb(20, 20, 96))
   color: white;
   height: 70px;
   display: flex;
@@ -70,6 +72,7 @@ const Nav = styled.nav`
   padding: 10px 30px;
   box-sizing: border-box;
 `;
+*/
 const Title = styled.div`
   font-size: 30px;
   color: #fff;
@@ -143,7 +146,8 @@ export default class Navbar extends React.Component {
         and also it's messy to write also we can't use the same type of class
         for multiple elements
     */
-      <Nav>
+      //* Added the Object key by using the Module CSS
+      <nav className={styles.nav}>
         <Title>Movie Flix</Title>
         <CartContainer>
           <Image
@@ -156,10 +160,10 @@ export default class Navbar extends React.Component {
             attribute in the styled component
           */}
           <CartCount color="green" show={true}>
-            0
+            {this.props.count}
           </CartCount>
         </CartContainer>
-      </Nav>
+      </nav>
     );
   }
 }
