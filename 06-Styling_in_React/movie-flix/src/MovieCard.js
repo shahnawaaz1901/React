@@ -1,6 +1,11 @@
 import React from "react";
 import "./styles.css";
 
+/*
+  We Need to remember that if we not use props in Class component then we can 
+  converts our class component to the functional component, we also have states
+  in functional components but we can learn it in later sessions
+*/
 export default class MovieCard extends React.Component {
   render() {
     const { title, image, plot, price, ratings, stars, fav, isInCart } =
