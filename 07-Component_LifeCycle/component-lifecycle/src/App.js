@@ -8,11 +8,17 @@ import ComponentA from "./component-A";
   the Class Component instead of Functional Component 
 */
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      name: "Ashu",
+    };
+  }
   render() {
     return (
       <>
         <h1>This is a Class Based Component</h1>
-        <ComponentA />
+        <ComponentA do={"nothing"} />
       </>
     );
   }
