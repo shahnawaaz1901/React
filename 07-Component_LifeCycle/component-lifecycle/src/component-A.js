@@ -5,7 +5,7 @@ class ComponentA extends Component {
   constructor() {
     super();
     this.state = {
-      name: "Component A",
+      name: [],
     };
     console.log("Component A Constructor.");
     /*
@@ -34,8 +34,6 @@ class ComponentA extends Component {
     COmponent, This is the very rare method of Mounting 
 */
   static getDerivedStateFromProps(props, state) {
-    console.log(props);
-    console.log(state);
     /* 
         Because getDerivedStateFromProps is the static method that's why
         value of "this" keyword is undefined inside this function so state
@@ -48,15 +46,18 @@ class ComponentA extends Component {
   }
 
   /* Side Effect Possible and Best Place */
-  componentDidMount() {
+  async componentDidMount() {
     /*
         Because ComponentDidMount Called Only Once that's why it's perfect 
         place to setState using the setState function and because this Mounting
         Phase function is called just after the constructor that's why state is
         change before render component in the browser
     */
-    this.setState({ name: "From Component Mount" });
+    // this.setState({ name: "From Component Mount" });
     console.log("Component A Mounting Phase");
+    const response = await fetch("https://jsonplaceholder.typicode.com/users");
+    const data = await response.json();
+    this.setState({ name: data });
   }
 
   /* No Side Effect */
@@ -73,7 +74,16 @@ class ComponentA extends Component {
     */
     console.log("Component A Render");
 
-    return <h1>This is {this.state.name}</h1>;
+    return (
+      <>
+        <h1>
+          Users Is :
+          {this.state.name.map((each, index) => (
+            <li key={index}>{each.name}</li>
+          ))}
+        </h1>
+      </>
+    );
   }
 }
 

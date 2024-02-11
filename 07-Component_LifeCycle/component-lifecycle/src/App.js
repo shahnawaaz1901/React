@@ -17,8 +17,7 @@ class App extends Component {
   render() {
     return (
       <>
-        <h1>This is a Class Based Component</h1>
-        <ComponentA do={"nothing"} />
+        <ComponentA />
       </>
     );
   }
