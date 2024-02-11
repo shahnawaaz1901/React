@@ -5,6 +5,7 @@ class ComponentA extends Component {
   constructor() {
     super();
     this.state = {
+      data: "Component A",
       name: [],
     };
     console.log("Component A Constructor.");
@@ -57,6 +58,7 @@ class ComponentA extends Component {
     console.log("Component A Mounting Phase");
     const response = await fetch("https://jsonplaceholder.typicode.com/users");
     const data = await response.json();
+    console.log(data);
     this.setState({ name: data });
   }
 
@@ -76,12 +78,27 @@ class ComponentA extends Component {
 
     return (
       <>
-        <h1>
-          Users Is :
-          {this.state.name.map((each, index) => (
-            <li key={index}>{each.name}</li>
-          ))}
-        </h1>
+        <table border={5}>
+          <caption>User Details </caption>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>UserName</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.name.map((each, index) => (
+              <tr key={index}>
+                <td>{each.id}</td>
+                <td>{each.name}</td>
+                <td>{each.username}</td>
+                <td>{each.email}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </>
     );
   }
