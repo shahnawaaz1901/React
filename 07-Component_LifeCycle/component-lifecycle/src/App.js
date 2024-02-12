@@ -1,6 +1,7 @@
 import { Component } from "react";
 import "./App.css";
-import ComponentA from "./component-A";
+// import ComponentA from "./Component/component-A";
+import TimerOne from "./Timer/timerOne";
 // import ComponentB from "./component-B";
 
 /* 
@@ -17,7 +18,8 @@ class App extends Component {
   render() {
     return (
       <>
-        <ComponentA />
+        {/* <ComponentA /> */}
+        <TimerOne />
       </>
     );
   }

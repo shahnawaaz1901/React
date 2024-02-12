@@ -65,3 +65,10 @@
         the component from the DOM to relase to occupy memory or remove the active
         calls, interval or timers if any.
 */
+
+/*
+    One thing that we need to remember that is all the lifecycle works with the 
+    class component not the functional component because functional component not 
+    have the render function although functional component has their own lifecycle 
+    methods, Here we first learn Class based component LifeCycle First
+*/
