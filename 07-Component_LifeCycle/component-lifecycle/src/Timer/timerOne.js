@@ -29,6 +29,7 @@ export default class TimerOne extends React.Component {
   //* Part of Both Mounting and Updating Phase
   static getDerivedStateFromProps(props, state) {
     console.log("getDerivedStateFromProps function");
+    console.log(props);
     return null;
   }
 
@@ -48,6 +49,10 @@ export default class TimerOne extends React.Component {
   //* Part of Both Mounting and Updating
   render() {
     console.log("Render function");
+    /* 
+        Because Render function is kept to be pure so we need to not clear the 
+        interval inside the render function
+    */
     return (
       <>
         <h1>
@@ -77,13 +82,10 @@ export default class TimerOne extends React.Component {
     console.log("ComponentDidMount function");
     this.timer = setInterval(() => {
       this.setState((prevState) => {
-        if (prevState.time === 59) {
-          clearInterval(this.timer);
-        }
         prevState.time += 1;
         return prevState;
       });
-    }, 5);
+    }, 1000);
   }
 
   //* Part of Updating Phase
@@ -96,5 +98,18 @@ export default class TimerOne extends React.Component {
         clear the interval, so everytime we dont need to change we can set setInterval
         at the first when component is loaded
     */
+  }
+
+  //* ComponentWillUnmount Called when a Component Removed From the DOM
+  /* 
+    Because now we have a button which onClick event which decide that we need 
+    to show or remove the timer, so here we can remove timer at the UnMounting
+    phase because this function is called just before we remove the Component
+    from the DOM, So we use clearInterval here withOut any condition because
+    component is destroyed so why we need the condition
+    */
+  componentWillUnmount() {
+    console.log("Component UnMount Called");
+    clearInterval(this.timer);
   }
 }

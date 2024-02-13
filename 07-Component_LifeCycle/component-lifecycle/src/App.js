@@ -13,13 +13,31 @@ class App extends Component {
     super();
     this.state = {
       name: "Ashu",
+      run: true,
     };
   }
+  handleButtonClick = () => {
+    this.setState({ visible: !this.state.visible });
+  };
+
+  changeTimer = (condition) => {
+    console.log("Inside timer");
+    this.setState((prevState) => {
+      prevState.run = condition;
+      return prevState;
+    });
+  };
+
   render() {
     return (
       <>
-        {/* <ComponentA /> */}
-        <TimerOne />
+        <TimerOne run={this.state.run} />
+        <div>
+          <button onClick={() => this.changeTimer(true)}>Start</button>
+        </div>
+        <div>
+          <button onClick={() => this.changeTimer(false)}>Stop</button>
+        </div>
       </>
     );
   }
