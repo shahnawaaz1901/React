@@ -34,13 +34,21 @@ export default class TimerOne extends React.Component {
   //* Part of Updating Phase
   shouldComponentUpdate(nextProps, nextState) {
     console.log("shouldComponentUpdate function");
+    console.log(this.state.time);
+    console.log(nextProps);
+    console.log(this.props.run);
+    return this.props.run !== nextProps.run || this.state.time % 5 === 0;
     /* 
         Return true means we want to re render the component because re rendering 
         only done in case in which we not return anything from shouldComponentUpdate
         in that case this function implicitly returns true or we return true in this
         function
     */
-    return true;
+    // if (this.state.time % 5 === 0) {
+    // return true;
+    // } else {
+    //   return false;
+    // }
   }
 
   //* Part of Both Mounting and Updating
@@ -69,7 +77,6 @@ export default class TimerOne extends React.Component {
 
   //* Part of Updating Phase
   getSnapshotBeforeUpdate(prevProps, prevState) {
-    console.log(prevProps, prevState);
     console.log("GetSnapshotBeforeUpdate function");
     return null;
   }
@@ -77,17 +84,33 @@ export default class TimerOne extends React.Component {
   //* Part of Mounting Phase
   componentDidMount() {
     console.log("ComponentDidMount function");
-    this.timer = setInterval(() => {
-      this.setState((prevState) => {
-        prevState.time += 1;
-        return prevState;
-      });
-    }, 5000);
   }
 
   //* Part of Updating Phase
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState, snapshot) {
     console.log("ComponentDidUpdate function");
+    console.log(prevProps);
+    //* Because initially prevProps and this.props is same so timer not started
+    /*
+      Initially Our Props run is false so prevProps.run and this.props.run 
+      both are false and if we change props on onClick event so int that
+      case preProps.run is false and this.props.run is false so we enter into 
+      the loop and after entering loop we again check if this.props.run is true
+      or false if it's true then run timer and if it's false then clear the 
+      interval
+    */
+    if (prevProps.run !== this.props.run) {
+      if (this.props.run) {
+        this.timer = setInterval(() => {
+          this.setState((prevState) => {
+            prevState.time += 1;
+            return prevState;
+          });
+        }, 1000);
+      } else {
+        clearInterval(this.timer);
+      }
+    }
     /* 
         Because setInterval and setTimeOut is asynchronous operation so output is 
         unpredictable so we can say this is also a side effect, because in setInterval

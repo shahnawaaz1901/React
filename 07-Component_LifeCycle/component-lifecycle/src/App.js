@@ -34,7 +34,7 @@ class App extends Component {
         <TimerOne run={this.state.run} />
         <div>
           <button onClick={this.changeTimer}>
-            {this.state.run ? "End" : "Start"}
+            {this.state.run ? "STOP" : "START"}
           </button>
         </div>
       </>
