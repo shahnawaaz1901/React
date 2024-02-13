@@ -13,17 +13,17 @@ class App extends Component {
     super();
     this.state = {
       name: "Ashu",
-      run: true,
+      run: false,
     };
   }
   handleButtonClick = () => {
     this.setState({ visible: !this.state.visible });
   };
 
-  changeTimer = (condition) => {
+  changeTimer = () => {
     console.log("Inside timer");
     this.setState((prevState) => {
-      prevState.run = condition;
+      prevState.run = !prevState.run;
       return prevState;
     });
   };
@@ -33,10 +33,9 @@ class App extends Component {
       <>
         <TimerOne run={this.state.run} />
         <div>
-          <button onClick={() => this.changeTimer(true)}>Start</button>
-        </div>
-        <div>
-          <button onClick={() => this.changeTimer(false)}>Stop</button>
+          <button onClick={this.changeTimer}>
+            {this.state.run ? "End" : "Start"}
+          </button>
         </div>
       </>
     );

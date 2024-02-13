@@ -23,19 +23,16 @@ export default class TimerOne extends React.Component {
       //   num: 0,
       time: 0,
     };
-    console.log("Constructor function");
   }
 
   //* Part of Both Mounting and Updating Phase
   static getDerivedStateFromProps(props, state) {
     console.log("getDerivedStateFromProps function");
-    console.log(props);
     return null;
   }
 
   //* Part of Updating Phase
   shouldComponentUpdate(nextProps, nextState) {
-    console.log(nextProps, nextState);
     console.log("shouldComponentUpdate function");
     /* 
         Return true means we want to re render the component because re rendering 
@@ -85,7 +82,7 @@ export default class TimerOne extends React.Component {
         prevState.time += 1;
         return prevState;
       });
-    }, 1000);
+    }, 5000);
   }
 
   //* Part of Updating Phase

@@ -19,14 +19,17 @@
         render function, Also no Side-Effect is being performed in this method.
 
     //* Rarely Used Method
-    2. shouldComponentUpdate() : This is also very rare method which is basically 
-        used for the Optimization Purpose, if we don't want to re render the 
-        component by each and every state, in that case we can use this method 
-        because less re rendering is increased the performance of app, it returns
-        by default true but depending on the condition we can return false and if
-        it returns false then render function not be called and component is not re
-        render again. No Side Effect is being performed in this function it just
-        only decide that re rendering should be happen or not
+    2. shouldComponentUpdate(nextProps, nextState) : This is also very rare method 
+        which is basically used for the Optimization Purpose, if we don't want to 
+        re render the component by each and every state, in that case we can use this 
+        method because less re rendering is increased the performance of app, it 
+        returns by default true but depending on the condition we can return false 
+        and if it returns false then render function not be called and component is 
+        not re render again. No Side Effect is being performed in this function it 
+        just only decide that re rendering should be happen or not, one thing that we
+        need to understand that shouldComponentUpdate takes two arguments nextProps 
+        and nextState basis on this two arguments we can control the re rendering of
+        a component
     
     //* Commonly Used
     3. render() : render function is pure function it compares the value of state 
@@ -36,22 +39,30 @@
         function.
 
     //* Rarely Used Method
-    4. getSnapShotBeforeUpdate() : This method is returns us some value which is 
-        called snapshot, this function is invoked between changes is reflected 
-        from virtual DOM to real DOM, and if we want to pass value to componentDidUpdate
-        we can Pass from here, this function method is called after the render 
-        function and before the componentDidUpdate function, No SideEffect performed
-        in this method
+    4. getSnapShotBeforeUpdate(prevProps, prevState) : This method is takes some 
+        value as argument which is called snapshot, this function is invoked between 
+        changes is reflected from virtual DOM to real DOM, and if we want to pass 
+        value to componentDidUpdate we can Pass from here, this function method is 
+        called after the render function and before the componentDidUpdate function, 
+        No SideEffect performed in this method. This method takes two argument prevProps
+        and prevState both of argument is previous value of of props and state, one
+        thing that prevProps is only contains value if parent pass some value as props
+        and same for state if we create state in constructor then we can use the state
+        otherwise state is also not available, and what ever value we returns from here
+        is recieved by the componentDidUpdate function as argument
 
     //* Commonly Used
-    5. componentDidUpdate() : As name suggest this method is invoked when the component 
-        is re render or render function is called, this method is very similar to
-        componentDidMount because we can perform any side effect or setState here
-        withOut any boundation, but one difference is componentDidMount only invoked
-        once but componentDidUpdate always invoked after every re rendering, one thing
-        that we need to understand that componentDidUpdate only invoked after component
-        is re render.
-    
+    5. componentDidUpdate(prevProps, prevStates, snapshot) : As name suggest this 
+        method is invoked when the component is re render or render function is 
+        called, this method is very similar to componentDidMount because we can 
+        perform any side effect or setState here withOut any boundation, but one 
+        difference is componentDidMount only invoked once but componentDidUpdate 
+        always invoked after every re rendering. componentDidUpdate method takes
+        three arguments one is prevProps, prevState and snapshot, snapshot is
+        the value which is returns from getSnapshotBeforeUpdate function if we not 
+        return anything by default value will be null, all the argument in 
+        componentDidUpdate is optional, prevProps and prevState is the value of props 
+        and state previously or before update.
 */
 
 /*
