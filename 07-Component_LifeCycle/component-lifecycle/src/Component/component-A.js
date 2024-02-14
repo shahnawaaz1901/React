@@ -56,7 +56,16 @@ class ComponentA extends Component {
     */
     // this.setState({ name: "From Component Mount" });
     console.log("Component A Mounting Phase");
-    const response = await fetch("https://jsonplaceholder.typicode.com/users");
+    /* 
+      If we write wrong URL then our app is crashed, so that in case of Error We 
+      can wrap this inside the Error Boundary For Error Handling, How Ever Console
+      will Helps us to identify the Error but suppose if a normal user visit our
+      web page then user is confused and he/she 'll not understand what's wrong 
+      so for that we need to render a fallback UI, which shown some message that
+      Something went wrong please try again or developers is being informed and this
+      issue will be fixed soon 
+    */
+    const response = await fetch("https://jsonplaceholder.typicode.com/user");
     const data = await response.json();
     console.log(data);
     this.setState({ name: data });
