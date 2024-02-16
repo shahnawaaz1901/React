@@ -23,6 +23,11 @@
   width: 30%;
   border-radius: 50%;
   background-color: rgb(183, 184, 185);
+  cursor: grabbing;
+}
+
+.okBtn:hover {
+  background-color: rgb(157, 157, 157);
 }
 
 .wheelBtn {
@@ -30,8 +35,12 @@
   position: absolute;
   font-weight: bold;
   font-size: 20px;
+  cursor: pointer;
 }
 
+.wheelBtn:hover {
+  color: rgb(157, 157, 157);
+}
 .top {
   top: 15%;
 }

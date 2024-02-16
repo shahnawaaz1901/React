@@ -3,10 +3,23 @@
   width: 100%;
   border: 2px solid black;
   border-radius: 8px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
   margin-bottom: 10px;
+  background: rgb(2, 0, 36);
+  overflow: hidden;
+  vertical-align: middle;
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(199, 39, 39, 1) 0%,
+    rgba(121, 9, 81, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+}
+
+.content {
+  width: 60%;
+  border: 1px solid black;
+  background-color: white;
+  height: 100%;
+  padding-left: 20px;
 }
