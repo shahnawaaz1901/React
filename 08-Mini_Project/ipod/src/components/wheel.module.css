@@ -1,0 +1,49 @@
+.wheelContainer {
+  height: 55%;
+  width: 100%;
+  text-align: center;
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wheel {
+  height: 100%;
+  width: 90%;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.okBtn {
+  height: 30%;
+  width: 30%;
+  border-radius: 50%;
+  background-color: rgb(183, 184, 185);
+}
+
+.wheelBtn {
+  color: rgb(183, 184, 185);
+  position: absolute;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.top {
+  top: 15%;
+}
+
+.left {
+  left: 15%;
+}
+
+.right {
+  right: 15%;
+}
+.bottom {
+  bottom: 13%;
+}

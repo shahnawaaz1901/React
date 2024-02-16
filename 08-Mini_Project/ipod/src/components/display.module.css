@@ -1,0 +1,9 @@
+.displayContainer {
+  height: 45%;
+  width: 100%;
+  border: 1px solid white;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,7 +1,8 @@
 .container {
-  height: 96vh;
-  width: 99vw;
+  height: 450px;
+  width: 350px;
   overflow: hidden;
-  background-color: green;
-  margin: 0px;
+  background-color: rgb(183, 184, 185);
+  padding: 20px 5px;
+  border-radius: 13px;
 }
