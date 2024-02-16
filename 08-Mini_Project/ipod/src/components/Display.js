@@ -4,7 +4,7 @@ class Display extends React.Component {
   render() {
     return (
       <div className={styles.displayContainer}>
-        <h1>This is Display Compoent</h1>
+        <h1>This is Display Component</h1>
       </div>
     );
   }

@@ -16,6 +16,7 @@ class Wheel extends React.Component {
           </div>
           <div className={`${styles.wheelBtn} ${styles.bottom}`}>
             <i class="fa-solid fa-play"></i>
+            <i class="fa-solid fa-pause"></i>
           </div>
         </div>
       </div>
