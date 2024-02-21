@@ -8,15 +8,21 @@ class Wheel extends React.Component {
         <div className={styles.wheel}>
           <div className={styles.okBtn}></div>
           <div className={`${styles.wheelBtn} ${styles.top}`}>Menu</div>
-          <div className={`${styles.wheelBtn} ${styles.right}`}>
-            <i class="fa-solid fa-forward-fast"></i>
+          <div
+            className={`${styles.wheelBtn} ${styles.right}`}
+            onClick={() => this.props.changeSelection(true)}
+          >
+            <i className="fa-solid fa-forward-fast"></i>
           </div>
-          <div className={`${styles.wheelBtn} ${styles.left}`}>
-            <i class="fa-solid fa-backward-fast"></i>
+          <div
+            className={`${styles.wheelBtn} ${styles.left}`}
+            onClick={() => this.props.changeSelection(false)}
+          >
+            <i className="fa-solid fa-backward-fast"></i>
           </div>
           <div className={`${styles.wheelBtn} ${styles.bottom}`}>
-            <i class="fa-solid fa-play"></i>
-            <i class="fa-solid fa-pause"></i>
+            <i className="fa-solid fa-play"></i>
+            <i className="fa-solid fa-pause"></i>
           </div>
         </div>
       </div>

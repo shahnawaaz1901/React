@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./display.module.css";
 class Display extends React.Component {
   render() {
+    const { options } = this.props;
+    const { currentOption } = this.props;
     return (
       <div className={styles.displayContainer}>
         <div className={styles.content}>
@@ -9,11 +11,23 @@ class Display extends React.Component {
             <h3>iPod.js</h3>
           </div>
           <div className={styles.main}>
-            <div className={`${styles.option} ${styles.select}`}>
-              <div>Cover Flow</div>
-              <div className={styles.selectedElement}></div>
-            </div>
-            <div className={styles.option}>
+            {options.map((every, index) => {
+              return (
+                <>
+                  <div
+                    key={index}
+                    className={`${styles.option} ${
+                      index === currentOption ? styles.select : ""
+                    }`}
+                  >
+                    <div>{every}</div>
+                    <div className={styles.selectedElement}></div>
+                  </div>
+                </>
+              );
+            })}
+
+            {/* <div className={styles.option}>
               <div>Music</div>
               <div className={styles.selectedElement}></div>
             </div>
@@ -24,7 +38,7 @@ class Display extends React.Component {
             <div className={styles.option}>
               <div>Settings</div>
               <div className={styles.selectedElement}></div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
