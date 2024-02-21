@@ -9,10 +9,22 @@ class Display extends React.Component {
             <h3>iPod.js</h3>
           </div>
           <div className={styles.main}>
-            <div>Cover Flow</div>
-            <div>Music</div>
-            <div>Games</div>
-            <div>Settings</div>
+            <div className={`${styles.option} ${styles.select}`}>
+              <div>Cover Flow</div>
+              <div className={styles.selectedElement}></div>
+            </div>
+            <div className={styles.option}>
+              <div>Music</div>
+              <div className={styles.selectedElement}></div>
+            </div>
+            <div className={styles.option}>
+              <div>Games</div>
+              <div className={styles.selectedElement}></div>
+            </div>
+            <div className={styles.option}>
+              <div>Settings</div>
+              <div className={styles.selectedElement}></div>
+            </div>
           </div>
         </div>
       </div>
