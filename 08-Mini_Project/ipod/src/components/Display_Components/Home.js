@@ -4,7 +4,6 @@ export default class HomePage extends React.Component {
   render() {
     const { options } = this.props.props;
     const { currentOption } = this.props.props;
-    console.log(this.props.props);
     return (
       <React.Fragment>
         <div className={styles.content}>

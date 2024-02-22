@@ -21,6 +21,7 @@ class IPod extends React.Component {
           : 0,
     });
   }
+
   previousSelectElement() {
     this.setState({
       selectedElementIndex:
@@ -29,6 +30,7 @@ class IPod extends React.Component {
           : this.state.selectedElementIndex - 1,
     });
   }
+
   nextOrPreviousOptionSelected(decision) {
     if (decision) {
       this.nextSelectElement();
