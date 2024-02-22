@@ -2,7 +2,6 @@ import React from "react";
 import Display from "./Display";
 import Wheel from "./Wheel";
 import ipod from "./ipod.module.css";
-import zingtouch from "zingtouch";
 
 class IPod extends React.Component {
   constructor() {

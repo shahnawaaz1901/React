@@ -1,11 +1,22 @@
 import React from "react";
 import styles from "./wheel.module.css";
+import Zingtouch from "zingtouch";
 
 class Wheel extends React.Component {
+  componentDidMount() {
+    const zt = new Zingtouch.Region(document.body);
+    const element = document.getElementById("One");
+    zt.bind(element, "rotate", function (e) {
+      if (e.detail.angle >= 15) {
+        console.log("Click");
+      }
+    });
+  }
+
   render() {
     const { changeSelection } = this.props;
     return (
-      <div className={styles.wheelContainer}>
+      <div id="One" className={styles.wheelContainer}>
         <div className={styles.wheel}>
           <div className={styles.okBtn}></div>
           <div className={`${styles.wheelBtn} ${styles.top}`}>Menu</div>
