@@ -3,6 +3,7 @@ import styles from "./wheel.module.css";
 
 class Wheel extends React.Component {
   render() {
+    const { changeSelection } = this.props;
     return (
       <div className={styles.wheelContainer}>
         <div className={styles.wheel}>
@@ -10,13 +11,13 @@ class Wheel extends React.Component {
           <div className={`${styles.wheelBtn} ${styles.top}`}>Menu</div>
           <div
             className={`${styles.wheelBtn} ${styles.right}`}
-            onClick={() => this.props.changeSelection(true)}
+            onClick={() => changeSelection(true)}
           >
             <i className="fa-solid fa-forward-fast"></i>
           </div>
           <div
             className={`${styles.wheelBtn} ${styles.left}`}
-            onClick={() => this.props.changeSelection(false)}
+            onClick={() => changeSelection(false)}
           >
             <i className="fa-solid fa-backward-fast"></i>
           </div>

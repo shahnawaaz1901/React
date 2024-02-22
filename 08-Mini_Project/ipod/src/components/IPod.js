@@ -13,25 +13,22 @@ class IPod extends React.Component {
   }
 
   nextSelectElement() {
-    this.setState((prevState) => {
-      prevState.selectedElementIndex += 0.5;
-      if (prevState.selectedElementIndex === this.state.options.length) {
-        prevState.selectedElementIndex = 0;
-      }
-      return prevState;
+    this.setState({
+      selectedElementIndex:
+        this.state.selectedElementIndex + 1 !== this.state.options.length
+          ? this.state.selectedElementIndex + 1
+          : 0,
     });
   }
   previousSelectElement() {
-    this.setState((prevState) => {
-      prevState.selectedElementIndex -= 0.5;
-      if (prevState.selectedElementIndex < 0) {
-        prevState.selectedElementIndex = this.state.options.length - 1;
-      }
-      return prevState;
+    this.setState({
+      selectedElementIndex:
+        this.state.selectedElementIndex - 1 < 0
+          ? this.state.options.length - 1
+          : this.state.selectedElementIndex - 1,
     });
   }
   nextOrPreviousOptionSelected(decision) {
-    console.log("CLick");
     if (decision) {
       this.nextSelectElement();
     } else {

@@ -13,17 +13,15 @@ class Display extends React.Component {
           <div className={styles.main}>
             {options.map((every, index) => {
               return (
-                <>
-                  <div
-                    key={index}
-                    className={`${styles.option} ${
-                      index === currentOption ? styles.select : ""
-                    }`}
-                  >
-                    <div>{every}</div>
-                    <div className={styles.selectedElement}></div>
-                  </div>
-                </>
+                <div
+                  key={index}
+                  className={`${styles.option} ${
+                    index === currentOption ? styles.select : ""
+                  }`}
+                >
+                  <div>{every}</div>
+                  <div className={styles.selectedElement}></div>
+                </div>
               );
             })}
 
