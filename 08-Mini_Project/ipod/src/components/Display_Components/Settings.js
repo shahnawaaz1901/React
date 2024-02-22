@@ -1,5 +1,5 @@
 import React from "react";
-
+import styles from "./settings.module.css";
 export default class Setting extends React.Component {
   constructor() {
     super();
@@ -11,7 +11,7 @@ export default class Setting extends React.Component {
   render() {
     return (
       <>
-        <h1>This is Settings Page</h1>
+        <div className={styles.content}></div>
       </>
     );
   }

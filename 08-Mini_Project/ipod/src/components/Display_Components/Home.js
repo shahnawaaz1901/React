@@ -5,10 +5,10 @@ export default class HomePage extends React.Component {
     const { options } = this.props.props;
     const { currentOption } = this.props.props;
     return (
-      <React.Fragment>
+      <>
         <div className={styles.content}>
           <div className={styles.heading}>
-            <h3>iPod.js</h3>
+            <h2>iPod.js</h2>
           </div>
           <div className={styles.main}>
             {options.map((every, index) => {
@@ -39,7 +39,7 @@ export default class HomePage extends React.Component {
             </div> */}
           </div>
         </div>
-      </React.Fragment>
+      </>
     );
   }
 }

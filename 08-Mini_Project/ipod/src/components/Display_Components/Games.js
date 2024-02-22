@@ -1,5 +1,5 @@
 import React from "react";
-
+import styles from "./games.module.css";
 export default class Games extends React.Component {
   constructor() {
     super();
@@ -11,7 +11,7 @@ export default class Games extends React.Component {
   render() {
     return (
       <>
-        <h1>This is Games Page</h1>
+        <div className={styles.content}></div>
       </>
     );
   }

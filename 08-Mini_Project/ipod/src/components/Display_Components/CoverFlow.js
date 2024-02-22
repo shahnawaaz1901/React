@@ -1,5 +1,5 @@
 import React from "react";
-
+import styles from "./coverflow.module.css";
 export default class CoverFlow extends React.Component {
   constructor() {
     super();
@@ -11,7 +11,7 @@ export default class CoverFlow extends React.Component {
   render() {
     return (
       <>
-        <h1>This is CoverFlow Page</h1>
+        <div className={styles.content}></div>
       </>
     );
   }
