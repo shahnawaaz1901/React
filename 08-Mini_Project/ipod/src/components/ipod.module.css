@@ -4,7 +4,7 @@
   overflow: hidden;
   background-color: rgb(223, 223, 223);
   padding: 10px 5px 20px 5px;
-  border-radius: 20px;
-  box-shadow: 0px 0px 5px 3px rgb(169, 171, 174) inset;
+  border-radius: 23px;
+  box-shadow: 0px 0px 5px 5px rgb(169, 171, 174) inset;
   /* -webkit-box-shadow: 1px inset; */
 }

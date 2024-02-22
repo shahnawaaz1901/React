@@ -11,7 +11,9 @@ export default class CoverFlow extends React.Component {
   render() {
     return (
       <>
-        <div className={styles.content}></div>
+        <div className={styles.content}>
+          <div>Coverflow</div>
+        </div>
       </>
     );
   }
