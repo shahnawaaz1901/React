@@ -3,33 +3,46 @@ import styles from "./wheel.module.css";
 import Zingtouch from "zingtouch";
 
 class Wheel extends React.Component {
-  componentDidMount() {
+  constructor() {
+    super();
+    this.state = {
+      angle: 0,
+      eventDone: true,
+    };
+  }
+
+  componentDidMount = () => {
     const zt = new Zingtouch.Region(document.body);
     const element = document.getElementById("One");
-    zt.bind(element, "rotate", function (e) {
-      if (e.detail.angle >= 15) {
-        console.log("Click");
+    zt.bind(element, "rotate", (e) => {
+      if (e.detail.distanceFromOrigin >= 50 && this.state.eventDone) {
+        this.props.changeSelection(true);
+        this.setState({ eventDone: false });
+      } else if (e.detail.distanceFromOrigin <= -50 && this.state.eventDone) {
+        this.props.changeSelection(false);
+        this.setState({ eventDone: false });
       }
     });
+  };
+
+  componentDidUpdate() {
+    if (!this.state.eventDone) {
+      setTimeout(() => {
+        this.setState({ eventDone: true });
+      }, 1000);
+    }
   }
 
   render() {
-    const { changeSelection } = this.props;
     return (
       <div id="One" className={styles.wheelContainer}>
         <div className={styles.wheel}>
           <div className={styles.okBtn}></div>
           <div className={`${styles.wheelBtn} ${styles.top}`}>Menu</div>
-          <div
-            className={`${styles.wheelBtn} ${styles.right}`}
-            onClick={() => changeSelection(true)}
-          >
+          <div className={`${styles.wheelBtn} ${styles.right}`}>
             <i className="fa-solid fa-forward-fast"></i>
           </div>
-          <div
-            className={`${styles.wheelBtn} ${styles.left}`}
-            onClick={() => changeSelection(false)}
-          >
+          <div className={`${styles.wheelBtn} ${styles.left}`}>
             <i className="fa-solid fa-backward-fast"></i>
           </div>
           <div className={`${styles.wheelBtn} ${styles.bottom}`}>
