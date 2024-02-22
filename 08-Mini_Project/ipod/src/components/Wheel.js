@@ -37,8 +37,16 @@ class Wheel extends React.Component {
     return (
       <div id="One" className={styles.wheelContainer}>
         <div className={styles.wheel}>
-          <div className={styles.okBtn}></div>
-          <div className={`${styles.wheelBtn} ${styles.top}`}>Menu</div>
+          <div
+            className={styles.okBtn}
+            onClick={this.props.handleClickOnOKBtn}
+          ></div>
+          <div
+            className={`${styles.wheelBtn} ${styles.top}`}
+            onClick={this.props.homePage}
+          >
+            Menu
+          </div>
           <div className={`${styles.wheelBtn} ${styles.right}`}>
             <i className="fa-solid fa-forward-fast"></i>
           </div>

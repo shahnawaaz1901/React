@@ -7,6 +7,7 @@ class IPod extends React.Component {
   constructor() {
     super();
     this.state = {
+      selectedOption: "",
       selectedElementIndex: 0,
       options: ["Cover Flow", "Music", "Games", "Settings"],
     };
@@ -36,14 +37,28 @@ class IPod extends React.Component {
     }
   }
 
+  changeSelectedScreen() {
+    this.setState({
+      selectedOption: this.state.options[this.state.selectedElementIndex],
+    });
+  }
+
+  backToHomePage() {
+    this.setState({ selectedOption: "" });
+  }
   render() {
     return (
       <div className={ipod.container}>
         <Display
           options={this.state.options}
           currentOption={this.state.selectedElementIndex}
+          selectScreen={this.state.selectedOption}
         />
-        <Wheel changeSelection={this.nextOrPreviousOptionSelected.bind(this)} />
+        <Wheel
+          changeSelection={this.nextOrPreviousOptionSelected.bind(this)}
+          handleClickOnOKBtn={this.changeSelectedScreen.bind(this)}
+          homePage={this.backToHomePage.bind(this)}
+        />
       </div>
     );
   }
