@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 export default function Input() {
   /* 
         WhatEver Value we pass in useState function it's assign it to 
@@ -14,7 +14,19 @@ export default function Input() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
   */
-  const [name, updateName] = useState({ firstName: "", lastName: "" });
+  const [name, updateName] = useState({
+    firstName: "Ashu",
+    lastName: "Ansari",
+  });
+  useEffect(() => {
+    document.title = name.firstName + " " + name.lastName;
+  }, [name.lastName]);
+  /* 
+    If we leave dependency array to empty in useEffect then it'll work 
+    as componentDidMount and never called again, and if i pass some variable
+    name then if that variable is change then useEffect works as 
+    componentDidUpdate and call every time when state is changes
+*/
   return (
     <>
       <div className="section">

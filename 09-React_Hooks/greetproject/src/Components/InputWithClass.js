@@ -19,6 +19,7 @@ export default class Input extends React.Component {
 
   componentDidMount() {
     document.title = this.state.firstName + " " + this.state.lastName;
+    console.log(document.head.link);
   }
 
   componentDidUpdate() {
