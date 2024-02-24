@@ -19,13 +19,18 @@ export default class Input extends React.Component {
 
   componentDidMount() {
     document.title = this.state.firstName + " " + this.state.lastName;
-    console.log(document.head.link);
+    this.timer = setInterval(() => {
+      console.log(window.innerWidth);
+    }, 500);
   }
 
   componentDidUpdate() {
     document.title = this.state.firstName + " " + this.state.lastName;
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
   render() {
     return (
       <>
