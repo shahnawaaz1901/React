@@ -2,8 +2,7 @@
 import { useState } from "react";
 export default function Blog() {
   //* Set State
-  const [blogs, updateBlogs] = useState([]);
-
+  const [blogsData, updateBlogData] = useState([]);
   //Passing the synthetic event as argument to stop refreshing the page on submit
   function handleSubmit(e) {
     e.preventDefault();
@@ -11,14 +10,7 @@ export default function Blog() {
     let content = e.target[1].value;
     e.target[0].value = "";
     e.target[1].value = "";
-    const blogData = {
-      title,
-      content,
-    };
-    console.log(blogs);
-    blogs.push(blogData);
-    console.log(blogs);
-    updateBlogs({ blogs });
+    updateBlogData([{ title, content }, ...blogsData]);
   }
 
   return (
@@ -54,6 +46,12 @@ export default function Blog() {
 
       {/* Section where submitted blogs will be displayed */}
       <h2> Blogs </h2>
+      {blogsData.map((every, index) => (
+        <div key={index} className="blog">
+          <h3>{every.title}</h3>
+          <p>{every.content}</p>
+        </div>
+      ))}
     </>
   );
 }
