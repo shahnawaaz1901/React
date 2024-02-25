@@ -9,12 +9,13 @@ import Setting from "./Display_Components/Settings";
 class Display extends React.Component {
   render() {
     const { selectScreen } = this.props;
+    const { musicOptions } = this.props;
     return (
       <div className={styles.displayContainer}>
         {selectScreen === "Cover Flow" ? (
           <CoverFlow />
         ) : selectScreen === "Music" ? (
-          <Music />
+          <Music options={musicOptions} />
         ) : selectScreen === "Games" ? (
           <Games />
         ) : selectScreen === "Settings" ? (

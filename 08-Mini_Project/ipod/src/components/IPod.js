@@ -10,16 +10,40 @@ class IPod extends React.Component {
       selectedOption: "",
       selectedElementIndex: 0,
       options: ["Cover Flow", "Music", "Games", "Settings"],
+      music: {
+        selectedOption: "",
+        selectedElementIndex: 0,
+        options: ["All Songs", "Artists", "Albums"],
+      },
+      home: {
+        selectedOption: "",
+        selectedElementIndex: 0,
+        options: ["Cover Flow", "Music", "Games", "Settings"],
+      },
     };
   }
 
   nextSelectElement() {
-    this.setState({
-      selectedElementIndex:
-        this.state.selectedElementIndex + 1 !== this.state.options.length
-          ? this.state.selectedElementIndex + 1
-          : 0,
-    });
+    if (this.state.selectedOption === "") {
+      this.setState({
+        selectedElementIndex:
+          this.state.selectedElementIndex + 1 !== this.state.options.length
+            ? this.state.selectedElementIndex + 1
+            : 0,
+      });
+    } else if (this.state.selectedOption === "Music") {
+      this.setState({
+        music: {
+          selectedOption: "",
+          selectedElementIndex:
+            this.state.music.selectedElementIndex + 1 !==
+            this.state.music.options.length
+              ? this.state.music.selectedElementIndex + 1
+              : 0,
+          options: ["All Songs", "Artists", "Albums"],
+        },
+      });
+    }
   }
 
   previousSelectElement() {
@@ -40,14 +64,24 @@ class IPod extends React.Component {
   }
 
   changeSelectedScreen() {
-    this.setState({
-      selectedOption: this.state.options[this.state.selectedElementIndex],
-    });
+    if (this.state.selectedOption === "") {
+      this.setState({
+        selectedOption: this.state.options[this.state.selectedElementIndex],
+      });
+    } else if (this.state.selectedOption === "Music") {
+      this.setState({
+        music: {
+          selectedOption:
+            this.state.music.options[this.state.music.selectedElementIndex],
+        },
+      });
+    }
   }
 
   backToHomePage() {
     this.setState({ selectedOption: "" });
   }
+
   render() {
     return (
       <div className={ipod.container}>
@@ -55,6 +89,7 @@ class IPod extends React.Component {
           options={this.state.options}
           currentOption={this.state.selectedElementIndex}
           selectScreen={this.state.selectedOption}
+          musicOptions={this.state.music}
         />
         <Wheel
           changeSelection={this.nextOrPreviousOptionSelected.bind(this)}

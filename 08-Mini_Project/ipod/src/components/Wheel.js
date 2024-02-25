@@ -29,7 +29,7 @@ class Wheel extends React.Component {
     if (!this.state.eventDone) {
       setTimeout(() => {
         this.setState({ eventDone: true });
-      }, 1000);
+      }, 200);
     }
   }
 
