@@ -3,7 +3,6 @@ import styles from "./music.module.css";
 export default class Music extends React.Component {
   render() {
     const { options } = this.props;
-    const { currentOption } = this.props;
     return (
       <>
         <div className={styles.content}>
@@ -11,12 +10,12 @@ export default class Music extends React.Component {
             <h2>Music</h2>
           </div>
           <div className={styles.main}>
-            {options.map((every, index) => {
+            {options.options.map((every, index) => {
               return (
                 <div
                   key={index}
                   className={`${styles.option} ${
-                    index === currentOption ? styles.select : ""
+                    index === options.selectedElementIndex ? styles.select : ""
                   }`}
                 >
                   <div>{every}</div>

@@ -10,13 +10,13 @@ class Display extends React.Component {
   render() {
     const { selectScreen } = this.props;
     const { musicOptions } = this.props;
-    const musicData = ["All Songs", "Artists", "Albums"];
+    // const musicData = ["All Songs", "Artists", "Albums"];
     return (
       <div className={styles.displayContainer}>
         {selectScreen === "Cover Flow" ? (
           <CoverFlow />
         ) : selectScreen === "Music" ? (
-          <Music options={musicData} />
+          <Music options={musicOptions} />
         ) : selectScreen === "Games" ? (
           <Games />
         ) : selectScreen === "Settings" ? (
