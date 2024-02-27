@@ -34,6 +34,7 @@ class IPod extends React.Component {
     } else if (this.state.selectedOption === "Music") {
       this.setState({
         music: {
+          selectedOption: this.state.music.selectedOption,
           selectedElementIndex:
             this.state.music.selectedElementIndex + 1 !==
             this.state.music.options.length
@@ -56,6 +57,7 @@ class IPod extends React.Component {
     } else if (this.state.selectedOption === "Music") {
       this.setState({
         music: {
+          selectedOption: this.state.music.selectedOption,
           selectedElementIndex:
             this.state.music.selectedElementIndex - 1 >= 0
               ? this.state.music.selectedElementIndex - 1
@@ -82,6 +84,8 @@ class IPod extends React.Component {
     } else if (this.state.selectedOption === "Music") {
       this.setState({
         music: {
+          selectedElementIndex: this.state.music.selectedElementIndex,
+          options: this.state.music.options,
           selectedOption:
             this.state.music.options[this.state.music.selectedElementIndex],
         },
@@ -96,6 +100,7 @@ class IPod extends React.Component {
   render() {
     return (
       <div className={ipod.container}>
+        {console.log(this.state.music.selectedOption)}
         <Display
           options={this.state.options}
           currentOption={this.state.selectedElementIndex}
