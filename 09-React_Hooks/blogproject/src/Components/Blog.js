@@ -50,6 +50,10 @@ export default function Blog() {
         <div key={index} className="blog">
           <h3>{every.title}</h3>
           <p>{every.content}</p>
+
+          <div className="blog-btn">
+            <button className="btn">Delete</button>
+          </div>
         </div>
       ))}
     </>

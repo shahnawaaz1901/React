@@ -34,7 +34,6 @@ class IPod extends React.Component {
     } else if (this.state.selectedOption === "Music") {
       this.setState({
         music: {
-          selectedOption: "",
           selectedElementIndex:
             this.state.music.selectedElementIndex + 1 !==
             this.state.music.options.length
