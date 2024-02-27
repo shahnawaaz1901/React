@@ -13,6 +13,16 @@ export default function Blog() {
     updateBlogData([{ title, content }, ...blogsData]);
   }
 
+  function removeBlog(id) {
+    updateBlogData(blogsData.filter((data, index) => index !== id));
+    //   {
+    //     if () {
+    //       return data;
+    //     }
+    //   })
+    // );
+  }
+
   return (
     <>
       {/* Heading of the page */}
@@ -51,8 +61,8 @@ export default function Blog() {
           <h3>{every.title}</h3>
           <p>{every.content}</p>
 
-          <div className="blog-btn">
-            <button className="btn">Delete</button>
+          <div className="blog-btn" onClick={() => removeBlog(index)}>
+            <button className="btn remove">Delete</button>
           </div>
         </div>
       ))}
