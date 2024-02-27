@@ -1,8 +1,12 @@
 //Blogging App using Hooks
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+
 export default function Blog() {
   //* Set State
   const [blogsData, updateBlogData] = useState([]);
+  const titleRef = useRef("");
+  const contentRef = useRef("");
+
   //Passing the synthetic event as argument to stop refreshing the page on submit
   function handleSubmit(e) {
     e.preventDefault();
@@ -10,19 +14,40 @@ export default function Blog() {
     let content = e.target[1].value;
     e.target[0].value = "";
     e.target[1].value = "";
+    document.title = title;
     updateBlogData([{ title, content }, ...blogsData]);
   }
 
   function removeBlog(id) {
     updateBlogData(blogsData.filter((data, index) => index !== id));
-    //   {
-    //     if () {
-    //       return data;
-    //     }
-    //   })
-    // );
   }
 
+  /* 
+    Because we only want to called the useEffect only at once when component 
+    is render initially because after re rendering we focus the input title 
+    box when in the handleSubmit function, so we dont need to focus ony twice
+    that's empty array means useEffect called only at once on initial Rendering
+    howEver we can remove focus on title from handleSubmit function and put it
+    inside the useEffect withOut passing the dependency that's means useEffect
+    works as both componentDidMount as well as componentDidUpdate
+  */
+  useEffect(() => {
+    titleRef.current.focus();
+  });
+
+  /* 
+    We Added the blogsData inside the Dependency Array because is blogsData 
+    is getting changed then and only then title of page is change otherwise 
+    not 
+  */
+  useEffect(() => {
+    console.log("Inside");
+    if (blogsData.length && blogsData[0].title) {
+      document.title = blogsData[0].title;
+    } else {
+      document.title = "No blog";
+    }
+  }, [blogsData]);
   return (
     <>
       {/* Heading of the page */}
@@ -36,6 +61,7 @@ export default function Blog() {
             <input
               className="input"
               placeholder="Enter the Title of the Blog here.."
+              ref={titleRef} //* Reference for Name Field
             />
           </Row>
 
@@ -44,6 +70,8 @@ export default function Blog() {
             <textarea
               className="input content"
               placeholder="Content of the Blog goes here.."
+              ref={contentRef} //* Reference For Content Field
+              required
             />
           </Row>
 
