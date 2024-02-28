@@ -1,9 +1,25 @@
 //Blogging App using Hooks
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useReducer } from "react";
+
+function blogsReducer(state, action) {
+  switch (action.type) {
+    case "ADD": {
+      return [action.blogData, ...state];
+    }
+
+    case "REMOVE": {
+      return state.filter((each, index) => index !== action.blogId);
+    }
+
+    default:
+      return [];
+  }
+}
 
 export default function Blog() {
   //* Set State
-  const [blogsData, updateBlogData] = useState([]);
+  // const [blogsData, updateBlogData] = useState([]);
+  const [blogsData, dispatch] = useReducer(blogsReducer, []);
   const titleRef = useRef("");
   const contentRef = useRef("");
 
@@ -15,11 +31,19 @@ export default function Blog() {
     e.target[0].value = "";
     e.target[1].value = "";
     document.title = title;
-    updateBlogData([{ title, content }, ...blogsData]);
+    /* 
+      Type Indicates which operation we want to perform and another property 
+      blogData represents the data which we use to perform the operation 
+      we dont require the updateBlogData function anymore
+
+      updateBlogData([{ title, content }, ...blogsData]);
+    */
+    dispatch({ type: "ADD", blogData: { title, content } });
   }
 
   function removeBlog(id) {
-    updateBlogData(blogsData.filter((data, index) => index !== id));
+    dispatch({ type: "REMOVE", blogId: id });
+    // updateBlogData(blogsData.filter((data, index) => index !== id));
   }
 
   /* 
