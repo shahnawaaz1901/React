@@ -94,7 +94,24 @@ class IPod extends React.Component {
   }
 
   backToHomePage() {
-    this.setState({ selectedOption: "" });
+    if (this.state.music.selectedOption) {
+      this.setState({
+        music: {
+          selectedOption: "",
+          selectedElementIndex: this.state.music.selectedElementIndex,
+          options: ["All Songs", "Artists", "Albums"],
+        },
+      });
+    } else {
+      this.setState({
+        selectedOption: "",
+        music: {
+          selectedOption: "",
+          selectedElementIndex: 0,
+          options: ["All Songs", "Artists", "Albums"],
+        },
+      });
+    }
   }
 
   render() {
