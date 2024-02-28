@@ -1,52 +1,31 @@
 import React from "react";
 import styles from "./player.module.css";
 export default class MusicPlayer extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      music: "",
-    };
-  }
-
   render() {
     return (
       <>
-        <h1>This is a Music Player</h1>
+        <div className={styles.container}>
+          <div className={styles.music}>
+            <div className={styles.musicLogo}>
+              <img
+                src="http://s3-ap-south-1.amazonaws.com/wynk-music-cms/srch_universalmusic/music/srch_universalmusic_00602537713950-GBUM71309059.jpg"
+                alt="logo"
+              />
+            </div>
+            <div className={styles.musicDetail}>
+              <div className={styles.song}>Heart Attack</div>
+              <div className={styles.singer}>Enrique Eglesias</div>
+            </div>
+          </div>
+          <div className={styles.musicRun}>
+            <div className={styles.meter}></div>
+            <div className={styles.time}>
+              <div className={styles.currentTime}>00:00</div>
+              <div className={styles.totalTime}>03:42</div>
+            </div>
+          </div>
+        </div>
       </>
     );
   }
 }
-
-/*<div className={styles.content}>
-          <div className={styles.heading}>
-            <h2>Music</h2>
-          </div>
-          <div className={styles.main}>
-            {options.map((every, index) => {
-              return (
-                <div
-                  key={index}
-                  className={`${styles.option} ${
-                    index === selectedElementIndex ? styles.select : ""
-                  }`}
-                >
-                  <div>{every}</div>
-                  <div className={styles.selectedElement}></div>
-                </div>
-              );
-            })}
-
-            {/* <div className={styles.option}>
-              <div>Music</div>
-              <div className={styles.selectedElement}></div>
-            </div>
-            <div className={styles.option}>
-              <div>Games</div>
-              <div className={styles.selectedElement}></div>
-            </div>
-            <div className={styles.option}>
-              <div>Settings</div>
-              <div className={styles.selectedElement}></div>
-            </div> }
-            </div>
-            </div> */

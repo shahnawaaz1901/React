@@ -117,7 +117,6 @@ class IPod extends React.Component {
   render() {
     return (
       <div className={ipod.container}>
-        {console.log(this.state.music.selectedOption)}
         <Display
           options={this.state.options}
           currentOption={this.state.selectedElementIndex}
