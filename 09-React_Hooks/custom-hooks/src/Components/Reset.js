@@ -1,12 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function Reset(){
+export default function Reset() {
+  const [email, setEmail] = useState("");
 
-    const [email,setEmail] = useState("");
-    
-    return(
-        <>
-        <h3>Reset Password for</h3>
+  /* 
+    If use has typed the email for login then we need to store the email
+    inside the localStorage which we done inside the login component now 
+    we need to retrieved that email from the localStorage, again it's a
+    browser API so we need to perform a side effect which we can performed 
+    inside the useEffect Hook, and because we want to only render the email
+    if email is present in the Storage and only and only in the case of first
+    render
+  */
+  useEffect(() => {
+    setEmail(localStorage.getItem("email"));
+  }, []);
+  return (
+    <>
+      <h3>Reset Password for</h3>
       <input
         placeholder="Enter Email"
         value={email}
@@ -21,8 +32,8 @@ export default function Reset(){
         }}
       >
         Submit
-      </button>      
+      </button>
       <br />
-        </>
-    )
+    </>
+  );
 }

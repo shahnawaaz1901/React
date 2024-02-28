@@ -1,13 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function Login(){
-   const [email,setEmail] = useState("");
-   const [password, setPassword] = useState("");  
+export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-    return(
-        <>
-        <h1>Login to the Portal!</h1>
-        <h3>Login</h3>
+  /* 
+    We Only Want to set the LocalStorage when our email state is changed, 
+    so our second argument is the email inside the dependency array, this
+    localStorage we can access inside inspect element and Application 
+    storage to localStorage Section
+  */
+  useEffect(() => {
+    localStorage.setItem("email", email);
+  }, [email]);
+  return (
+    <>
+      <h1>Login to the Portal!</h1>
+      <h3>Login</h3>
       <input
         placeholder="Enter Email"
         value={email}
@@ -27,12 +36,12 @@ export default function Login(){
       <br />
       <button
         onClick={() => {
-          console.log("Form submitted")
+          console.log("Form submitted");
         }}
       >
         Submit
       </button>
       <br />
-        </>
-    )
+    </>
+  );
 }
