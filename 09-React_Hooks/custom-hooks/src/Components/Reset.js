@@ -12,9 +12,18 @@ export default function Reset() {
     if email is present in the Storage and only and only in the case of first
     render
   */
+  //* For Getting email Value from the localStorage
   useEffect(() => {
-    setEmail(localStorage.getItem("email"));
+    if (localStorage.getItem("email")) {
+      setEmail(localStorage.getItem("email"));
+    }
   }, []);
+
+  //* For Setting the email Value in the localStorage
+  useEffect(() => {
+    localStorage.setItem("email", email);
+  }, [email]);
+
   return (
     <>
       <h3>Reset Password for</h3>
