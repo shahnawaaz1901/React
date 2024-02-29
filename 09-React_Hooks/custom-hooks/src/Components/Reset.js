@@ -1,9 +1,14 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
+import useLocalStorage from "./useLocalStorage";
 
 export default function Reset() {
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
+  const [email, setEmail] = useLocalStorage();
 
   /* 
+    Because we use the custom hooks we comment the repetative logic from 
+    here and also in login page
+  
     If use has typed the email for login then we need to store the email
     inside the localStorage which we done inside the login component now 
     we need to retrieved that email from the localStorage, again it's a
@@ -11,7 +16,7 @@ export default function Reset() {
     inside the useEffect Hook, and because we want to only render the email
     if email is present in the Storage and only and only in the case of first
     render
-  */
+  
   //* For Getting email Value from the localStorage
   useEffect(() => {
     if (localStorage.getItem("email")) {
@@ -23,7 +28,7 @@ export default function Reset() {
   useEffect(() => {
     localStorage.setItem("email", email);
   }, [email]);
-
+  */
   return (
     <>
       <h3>Reset Password for</h3>
