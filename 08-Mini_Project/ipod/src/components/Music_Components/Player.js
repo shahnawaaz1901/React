@@ -20,6 +20,7 @@ export default class MusicPlayer extends React.Component {
   }
 
   render() {
+    console.log(this.props.song);
     const width = (this.state.currentTime / this.state.maxTime) * 100 + "%";
     return (
       <>
@@ -37,7 +38,8 @@ export default class MusicPlayer extends React.Component {
             </div>
             <audio autoPlay id="audio" hidden>
               <source
-                src="https://pagallworld.co.in/wp-content/uploads/2023/06/Enrique-Iglesias-Heart-Attack.mp3"
+                src="https://pagalworlld.com/files/download/id/4702"
+                // "https://pagallworld.co.in/wp-content/uploads/2023/06/Enrique-Iglesias-Heart-Attack.mp3"
                 type="audio/mpeg"
               />
             </audio>
