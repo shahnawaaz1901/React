@@ -1,7 +1,25 @@
 import React from "react";
 import styles from "./player.module.css";
 export default class MusicPlayer extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      currentTime: 0,
+      maxTime: 222,
+    };
+  }
+
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      if (this.state.currentTime === this.state.maxTime) {
+        clearInterval(this.timer);
+        return;
+      }
+      this.setState({ currentTime: this.state.currentTime + 1 });
+    }, 1000);
+  }
   render() {
+    const width = (this.state.currentTime / this.state.maxTime) * 100 + "%";
     return (
       <>
         <div className={styles.container}>
@@ -18,9 +36,21 @@ export default class MusicPlayer extends React.Component {
             </div>
           </div>
           <div className={styles.musicRun}>
-            <div className={styles.meter}></div>
+            <div className={styles.meter}>
+              <div
+                style={{
+                  height: 100 + "%",
+                  width: `${width}`,
+                  backgroundColor: "rgb(100, 100, 255)",
+                }}
+              ></div>
+            </div>
             <div className={styles.time}>
-              <div className={styles.currentTime}>00:00</div>
+              <div className={styles.currentTime}>
+                {new Date(this.state.currentTime * 1000)
+                  .toISOString()
+                  .slice(14, 19)}
+              </div>
               <div className={styles.totalTime}>03:42</div>
             </div>
           </div>
