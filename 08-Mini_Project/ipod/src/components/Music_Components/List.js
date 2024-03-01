@@ -2,6 +2,12 @@ import React from "react";
 import styles from "./list.module.css";
 
 export default class List extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      options: ["All Songs", "Artists", "Albums"],
+    };
+  }
   render() {
     const { options, selectedElementIndex } = this.props.options;
     return (
