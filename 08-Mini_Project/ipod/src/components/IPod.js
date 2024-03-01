@@ -67,8 +67,8 @@ class IPod extends React.Component {
             state: "play",
           },
         ],
-        currentSongIndex: 0,
       },
+      currentSongIndex: 0,
     };
   }
 
@@ -165,119 +165,25 @@ class IPod extends React.Component {
 
   playNextSong = () => {
     this.setState({
-      songsData: {
-        songs: [
-          {
-            name: "Baby",
-            singer: "Justin Bieber, Ludacris",
-            poster:
-              "https://pagalworlld.com/siteuploads/thumb/sft10/4702_4.jpg",
-            src: "https://pagalworlld.com/files/download/id/4702",
-            duration: "",
-            state: "play",
-          },
-          {
-            name: "Heart Attack",
-            singer: "Enrique Iglesias",
-            poster:
-              "https://pagalworlld.com/siteuploads/thumb/sft25/12369_4.jpg",
-            src: "https://pagalworlld.com/files/download/id/12369",
-            duration: "",
-            state: "play",
-          },
-          {
-            name: "Love Story",
-            singer: "Taylor Swift",
-            poster: "https://pagalworlld.com/siteuploads/thumb/sft7/3126_4.jpg",
-            src: "https://pagalworlld.com/files/download/id/3126",
-            duration: "",
-            state: "play",
-          },
-          {
-            name: "Despacito",
-            singer: "Luis Fonsi, Daddy Yankee",
-            poster:
-              "https://www.pagalworld.com.cm/siteuploads/thumb/sft6/2858_4.jpg",
-            src: "https://www.pagalworld.com.cm/siteuploads/files/sfd6/2858/Despacito(PagalWorld.com.cm).mp3",
-            duration: "",
-            state: "play",
-          },
-          {
-            name: "Into Your Arms",
-            singer: "Witt Lowry",
-            poster:
-              "https://pagallworld.co.in/wp-content/uploads/2023/08/Into-Your-Arms-Slowed-Reverb.jpg",
-            src: "https://pagallworld.co.in/wp-content/uploads/2023/08/Into-Your-Arms-Slowed-Reverb.mp3",
-            duration: "",
-            state: "play",
-          },
-        ],
-        currentSongIndex:
-          this.state.songsData.currentSongIndex + 1 !==
-          this.state.songsData.songs.length
-            ? this.state.songsData.currentSongIndex + 1
-            : 0,
-      },
+      currentSongIndex:
+        this.state.currentSongIndex + 1 !== 5
+          ? this.state.currentSongIndex + 1
+          : 0,
     });
   };
 
   playPreviousSong = () => {
     this.setState({
-      songsData: {
-        songs: [
-          {
-            name: "Baby",
-            singer: "Justin Bieber, Ludacris",
-            poster:
-              "https://pagalworlld.com/siteuploads/thumb/sft10/4702_4.jpg",
-            src: "https://pagalworlld.com/files/download/id/4702",
-            duration: "",
-            state: "play",
-          },
-          {
-            name: "Heart Attack",
-            singer: "Enrique Iglesias",
-            poster:
-              "https://pagalworlld.com/siteuploads/thumb/sft25/12369_4.jpg",
-            src: "https://pagalworlld.com/files/download/id/12369",
-            duration: "",
-            state: "play",
-          },
-          {
-            name: "Love Story",
-            singer: "Taylor Swift",
-            poster: "https://pagalworlld.com/siteuploads/thumb/sft7/3126_4.jpg",
-            src: "https://pagalworlld.com/files/download/id/3126",
-            duration: "",
-            state: "play",
-          },
-          {
-            name: "Despacito",
-            singer: "Luis Fonsi, Daddy Yankee",
-            poster:
-              "https://www.pagalworld.com.cm/siteuploads/thumb/sft6/2858_4.jpg",
-            src: "https://www.pagalworld.com.cm/siteuploads/files/sfd6/2858/Despacito(PagalWorld.com.cm).mp3",
-            duration: "",
-            state: "play",
-          },
-          {
-            name: "Into Your Arms",
-            singer: "Witt Lowry",
-            poster:
-              "https://pagallworld.co.in/wp-content/uploads/2023/08/Into-Your-Arms-Slowed-Reverb.jpg",
-            src: "https://pagallworld.co.in/wp-content/uploads/2023/08/Into-Your-Arms-Slowed-Reverb.mp3",
-            duration: "",
-            state: "play",
-          },
-        ],
-        currentSongIndex:
-          this.state.songsData.currentSongIndex - 1 < 0
-            ? this.state.songsData.songs.length - 1
-            : this.state.songsData.currentSongIndex - 1,
-      },
+      currentSongIndex:
+        this.state.currentSongIndex - 1 < 0
+          ? 4
+          : this.state.currentSongIndex - 1,
     });
   };
 
+  playOrPause = () => {
+    console.log("Play/Pause");
+  };
   handleWheelButton(clickBtn) {
     if (clickBtn === "next") {
       this.playNextSong();
@@ -295,9 +201,7 @@ class IPod extends React.Component {
           currentOption={this.state.selectedElementIndex}
           selectScreen={this.state.selectedOption}
           musicOptions={this.state.music}
-          currentSong={
-            this.state.songsData.songs[this.state.songsData.currentSongIndex]
-          }
+          currentSongIndex={this.state.currentSongIndex}
         />
         <Wheel
           changeSelection={this.nextOrPreviousOptionSelected.bind(this)}

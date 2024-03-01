@@ -6,11 +6,11 @@ export default class Music extends React.Component {
   render() {
     const { options, selectedOption, selectedElementIndex } =
       this.props.options;
-    const { currentSong } = this.props;
+    const { currentSongIndex } = this.props;
     return (
       <>
         {selectedOption ? (
-          <MusicPlayer song={currentSong} />
+          <MusicPlayer currentSongIndex={currentSongIndex} />
         ) : (
           <List options={{ options, selectedOption, selectedElementIndex }} />
         )}

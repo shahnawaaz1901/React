@@ -5,7 +5,6 @@ export default class MusicPlayer extends React.Component {
     super();
     this.state = {
       currentTime: 0,
-      maxTime: 228,
       songs: [
         {
           name: "Baby",
@@ -53,7 +52,12 @@ export default class MusicPlayer extends React.Component {
     };
   }
 
+  static getDerivedStateFromProps(state, props) {
+    console.log(props);
+    return null;
+  }
   componentDidMount() {
+    console.log(this.props);
     this.timer = setInterval(() => {
       if (this.state.currentTime === this.state.maxTime) {
         clearInterval(this.timer);
@@ -63,25 +67,28 @@ export default class MusicPlayer extends React.Component {
     }, 1000);
   }
 
+  componentDidUpdate(props, state) {
+    console.log(state);
+    console.log(props);
+  }
   render() {
-    const width = (this.state.currentTime / this.state.maxTime) * 100 + "%";
+    const { currentSongIndex } = this.props;
+    const currentSong = this.state.songs[currentSongIndex];
+    const width = (this.state.currentTime / currentSong.duration) * 100 + "%";
     return (
       <>
         <div className={styles.container}>
           <div className={styles.music}>
             <div className={styles.musicLogo}>
-              <img
-                src="http://s3-ap-south-1.amazonaws.com/wynk-music-cms/srch_universalmusic/music/srch_universalmusic_00602537713950-GBUM71309059.jpg"
-                alt="logo"
-              />
+              <img src={currentSong.poster} alt="logo" />
             </div>
             <div className={styles.musicDetail}>
-              <div className={styles.song}>Heart Attack</div>
-              <div className={styles.singer}>Enrique Eglesias</div>
+              <div className={styles.song}>{currentSong.name}</div>
+              <div className={styles.singer}>{currentSong.singer}</div>
             </div>
             <audio autoPlay id="audio" hidden>
               <source
-                src="https://pagalworlld.com/files/download/id/4702"
+                src={currentSong.src}
                 // "https://pagallworld.co.in/wp-content/uploads/2023/06/Enrique-Iglesias-Heart-Attack.mp3"
                 type="audio/mpeg"
               />
@@ -103,7 +110,11 @@ export default class MusicPlayer extends React.Component {
                   .toISOString()
                   .slice(14, 19)}
               </div>
-              <div className={styles.totalTime}>03:42</div>
+              <div className={styles.totalTime}>
+                {new Date(currentSong.duration * 1000)
+                  .toISOString()
+                  .slice(14, 19)}
+              </div>
             </div>
           </div>
         </div>
