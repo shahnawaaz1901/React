@@ -8,7 +8,7 @@ import Setting from "./Display_Components/Settings";
 
 class Display extends React.Component {
   render() {
-    const { selectScreen, currentSong, musicOptions, currentSongIndex } =
+    const { selectScreen, musicOptions, currentSongIndex, nextSong } =
       this.props;
     // const musicData = ["All Songs", "Artists", "Albums"];
     return (
@@ -16,7 +16,11 @@ class Display extends React.Component {
         {selectScreen === "Cover Flow" ? (
           <CoverFlow />
         ) : selectScreen === "Music" ? (
-          <Music options={musicOptions} currentSongIndex={currentSongIndex} />
+          <Music
+            options={musicOptions}
+            currentSongIndex={currentSongIndex}
+            nextSong={nextSong}
+          />
         ) : selectScreen === "Games" ? (
           <Games />
         ) : selectScreen === "Settings" ? (

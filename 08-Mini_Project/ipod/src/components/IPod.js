@@ -202,6 +202,7 @@ class IPod extends React.Component {
           selectScreen={this.state.selectedOption}
           musicOptions={this.state.music}
           currentSongIndex={this.state.currentSongIndex}
+          nextSong={this.playNextSong}
         />
         <Wheel
           changeSelection={this.nextOrPreviousOptionSelected.bind(this)}

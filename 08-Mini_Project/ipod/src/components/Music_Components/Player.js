@@ -5,6 +5,7 @@ export default class MusicPlayer extends React.Component {
     super();
     this.state = {
       currentTime: 0,
+      currentSong: null,
       songs: [
         {
           name: "Baby",
@@ -52,12 +53,14 @@ export default class MusicPlayer extends React.Component {
     };
   }
 
-  static getDerivedStateFromProps(state, props) {
-    console.log(props);
+  static getDerivedStateFromProps(props, state) {
+    if (state.currentSong !== props.currentSong) {
+      return { currentSong: props.currentSong, currentTime: 0 };
+    }
     return null;
   }
+
   componentDidMount() {
-    console.log(this.props);
     this.timer = setInterval(() => {
       if (this.state.currentTime === this.state.maxTime) {
         clearInterval(this.timer);
@@ -68,12 +71,15 @@ export default class MusicPlayer extends React.Component {
   }
 
   componentDidUpdate(props, state) {
-    console.log(state);
-    console.log(props);
+    if (state.currentTime === this.state.currentSong.duration) {
+      props.nextSong();
+      this.setState({ currentTime: 0 });
+    }
   }
+
   render() {
-    const { currentSongIndex } = this.props;
-    const currentSong = this.state.songs[currentSongIndex];
+    console.log(this.props.nextSong);
+    const { currentSong } = this.state;
     const width = (this.state.currentTime / currentSong.duration) * 100 + "%";
     return (
       <>
@@ -86,7 +92,7 @@ export default class MusicPlayer extends React.Component {
               <div className={styles.song}>{currentSong.name}</div>
               <div className={styles.singer}>{currentSong.singer}</div>
             </div>
-            <audio autoPlay id="audio" hidden>
+            <audio autoPlay hidden>
               <source
                 src={currentSong.src}
                 // "https://pagallworld.co.in/wp-content/uploads/2023/06/Enrique-Iglesias-Heart-Attack.mp3"
