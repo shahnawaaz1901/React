@@ -1,23 +1,23 @@
 import React from "react";
 import styles from "./player.module.css";
+import baby from "./music/Baby(PagalWorlld.Com).mp3";
 export default class MusicPlayer extends React.Component {
   constructor() {
     super();
     this.state = {
       currentTime: 0,
-      currentSong: null,
+      currentSong: {
+        name: "Baby",
+        singer: "Justin Bieber, Ludacris",
+        poster: "https://pagalworlld.com/siteuploads/thumb/sft10/4702_4.jpg",
+        src: baby,
+        duration: 220,
+        state: "play",
+      },
     };
   }
 
-  static getDerivedStateFromProps(props, state) {
-    if (state.currentSong !== props.currentSong) {
-      return { currentSong: props.currentSong, currentTime: 0 };
-    }
-    return null;
-  }
-
   componentDidMount() {
-    console.log(document.getElementById("audio"));
     this.timer = setInterval(() => {
       if (this.state.currentTime === this.state.maxTime) {
         clearInterval(this.timer);
@@ -28,7 +28,7 @@ export default class MusicPlayer extends React.Component {
   }
 
   componentDidUpdate(props, state) {
-    if (state.currentTime === this.state.currentSong.duration) {
+    if (state.currentTime === state.currentSong.duration) {
       props.nextSong();
       this.setState({ currentTime: 0 });
     }
@@ -47,12 +47,8 @@ export default class MusicPlayer extends React.Component {
             <div className={styles.musicDetail}>
               <div className={styles.song}>{currentSong.name}</div>
               <div className={styles.singer}>{currentSong.singer}</div>
-              <audio id="audio">
-                <source
-                  src={currentSong.src}
-                  // "https://pagallworld.co.in/wp-content/uploads/2023/06/Enrique-Iglesias-Heart-Attack.mp3"
-                  type="audio/mpeg"
-                />
+              <audio id="audio" autoPlay>
+                <source src={currentSong.src} type="audio/mpeg" />
               </audio>
             </div>
           </div>

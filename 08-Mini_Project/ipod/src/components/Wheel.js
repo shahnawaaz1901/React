@@ -47,22 +47,13 @@ class Wheel extends React.Component {
           >
             Menu
           </div>
-          <div
-            className={`${styles.wheelBtn} ${styles.right}`}
-            onClick={() => this.props.handleWheelButtonClick("next")}
-          >
+          <div className={`${styles.wheelBtn} ${styles.right}`}>
             <i className="fa-solid fa-forward-fast"></i>
           </div>
-          <div
-            className={`${styles.wheelBtn} ${styles.left}`}
-            onClick={() => this.props.handleWheelButtonClick("previous")}
-          >
+          <div className={`${styles.wheelBtn} ${styles.left}`}>
             <i className="fa-solid fa-backward-fast"></i>
           </div>
-          <div
-            className={`${styles.wheelBtn} ${styles.bottom}`}
-            onClick={() => this.props.handleWheelButtonClick("play/pause")}
-          >
+          <div className={`${styles.wheelBtn} ${styles.bottom}`}>
             <i className="fa-solid fa-play"></i>
             <i className="fa-solid fa-pause"></i>
           </div>

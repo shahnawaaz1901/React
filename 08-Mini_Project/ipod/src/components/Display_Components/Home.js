@@ -8,7 +8,7 @@ export default class HomePage extends React.Component {
     };
   }
   render() {
-    const { options } = this.props.props;
+    const { options } = this.state;
     const { currentOption } = this.props.props;
     return (
       <>
