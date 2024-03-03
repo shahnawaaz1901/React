@@ -19,6 +19,7 @@ export default class List extends React.Component {
             <h2>Music</h2>
           </div>
           <div className={styles.main}>
+            {/* Render All the Options */}
             {options.map((every, index) => {
               return (
                 <div
@@ -32,19 +33,6 @@ export default class List extends React.Component {
                 </div>
               );
             })}
-
-            {/* <div className={styles.option}>
-              <div>Music</div>
-              <div className={styles.selectedElement}></div>
-            </div>
-            <div className={styles.option}>
-              <div>Games</div>
-              <div className={styles.selectedElement}></div>
-            </div>
-            <div className={styles.option}>
-              <div>Settings</div>
-              <div className={styles.selectedElement}></div>
-          </div> */}
           </div>
         </div>
       </>

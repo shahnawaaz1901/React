@@ -43,22 +43,31 @@ class Wheel extends React.Component {
       //* Render the Wheel
       <div id="wheel" className={styles.wheelContainer}>
         <div className={styles.wheel}>
+          {/* Ok Button */}
           <div
             className={styles.okBtn}
             onClick={this.props.handleClickOnOKBtn}
           ></div>
+
+          {/* Menu Button */}
           <div
             className={`${styles.wheelBtn} ${styles.top}`}
             onClick={this.props.homePage}
           >
             Menu
           </div>
+
+          {/* Next Song Button */}
           <div className={`${styles.wheelBtn} ${styles.right}`}>
             <i className="fa-solid fa-forward-fast"></i>
           </div>
+
+          {/* Previous Song Button */}
           <div className={`${styles.wheelBtn} ${styles.left}`}>
             <i className="fa-solid fa-backward-fast"></i>
           </div>
+
+          {/* Play/Pause Button */}
           <div className={`${styles.wheelBtn} ${styles.bottom}`}>
             <i className="fa-solid fa-play"></i>
             <i className="fa-solid fa-pause"></i>

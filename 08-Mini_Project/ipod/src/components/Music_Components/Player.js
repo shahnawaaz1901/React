@@ -19,6 +19,7 @@ export default class MusicPlayer extends React.Component {
     };
   }
 
+  //* Start the Time Whenever Song is Started
   componentDidMount() {
     this.timer = setInterval(() => {
       if (this.state.currentTime === this.state.maxTime) {
