@@ -11,21 +11,27 @@ class Wheel extends React.Component {
     };
   }
 
+  //* Add Rounded Listener to the Wheel
   componentDidMount = () => {
     const zt = new Zingtouch.Region(document.body);
     const element = document.getElementById("One");
     zt.bind(element, "rotate", (e) => {
       if (e.detail.distanceFromOrigin >= 50 && this.state.eventDone) {
-        this.props.changeSelection(true);
+        this.props.changeSelection(true); //* True Represent that we want to Go for Next Option
         this.setState({ eventDone: false });
       } else if (e.detail.distanceFromOrigin <= -50 && this.state.eventDone) {
-        this.props.changeSelection(false);
+        this.props.changeSelection(false); //* True Represent that we want to Go for Next Option
         this.setState({ eventDone: false });
       }
     });
   };
 
   componentDidUpdate() {
+    /* 
+      Because if we now change state eventDont After 200 miliseconds 
+      our option will be Continously selected Next Option and We Not 
+      Able to select Option  
+    */
     if (!this.state.eventDone) {
       setTimeout(() => {
         this.setState({ eventDone: true });

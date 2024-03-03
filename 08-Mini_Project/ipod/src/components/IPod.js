@@ -7,17 +7,16 @@ class IPod extends React.Component {
   constructor() {
     super();
     this.state = {
-      selectedOption: "",
-      selectedElementIndex: 0,
-      options: ["Cover Flow", "Music", "Games", "Settings"],
+      selectedOption: "", //* Represent In Which Screen We Have
+      selectedElementIndex: 0, //* Represent Which Option Currently We Selected
       music: {
         selectedOption: "",
         selectedElementIndex: 0,
-        options: ["All Songs", "Artists", "Albums"],
       },
     };
   }
 
+  //* Select Next Option on Menu
   nextSelectElement() {
     if (this.state.selectedOption === "") {
       this.setState({
@@ -31,16 +30,15 @@ class IPod extends React.Component {
         music: {
           selectedOption: this.state.music.selectedOption,
           selectedElementIndex:
-            this.state.music.selectedElementIndex + 1 !==
-            this.state.music.options.length
+            this.state.music.selectedElementIndex + 1 !== 3
               ? this.state.music.selectedElementIndex + 1
               : 0,
-          options: ["All Songs", "Artists", "Albums"],
         },
       });
     }
   }
 
+  //* Select Previous Option on Menu
   previousSelectElement() {
     if (this.state.selectedOption === "") {
       this.setState({
@@ -56,13 +54,13 @@ class IPod extends React.Component {
           selectedElementIndex:
             this.state.music.selectedElementIndex - 1 >= 0
               ? this.state.music.selectedElementIndex - 1
-              : this.state.music.options.length - 1,
-          options: ["All Songs", "Artists", "Albums"],
+              : 2,
         },
       });
     }
   }
 
+  //* For Navigate on the Menu
   nextOrPreviousOptionSelected(decision) {
     if (decision) {
       this.nextSelectElement();
@@ -71,10 +69,18 @@ class IPod extends React.Component {
     }
   }
 
-  changeSelectedScreen() {
+  //* Handle Ok Button
+  handleClickOnOKBtn() {
     if (this.state.selectedOption === "") {
       this.setState({
-        selectedOption: this.state.options[this.state.selectedElementIndex],
+        selectedOption:
+          this.state.selectedElementIndex === 0
+            ? "Cover Flow"
+            : this.state.selectedElementIndex === 1
+            ? "Music"
+            : this.state.selectedElementIndex === 2
+            ? "Games"
+            : "Settings",
       });
     } else if (this.state.selectedOption === "Music") {
       this.setState({
@@ -82,45 +88,65 @@ class IPod extends React.Component {
           selectedElementIndex: this.state.music.selectedElementIndex,
           options: this.state.music.options,
           selectedOption:
-            this.state.music.options[this.state.music.selectedElementIndex],
+            this.state.music.selectedElementIndex === 0
+              ? "All Songs"
+              : this.state.music.selectedElementIndex === 1
+              ? "Artists"
+              : "Albums",
         },
       });
     }
   }
 
-  backToHomePage() {
+  //* Handle Click on Menu Button
+  handleClickOnMenuButtton() {
+    /* 
+      Condition is put here because if we play the music then if we 
+      click on menu button we should go first to music menu then the 
+      main menu 
+    */
     if (this.state.music.selectedOption) {
-      this.setState({
-        music: {
-          selectedOption: "",
-          selectedElementIndex: this.state.music.selectedElementIndex,
-          options: ["All Songs", "Artists", "Albums"],
-        },
-      });
+      this.backToMusic();
     } else {
-      this.setState({
-        selectedOption: "",
-        music: {
-          selectedOption: "",
-          selectedElementIndex: 0,
-          options: ["All Songs", "Artists", "Albums"],
-        },
-      });
+      this.backToMainMenu();
     }
   }
+
+  //* Back to Music Menu
+  backToMusic = () => {
+    this.setState({
+      music: {
+        selectedOption: "",
+        selectedElementIndex: this.state.music.selectedElementIndex,
+        options: ["All Songs", "Artists", "Albums"],
+      },
+    });
+  };
+
+  //* Back to Main Menu
+  backToMainMenu = () => {
+    this.setState({
+      selectedOption: "",
+      music: {
+        selectedOption: "",
+        selectedElementIndex: 0,
+        options: ["All Songs", "Artists", "Albums"],
+      },
+    });
+  };
 
   render() {
     return (
       <div className={ipod.container}>
         <Display
           currentOption={this.state.selectedElementIndex}
-          selectScreen={this.state.selectedOption}
+          currentScreen={this.state.selectedOption}
           musicOptions={this.state.music}
         />
         <Wheel
           changeSelection={this.nextOrPreviousOptionSelected.bind(this)}
-          handleClickOnOKBtn={this.changeSelectedScreen.bind(this)}
-          homePage={this.backToHomePage.bind(this)}
+          handleClickOnOKBtn={this.handleClickOnOKBtn.bind(this)}
+          homePage={this.handleClickOnMenuButtton.bind(this)}
         />
       </div>
     );

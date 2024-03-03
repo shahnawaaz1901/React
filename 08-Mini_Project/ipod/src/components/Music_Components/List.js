@@ -5,11 +5,13 @@ export default class List extends React.Component {
   constructor() {
     super();
     this.state = {
+      //* Options in Music List
       options: ["All Songs", "Artists", "Albums"],
     };
   }
   render() {
-    const { options, selectedElementIndex } = this.props.options;
+    const { selectedElementIndex } = this.props;
+    const { options } = this.state;
     return (
       <>
         <div className={styles.content}>

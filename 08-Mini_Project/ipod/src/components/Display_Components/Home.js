@@ -9,7 +9,7 @@ export default class HomePage extends React.Component {
   }
   render() {
     const { options } = this.state;
-    const { currentOption } = this.props.props;
+    const { currentOption } = this.props;
     return (
       <>
         <div className={styles.content}>
@@ -30,19 +30,6 @@ export default class HomePage extends React.Component {
                 </div>
               );
             })}
-
-            {/* <div className={styles.option}>
-              <div>Music</div>
-              <div className={styles.selectedElement}></div>
-            </div>
-            <div className={styles.option}>
-              <div>Games</div>
-              <div className={styles.selectedElement}></div>
-            </div>
-            <div className={styles.option}>
-              <div>Settings</div>
-              <div className={styles.selectedElement}></div>
-            </div> */}
           </div>
         </div>
       </>
