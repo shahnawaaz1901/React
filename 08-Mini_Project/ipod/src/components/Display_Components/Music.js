@@ -5,6 +5,7 @@ export default class Music extends React.Component {
   render() {
     const { selectedOption, selectedElementIndex } = this.props.options;
     return (
+      //* Conditional Rendering
       <>
         {selectedOption ? (
           <MusicPlayer />

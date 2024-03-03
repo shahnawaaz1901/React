@@ -10,7 +10,7 @@ class Wheel extends React.Component {
     };
   }
 
-  //* Add Rounded Listener to the Wheel
+  //* Add Rotate Listener to the Wheel
   componentDidMount = () => {
     const zt = new Zingtouch.Region(document.body);
     const element = document.getElementById("wheel");
@@ -40,6 +40,7 @@ class Wheel extends React.Component {
 
   render() {
     return (
+      //* Render the Wheel
       <div id="wheel" className={styles.wheelContainer}>
         <div className={styles.wheel}>
           <div

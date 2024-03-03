@@ -29,15 +29,16 @@ export default class MusicPlayer extends React.Component {
     }, 1000);
   }
 
+  //* Check is Song is Completed or Not
   componentDidUpdate(props, state) {
     if (state.currentTime === state.currentSong.duration) {
-      props.nextSong();
       this.setState({ currentTime: 0 });
     }
   }
 
   render() {
     const { currentSong } = this.state;
+    //* Calculate Width to Represent How Much Song is Completed
     const width = (this.state.currentTime / currentSong.duration) * 100 + "%";
     return (
       <>
@@ -66,6 +67,11 @@ export default class MusicPlayer extends React.Component {
             </div>
             <div className={styles.time}>
               <div className={styles.currentTime}>
+                {/* 
+                  ISO String Returns Date and Time So We Only Need to 
+                  Render the Time that's why we need to slice that 
+                  String 
+                */}
                 {new Date(this.state.currentTime * 1000)
                   .toISOString()
                   .slice(14, 19)}

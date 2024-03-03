@@ -17,6 +17,7 @@ export default class HomePage extends React.Component {
             <h2>iPod.js</h2>
           </div>
           <div className={styles.main}>
+            {/* Render All the Options */}
             {options.map((every, index) => {
               return (
                 <div

@@ -15,7 +15,6 @@ export default class Games extends React.Component {
             </div>
             <div>Games</div>
           </div>
-          {/* <div className={styles.image}></div> */}
         </div>
       </>
     );

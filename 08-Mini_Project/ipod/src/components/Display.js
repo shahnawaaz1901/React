@@ -10,6 +10,7 @@ class Display extends React.Component {
   render() {
     const { currentScreen, musicOptions, currentOption } = this.props;
     return (
+      //* Conditional Rendering
       <div className={styles.displayContainer}>
         {currentScreen === "Cover Flow" ? (
           <CoverFlow />

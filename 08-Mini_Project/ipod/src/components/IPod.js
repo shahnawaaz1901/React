@@ -138,11 +138,13 @@ class IPod extends React.Component {
   render() {
     return (
       <div className={ipod.container}>
+        {/* Display Component */}
         <Display
           currentOption={this.state.selectedElementIndex}
           currentScreen={this.state.selectedOption}
           musicOptions={this.state.music}
         />
+        {/* Wheel Button Component */}
         <Wheel
           changeSelection={this.nextOrPreviousOptionSelected.bind(this)}
           handleClickOnOKBtn={this.handleClickOnOKBtn.bind(this)}
