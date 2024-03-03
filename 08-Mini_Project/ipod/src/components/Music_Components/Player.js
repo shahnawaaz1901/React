@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./player.module.css";
-import baby from "./music/Baby(PagalWorlld.Com).mp3";
+import babySong from "./music/Baby(PagalWorlld.Com).mp3";
+import babyImage from "./music/4702_4.jpg";
+
 export default class MusicPlayer extends React.Component {
   constructor() {
     super();
@@ -9,8 +11,8 @@ export default class MusicPlayer extends React.Component {
       currentSong: {
         name: "Baby",
         singer: "Justin Bieber, Ludacris",
-        poster: "https://pagalworlld.com/siteuploads/thumb/sft10/4702_4.jpg",
-        src: baby,
+        poster: babyImage,
+        src: babySong,
         duration: 220,
         state: "play",
       },

@@ -6,7 +6,6 @@ class Wheel extends React.Component {
   constructor() {
     super();
     this.state = {
-      angle: 0,
       eventDone: true,
     };
   }
@@ -14,7 +13,7 @@ class Wheel extends React.Component {
   //* Add Rounded Listener to the Wheel
   componentDidMount = () => {
     const zt = new Zingtouch.Region(document.body);
-    const element = document.getElementById("One");
+    const element = document.getElementById("wheel");
     zt.bind(element, "rotate", (e) => {
       if (e.detail.distanceFromOrigin >= 50 && this.state.eventDone) {
         this.props.changeSelection(true); //* True Represent that we want to Go for Next Option
@@ -41,7 +40,7 @@ class Wheel extends React.Component {
 
   render() {
     return (
-      <div id="One" className={styles.wheelContainer}>
+      <div id="wheel" className={styles.wheelContainer}>
         <div className={styles.wheel}>
           <div
             className={styles.okBtn}
