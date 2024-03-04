@@ -1,5 +1,13 @@
+import NavBar from "./components/Navbar";
+import AlbumList from "./components/AlbumList";
+import "./App.css";
 function App() {
-  return <h1>This is Header</h1>;
+  return (
+    <>
+      <NavBar />
+      <AlbumList />
+    </>
+  );
 }
 
 export default App;

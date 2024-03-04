@@ -1,0 +1,18 @@
+import React from "react";
+import styles from "./navbar.module.css";
+import navLogo from "../images/logo.png";
+function NavBar() {
+  return (
+    <>
+      <nav className={styles.navContainer}>
+        <div className={styles.logo}>
+          <div className={styles.image}>
+            <img src={navLogo} alt="logo" />
+          </div>
+          <div className={styles.name}>PhotoFolio</div>
+        </div>
+      </nav>
+    </>
+  );
+}
+export default NavBar;
