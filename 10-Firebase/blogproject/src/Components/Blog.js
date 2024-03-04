@@ -1,11 +1,16 @@
 //Blogging App using Hooks
-import { useRef, useEffect, useReducer } from "react";
+import { useRef, useEffect, useReducer, useState } from "react";
 import { db } from "../firebaseinit"; //* Import Firebase Instance
 //* For Using the setDoc
-import { setDoc, doc, collection } from "firebase/firestore";
-
+import { setDoc, /*doc*/ collection } from "firebase/firestore";
+// * For Getting the All Documents from Database
+// import { getDocs } from "firebase/firestore";
 //* For using the addDoc
 // import { addDoc, collection } from "firebase/firestore";
+
+//* For RealTime Update
+import { onSnapshot, doc } from "firebase/firestore";
+
 /*
   For Storing the Data into the Database we need to instance and
   another function which is imported from the fireStore and just
@@ -49,9 +54,10 @@ console.log("Document written with ID: ", docRef.id);
 
 */
 function blogsReducer(state, action) {
+  console.log(state);
   switch (action.type) {
     case "ADD": {
-      return [action.blogData, ...state];
+      return action.blogData;
     }
 
     case "REMOVE": {
@@ -67,6 +73,7 @@ export default function Blog() {
   //* Set State
   // const [blogsData, updateBlogData] = useState([]);
   const [blogsData, dispatch] = useReducer(blogsReducer, []);
+  const [blogs, setBlogs] = useState([]);
   const titleRef = useRef("");
   const contentRef = useRef("");
 
@@ -122,6 +129,19 @@ export default function Blog() {
     await setDoc(docReference, data);
     e.target[0].value = "";
     e.target[1].value = "";
+    /* 
+      Because we set the State that's why our App is re-render but their 
+      is no role of real time database in the re render because if we 
+      storing option in state then our app is not re render however data
+      is stored inside the database but re rendering not happening also
+      a notification by the database that new data is stored not happen,
+      But we want that database is notified that new data is comein, so
+      for this realtime updates we need to implement a listener on client
+      side that tells us that new data is stored inside the data base 
+      collection, which is nothing but onSnapshot which is act like a 
+      listener which listen when a new document is stored in the database
+      from any Client
+    */
     dispatch({ type: "ADD", blogData: data });
   }
 
@@ -149,13 +169,58 @@ export default function Blog() {
     not 
   */
   useEffect(() => {
-    console.log("Inside");
     if (blogsData.length && blogsData[0].title) {
       document.title = blogsData[0].title;
     } else {
       document.title = "No blog";
     }
   }, [blogsData]);
+
+  //* Passing Empty Array Means we Only want to call useEffect on Initial rendering
+  /* 
+    one thing that we need to understand that direct function which 
+    is inside the useEffect, we need to not write any async keyword
+    for preventing the RACE Condition, however we can write another
+    async function inside the direct function of useEffect
+  */
+  /* 
+    Comment Out this because we add a new Listener which listen
+    everyTime when Any Changes Happened on the Database
+  useEffect(() => {
+    async function getBlogs() {
+      const data = await getDocs(collection(db, "blogs"));
+      /* 
+      Using forEach loop 
+      data.forEach((each) => {
+        fetchData.push(each.data());
+      });
+      
+      const fetchData = data.docs.map((every) => ({
+        ...every.data(),
+        id: every.id,
+      }));
+      setBlogs(fetchData);
+    }
+    getBlogs();
+  }, []);*/
+
+  /* 
+    onSnapshot recieve the all data from the collection including new 
+    Data which is putting inside the database by whatever user
+  */
+  useEffect(() => {
+    onSnapshot(collection(db, "blogs"), (snapShot) => {
+      const data = snapShot.docs.map((each) => ({
+        id: each.id,
+        ...each.data(),
+      }));
+      /* 
+        Update the State Whenever a new Data is Come to the database by 
+        any user 
+      */
+      setBlogs(data);
+    });
+  }, []);
   return (
     <>
       {/* Heading of the page */}
@@ -182,7 +247,6 @@ export default function Blog() {
               required
             />
           </Row>
-
           {/* Button to submit the blog */}
           <button className="btn">ADD</button>
         </form>
@@ -192,12 +256,11 @@ export default function Blog() {
 
       {/* Section where submitted blogs will be displayed */}
       <h2> Blogs </h2>
-      {blogsData.map((every, index) => (
+      {blogs.map((every, index) => (
         <div key={index} className="blog">
           <h3>{every.title}</h3>
           <p>{every.content}</p>
-
-          <div className="blog-btn" onClick={() => removeBlog(index)}>
+          <div className="blog-btn" onClick={() => removeBlog(every.id)}>
             <button className="btn remove">Delete</button>
           </div>
         </div>
