@@ -1,8 +1,11 @@
 //Blogging App using Hooks
 import { useRef, useEffect, useReducer } from "react";
 import { db } from "../firebaseinit"; //* Import Firebase Instance
-import { collection, addDoc } from "firebase/firestore";
-console.log(db);
+//* For Using the setDoc
+import { setDoc, doc, collection } from "firebase/firestore";
+
+//* For using the addDoc
+// import { addDoc, collection } from "firebase/firestore";
 /*
   For Storing the Data into the Database we need to instance and
   another function which is imported from the fireStore and just
@@ -90,12 +93,33 @@ export default function Blog() {
       if collection is not present then firestore will create the new 
       collection after that document is stored into that collection 
     */
-    const storeData = await addDoc(collection(db, "blogs"), {
-      title: e.target[0].value,
-      content: e.target[1].value,
-      createdOn: new Date(),
-    });
-    console.log(storeData);
+    //* Using addDoc function
+    // await addDoc(collection(db, "blogs"), data);
+    /* 
+      However we can use setDoc to insert the data into the database
+      but in the case of setDoc first we need to create the reference
+      by using the doc function which also comes from firebase, now
+      question is what is the benefits of using the addDoc or setDoc
+      addDoc is used when we only want to store the data into the database
+      withOut giving the Id but in the case of setDoc it's our choice
+      that we want to give the id or not, if we give the id then first
+      firebase will search document corresponding to that id and if id
+      not found then it'll create the new document with the Id, this is
+      similar to save() keyword of mongoose which do both saving and 
+      updating of the document, however we can store the data withOut
+      giving any id using the setDoc function
+    */
+    //* First Create Reference by using the doc function
+    /* 
+      Here we need to use Collection because because in the doc function
+      we need to provide id which is setting to that document because we
+      are not passing the id that's why we need to use the collection 
+      function we can do withOut the collection function like this by
+      passing the id in third argument of doc function
+      await setDoc(doc(db, "blogs", "Ashu"), data);
+    */
+    const docReference = doc(collection(db, "blogs"));
+    await setDoc(docReference, data);
     e.target[0].value = "";
     e.target[1].value = "";
     dispatch({ type: "ADD", blogData: data });
