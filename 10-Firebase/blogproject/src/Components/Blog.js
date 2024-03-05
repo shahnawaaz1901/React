@@ -11,6 +11,8 @@ import { setDoc, /*doc*/ collection } from "firebase/firestore";
 //* For RealTime Update
 import { onSnapshot, doc } from "firebase/firestore";
 
+//* For Deleting the Document
+import { deleteDoc /*, doc*/ } from "firebase/firestore";
 /*
   For Storing the Data into the Database we need to instance and
   another function which is imported from the fireStore and just
@@ -145,9 +147,24 @@ export default function Blog() {
     dispatch({ type: "ADD", blogData: data });
   }
 
+  /* 
+    Remove Data from Database Syntax is :
+    deleteDoc(doc(database_Instance, collection, id))
+  */
   function removeBlog(id) {
-    dispatch({ type: "REMOVE", blogId: id });
+    // dispatch({ type: "REMOVE", blogId: id });
     // updateBlogData(blogsData.filter((data, index) => index !== id));
+    const confirmation = function () {
+      return window.confirm("Are You sure you want to Delete ..??");
+    };
+
+    if (confirmation()) {
+      //* Store the Document Reference first
+      const documentReference = doc(db, "blogs", id);
+
+      //* Delete the Document Which Reference we store
+      deleteDoc(documentReference);
+    }
   }
 
   /* 
