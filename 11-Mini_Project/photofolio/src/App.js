@@ -20,7 +20,8 @@ function App() {
   const [state, dispatch] = useReducer(reducer, "");
   return (
     <>
-      <NavBar />
+      {console.log(state)}
+      <NavBar dispatch={dispatch} />
       {state ? "" : <AlbumList dispatch={dispatch} />}
     </>
   );

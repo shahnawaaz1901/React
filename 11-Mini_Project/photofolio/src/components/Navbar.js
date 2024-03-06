@@ -1,11 +1,15 @@
 import React from "react";
 import styles from "./navbar.module.css";
 import navLogo from "../images/logo.png";
-function NavBar() {
+function NavBar(props) {
+  const { dispatch } = props;
   return (
     <>
       <nav className={styles.navContainer}>
-        <div className={styles.logo}>
+        <div
+          className={styles.logo}
+          onClick={() => dispatch({ type: "albums" })}
+        >
           <div className={styles.image}>
             <img src={navLogo} alt="logo" />
           </div>
