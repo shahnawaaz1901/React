@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { useReducer } from "react";
 import styles from "./albumList.module.css";
 import Album from "./Album";
-function AlbumList() {
+function AlbumList(props) {
   const [albums, setAlbums] = useState([
     "Home",
     "j",
@@ -12,6 +13,7 @@ function AlbumList() {
     "fjdkf",
     "fjk",
   ]);
+  const { dispatch } = props;
   return (
     <>
       <div className={styles.container}>
@@ -24,9 +26,9 @@ function AlbumList() {
           </div>
         </div>
         <div className={styles.albumList}>
-          {albums.map((album) => {
-            return <Album album={album} />;
-          })}
+          {albums.map((album, index) => (
+            <Album album={album} dispatch={dispatch} index={index} />
+          ))}
         </div>
       </div>
     </>
