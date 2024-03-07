@@ -1,7 +1,8 @@
 import NavBar from "./components/Navbar";
 import AlbumList from "./components/AlbumList";
-import "./App.css";
 import { useReducer } from "react";
+
+import "./App.css";
 function App() {
   function reducer(state, action) {
     const { payload } = action;

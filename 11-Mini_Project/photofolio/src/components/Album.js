@@ -7,7 +7,7 @@ function Album(props) {
       <div className={styles.albumImage}>
         <img src={image} alt="Album Logo" />
       </div>
-      <div className={styles.albumName}>{album}</div>
+      <div className={styles.albumName}>{album.name}</div>
     </>
   );
 }
