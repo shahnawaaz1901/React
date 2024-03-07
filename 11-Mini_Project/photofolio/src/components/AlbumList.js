@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./albumList.module.css";
 import Form from "./Form";
 import Album from "./Album";
-import { getDocs, collection } from "firebase/firestore";
-import { addDoc, doc } from "firebase/firestore";
+import { onSnapshot, collection } from "firebase/firestore";
 import db from "../firebase.config";
 
 function AlbumList(props) {
@@ -11,9 +10,6 @@ function AlbumList(props) {
   const collectionName = "albums";
 
   const [formVisible, updateFormVisiblity] = useState(false);
-  useEffect(() => {
-    setAlbums(["Home", "j", "jskd", "fdjfkjd", "fjf", "sjfk", "fjdkf", "fjk"]);
-  }, []);
 
   function addAlbum(e) {
     e.preventDefault();
@@ -22,13 +18,15 @@ function AlbumList(props) {
   const { dispatch } = props;
   useEffect(() => {
     async function fetchAlbums() {
-      const snapShot = await getDocs(collection(db, collectionName));
-      let data = snapShot.docs.map((each) => ({
-        id: each.id,
-        ...each.data(),
-      }));
-      data = data.sort((a, b) => (a.name > b.name ? 1 : -1));
-      setAlbums(data);
+      const collectionReference = collection(db, collectionName);
+      onSnapshot(collectionReference, (snapShot) => {
+        let data = snapShot.docs.map((each) => ({
+          id: each.id,
+          ...each.data(),
+        }));
+        data = data.sort((a, b) => (a.name > b.name ? 1 : -1));
+        setAlbums(data);
+      });
     }
     fetchAlbums();
   }, []);
@@ -42,7 +40,9 @@ function AlbumList(props) {
             <h1>Albums</h1>
           </div>
           <div onClick={addAlbum}>
-            <button className={styles.addBtn}>Add Album</button>
+            <button className={formVisible ? styles.cancelBtn : styles.addBtn}>
+              {formVisible ? "Cancel" : "Add Album"}
+            </button>
           </div>
         </div>
         <div className={styles.albumList}>
