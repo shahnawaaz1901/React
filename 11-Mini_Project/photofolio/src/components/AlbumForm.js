@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react";
-import styles from "./form.module.css";
-export default function Form() {
+import styles from "./albumForm.module.css";
+
+export default function AlbumForm(props) {
+  const { addNewAlbum } = props;
   const inputRef = useRef("");
   useEffect(() => {
     inputRef.current.focus();
@@ -12,9 +14,12 @@ export default function Form() {
   }
 
   function handleAddBtnClick() {
-    console.log(inputRef.current.value);
-    inputRef.current.value = "";
-    inputRef.current.focus();
+    const albumName = inputRef.current.value;
+    if (albumName) {
+      addNewAlbum(albumName);
+      inputRef.current.value = "";
+      inputRef.current.focus();
+    }
   }
   return (
     <>
