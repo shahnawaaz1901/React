@@ -28,10 +28,16 @@ function Parent(){
             Whenever we wrap any component inside the context we need pass 
             another attribut called value which takes any value either number 
             string or anything, because we pass value we can skip passing props
-            in the component at line 34
+            in the component at line 34, now whatever value we specified in value
+            attribute we can use that value anywhere in the child component no
+            metters we want to access in child or grand child component we can
+            use it and there are two ways to access context Value inside the child
+            component, here value are attribute so it's fix and we are not able
+            change because whatever value we want to share across the children
+            we need to add it insid the value attribute
         */}
-        <colorContext.Provider value="red">
-        <ChildComponent color={color}/>
+        <colorContext.Provider value={color}>
+        <ChildComponent />
     </colorContext.Provider>
     </>)
 }
