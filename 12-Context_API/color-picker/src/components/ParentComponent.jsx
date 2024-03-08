@@ -36,6 +36,10 @@ function Parent(){
             change because whatever value we want to share across the children
             we need to add it insid the value attribute
         */}
+        {/* 
+            And just like a props we can also specify the value containing state 
+            and updateState function 
+        */}
         <colorContext.Provider value={color}>
         <ChildComponent />
     </colorContext.Provider>

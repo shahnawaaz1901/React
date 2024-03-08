@@ -17,14 +17,26 @@ import { useContext } from "react"
   the context in which we want to extract the value
 */
 import colorContext from "../Context"
-function ChildComponent() {
-  /* 
-    WhatEver value colorContext has useContext extract that value and returns 
-    us and we store that value inside the variabe for future use 
-  */
-  const context = useContext(colorContext);
-  console.log(context)
-  return <h1 style={{margin:100+'px', color : context}}>Color : {context
-  }</h1>
+//* Access the Value of Context by using the Hooks (Only Possible in Functional Component)
+// function ChildComponent() {
+//   /* 
+//     WhatEver value colorContext has useContext extract that value and returns 
+//     us and we store that value inside the variabe for future use 
+//   */
+//   const context = useContext(colorContext);
+//   return <h1 style={{margin:100+'px', color : context}}>Color : {context
+//   }</h1>
+// }
+
+//* Access the value of Context by using the Boundaries(Works on Both functional and Class Based Component)
+/* Inside the Bounderies a function is written which returns some JSX */
+function ChildComponent(){
+  return <><colorContext.Consumer>
+  {(value)=>{
+    console.log(value)
+    return <h1 style={{margin:100+'px', color : value}}>Color : {value
+        }</h1>
+  }}
+  </colorContext.Consumer></>
 }
 export default ChildComponent
