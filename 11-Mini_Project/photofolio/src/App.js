@@ -24,7 +24,7 @@ function App() {
     <>
       <NavBar dispatch={dispatch} />
       {state ? (
-        <ImageList dispatch={dispatch} />
+        <ImageList dispatch={dispatch} imageCategory={state} />
       ) : (
         <AlbumList dispatch={dispatch} />
       )}
