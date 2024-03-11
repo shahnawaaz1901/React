@@ -41,9 +41,9 @@
 }
 
 .searchBtn {
-  height: 40px;
-  width: 40px;
-  margin-right: 20px;
+  height: 35px;
+  width: 35px;
+  cursor: pointer;
 }
 
 .searchBtn img {
@@ -63,6 +63,9 @@
   cursor: pointer;
 }
 
+.btn {
+  margin-left: 20px;
+}
 .addImageBtn {
   font-size: 14px;
   background-color: rgb(208, 229, 255);
@@ -83,4 +86,44 @@
   padding: 5px 10px;
   border-radius: 5px;
   cursor: pointer;
+}
+.searchBar {
+  display: flex;
+  align-items: center;
+}
+
+.searchBarInput {
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.searchBarCrossBtn {
+  height: 25px;
+  width: 25px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.searchBarCrossBtn img {
+  height: 100%;
+  width: 100%;
+}
+
+@media screen and (max-width: 1100px) {
+  .imageListContainer {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .imageListContainer {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .imageListContainer {
+    width: 99%;
+  }
 }

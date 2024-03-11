@@ -3,14 +3,18 @@ import styles from "./imageList.module.css";
 import backBtn from "../images/back.png";
 import searchBtn from "../images/search.png";
 import ImageForm from "./ImageForm";
+import crossBtn from "../images/remove.png";
 export default function ImageList(props) {
-  console.log(props);
   const { dispatch } = props;
   const [formVisible, updateFormVisiblity] = useState(false);
+  const [searchBarVisible, updateSearchBarVisiblity] = useState(false);
   const { name: imageCategory } = props.imageCategory;
-
   function handleAddBtnClick(e) {
     updateFormVisiblity(!formVisible);
+  }
+
+  function visibleSearchBar(e) {
+    updateSearchBarVisiblity(!searchBarVisible);
   }
 
   return (
@@ -30,10 +34,29 @@ export default function ImageList(props) {
             </div>
           </div>
           <div className={styles.end}>
-            <div className={styles.searchBtn}>
-              <img src={searchBtn} alt="back-btn" />
-            </div>
-            <div onClick={handleAddBtnClick}>
+            {searchBarVisible ? (
+              <div className={styles.searchBar}>
+                <div>
+                  <input
+                    type="text"
+                    placeholder="type anything.."
+                    className={styles.searchBarInput}
+                  />
+                </div>
+                <div
+                  className={styles.searchBarCrossBtn}
+                  onClick={visibleSearchBar}
+                >
+                  <img src={crossBtn} alt="cross button" />
+                </div>
+              </div>
+            ) : (
+              <div className={styles.searchBtn} onClick={visibleSearchBar}>
+                <img src={searchBtn} alt="back-btn" />
+              </div>
+            )}
+
+            <div onClick={handleAddBtnClick} className={styles.btn}>
               <button
                 className={
                   formVisible ? styles.cancelImageBtn : styles.addImageBtn
@@ -44,6 +67,7 @@ export default function ImageList(props) {
             </div>
           </div>
         </div>
+        <div className={styles.imageList}></div>
       </div>
     </>
   );
