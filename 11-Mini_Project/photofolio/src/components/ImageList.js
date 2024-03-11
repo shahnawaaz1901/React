@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styles from "./imageList.module.css";
 import backBtn from "../images/back.png";
 import searchBtn from "../images/search.png";
 import ImageForm from "./ImageForm";
 import crossBtn from "../images/remove.png";
+import { useEffect } from "react";
+
 export default function ImageList(props) {
   const { dispatch } = props;
   const [formVisible, updateFormVisiblity] = useState(false);
   const [searchBarVisible, updateSearchBarVisiblity] = useState(false);
   const { name: imageCategory } = props.imageCategory;
+  const searchInputRef = useRef();
   function handleAddBtnClick(e) {
     updateFormVisiblity(!formVisible);
   }
@@ -17,6 +20,11 @@ export default function ImageList(props) {
     updateSearchBarVisiblity(!searchBarVisible);
   }
 
+  useEffect(() => {
+    if (searchBarVisible) {
+      searchInputRef.current.focus();
+    }
+  }, [searchBarVisible]);
   return (
     <>
       {formVisible ? <ImageForm /> : ""}
@@ -41,6 +49,7 @@ export default function ImageList(props) {
                     type="text"
                     placeholder="type anything.."
                     className={styles.searchBarInput}
+                    ref={searchInputRef}
                   />
                 </div>
                 <div
