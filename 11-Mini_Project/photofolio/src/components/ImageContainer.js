@@ -10,7 +10,7 @@ export default function ImageContainer(props) {
   useEffect(() => {
     setTimeout(() => {
       updateLoaderVisiblity(false);
-    }, 4000);
+    }, 1500);
   });
 
   return (
