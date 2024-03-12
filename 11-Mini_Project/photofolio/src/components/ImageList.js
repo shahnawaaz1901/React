@@ -7,11 +7,11 @@ import crossBtn from "../images/remove.png";
 import { useEffect } from "react";
 
 export default function ImageList(props) {
-  const { dispatch } = props;
+  const { dispatch, name: imageCategory } = props;
   const [formVisible, updateFormVisiblity] = useState(false);
   const [searchBarVisible, updateSearchBarVisiblity] = useState(false);
-  const { name: imageCategory } = props.imageCategory;
   const searchInputRef = useRef();
+
   function handleAddBtnClick(e) {
     updateFormVisiblity(!formVisible);
   }
@@ -25,6 +25,7 @@ export default function ImageList(props) {
       searchInputRef.current.focus();
     }
   }, [searchBarVisible]);
+
   return (
     <>
       {formVisible ? <ImageForm /> : ""}

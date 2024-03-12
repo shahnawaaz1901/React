@@ -3,7 +3,7 @@ import AlbumList from "./components/AlbumList";
 import { useReducer } from "react";
 
 import "./App.css";
-import ImageList from "./components/ImageList";
+import ImageContainer from "./components/ImageContainer";
 function App() {
   function reducer(state, action) {
     const { payload } = action;
@@ -24,7 +24,7 @@ function App() {
     <>
       <NavBar dispatch={dispatch} />
       {state ? (
-        <ImageList dispatch={dispatch} imageCategory={state} />
+        <ImageContainer dispatch={dispatch} imageCategory={state} />
       ) : (
         <AlbumList dispatch={dispatch} />
       )}
