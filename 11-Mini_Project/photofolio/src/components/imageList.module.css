@@ -19,12 +19,12 @@
   height: 100%;
   width: 100%;
   border-radius: 50%;
-  scale: 0.6;
+  scale: 0.5;
   transition: all 0.1s ease;
 }
 
-.previousBtn img:hover {
-  scale: 0.7;
+.previousBtn:hover img {
+  scale: 0.6;
 }
 .heading {
   display: flex;

@@ -1,10 +1,10 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import ImageForm from "./ImageForm";
 import styles from "./imageList.module.css";
 import backBtn from "../images/back.png";
 import searchBtn from "../images/search.png";
-import ImageForm from "./ImageForm";
 import crossBtn from "../images/remove.png";
-import { useEffect } from "react";
+import Image from "./Image";
 
 export default function ImageList(props) {
   const { dispatch, name: imageCategory } = props;
@@ -77,7 +77,14 @@ export default function ImageList(props) {
             </div>
           </div>
         </div>
-        <div className={styles.imageList}></div>
+        <div className={styles.imageList}>
+          <Image
+            title={"Ashu"}
+            imageURL={
+              "https://cdn.pixabay.com/phto/2016/05/05/02/37/sunset-1373171_1280.jpg"
+            }
+          />
+        </div>
       </div>
     </>
   );
