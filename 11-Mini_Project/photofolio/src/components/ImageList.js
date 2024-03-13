@@ -12,11 +12,11 @@ export default function ImageList(props) {
   const [searchBarVisible, updateSearchBarVisiblity] = useState(false);
   const searchInputRef = useRef();
 
-  function handleAddBtnClick(e) {
+  function handleAddBtnClick() {
     updateFormVisiblity(!formVisible);
   }
 
-  function visibleSearchBar(e) {
+  function visibleSearchBar() {
     updateSearchBarVisiblity(!searchBarVisible);
   }
 

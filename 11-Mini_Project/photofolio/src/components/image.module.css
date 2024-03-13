@@ -30,6 +30,26 @@
 }
 
 .operations {
-  display: flex;
+  display: none;
   position: absolute;
+  top: -12px;
+  right: -5px;
+}
+
+.operations > div {
+  height: 30px;
+  width: 30px;
+}
+
+.operations img {
+  height: 100%;
+  width: 100%;
+}
+
+.updateBtn {
+  margin-right: 10px;
+}
+
+.imageContainer:hover .operations {
+  display: flex;
 }

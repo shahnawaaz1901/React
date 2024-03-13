@@ -14,8 +14,24 @@ export default function Image(props) {
           <img src={imageURL} alt="Img" onError={functionApp} />
         </div>
         <div className={styles.operations}>
-          <div className={styles.updateBtn}></div>
-          <div className={styles.updateBtn}></div>
+          <div
+            className={styles.updateBtn}
+            onClick={(e) => console.log(e.target)}
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/14026/14026269.png"
+              alt="update-btn"
+            />
+          </div>
+          <div
+            className={styles.deleteBtn}
+            onClick={(e) => console.log(e.target)}
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/9790/9790368.png"
+              alt="delete-btn"
+            />
+          </div>
         </div>
         <div className={styles.imageTitle}>{title}</div>
       </div>
