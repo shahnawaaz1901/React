@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
       <h2>Shopping Cart</h2>
-      <TotalContext.Provider value={{ total, setTotal }}>
+      <TotalContext.Provider value={{ total, setTotal, item, setItem }}>
         <Navbar />
         <Items />
       </TotalContext.Provider>

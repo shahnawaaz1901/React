@@ -4,14 +4,25 @@ import { useContext } from "react";
 import TotalContext from "../contexts/total.context";
 function ItemCard({ name, price }) {
   const {total, setTotal} = useContext(TotalContext);
+  const {item, setItem} = useContext(TotalContext);
+
   const handleAdd = () => {
-    setTotal(total + price)
+    setTotal(total + price);
+    setItem(item + 1);
   };
 
   const handleRemove = () => {
+    /* 
+      setTotal also written in the two form one is directly pass the value 
+      and another one is by a callback function which takes state as argument
+      and whatEver value we return that value is set to the state
     if(total){
       setTotal(total - price)
     }
+    */
+
+    setTotal((prevState)=> prevState <= 0 ? prevState : prevState - price)
+    setItem((prevState)=> prevState <= 0 ? prevState : prevState - 1);
   };
 
   return (
