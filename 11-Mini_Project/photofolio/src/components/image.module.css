@@ -12,9 +12,10 @@
 
 .image {
   height: 150px;
-  width: 180px;
+  width: 160px;
   display: flex;
   align-items: center;
+  margin: auto;
   justify-content: center;
   background-color: white;
 }
