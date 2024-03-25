@@ -35,13 +35,19 @@ function CustomProvider(props) {
     children of the component, or we can say all the content between the component
     can be accessed by the props.children
   */
+
+  /* Reset the Values of total and Items */
+  const resetValues = () => {
+    setTotal(0);
+    setItem(0);
+  };
   /* 
     Because we write handleAdd and handleRemove inside this context file we dont 
     need to pass both the function inside the object in value attribute 
   */
   return (
     <ItemContext.Provider
-      value={{ total, setTotal, item, setItem, handleAdd, handleRemove }}
+      value={{ total, item, handleAdd, handleRemove, resetValues }}
     >
       {/*
         Context.Provider is a default provider which helps us to provide the 
