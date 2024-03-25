@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import CartModal from "../components/CartModal";
 export const ItemContext = createContext();
 
 /*
@@ -8,12 +9,16 @@ export const ItemContext = createContext();
 function CustomProvider(props) {
   const [total, setTotal] = useState(0);
   const [item, setItem] = useState(0);
+  const [showCart, setShowCart] = useState(false);
 
   const handleAdd = (price) => {
     setTotal(total + price);
     setItem(item + 1);
   };
 
+  const toggleCart = () => {
+    setShowCart(!showCart);
+  };
   const handleRemove = (price) => {
     /* 
       setTotal also written in the two form one is directly pass the value 
@@ -45,14 +50,20 @@ function CustomProvider(props) {
     Because we write handleAdd and handleRemove inside this context file we dont 
     need to pass both the function inside the object in value attribute 
   */
+  /* 
+    Because we only want toggleCart function inside the CartModal so instead of 
+    passing using the context in value attribute we directly pass as props
+  */
+
   return (
     <ItemContext.Provider
-      value={{ total, item, handleAdd, handleRemove, resetValues }}
+      value={{ total, item, handleAdd, handleRemove, resetValues, toggleCart }}
     >
       {/*
         Context.Provider is a default provider which helps us to provide the 
         whatEver values we want to pass to the Children Components
       */}
+      {showCart ? <CartModal toggleCart={toggleCart} /> : ""}
       {props.children}
       {/* 
         Because we wrap the all the children inside the functional component 

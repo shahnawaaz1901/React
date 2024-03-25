@@ -4,7 +4,7 @@ import styles from "../styles/ItemCard.module.css";
 // import { ItemContext } from "../contexts/item.context";
 import { useValue } from "../contexts/item.context";
 
-function ItemCard({ name, price }) {
+function ItemCard({name, price }) {
   const {handleAdd, handleRemove} = useValue();
   /* Moving All the Handle Ful Logic inside the Context file
   const handleAdd = () => {
