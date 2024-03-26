@@ -4,7 +4,7 @@ import styles from "../styles/ItemCard.module.css";
 // import { ItemContext } from "../contexts/item.context";
 import { useValue } from "../contexts/item.context";
 
-function ItemCard({name, price }) {
+function ItemCard({id, name, price }) {
   const {handleAdd, handleRemove} = useValue();
   /* Moving All the Handle Ful Logic inside the Context file
   const handleAdd = () => {
@@ -31,7 +31,7 @@ function ItemCard({name, price }) {
       <div className={styles.itemName}>{name}</div>
       <div className={styles.itemPrice}>&#x20B9; {price}</div>
       <div className={styles.itemButtonsWrapper}>
-        <button className={styles.itemButton} onClick={() => handleAdd(price)}>
+        <button className={styles.itemButton} onClick={() => handleAdd({id, name,price})}>
           Add
         </button>
         <button className={styles.itemButton} onClick={() => handleRemove(price)}>

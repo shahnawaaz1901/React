@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import CartModal from "../components/CartModal";
 export const ItemContext = createContext();
 
@@ -10,11 +10,41 @@ function CustomProvider(props) {
   const [total, setTotal] = useState(0);
   const [item, setItem] = useState(0);
   const [showCart, setShowCart] = useState(false);
+  const [cart, setCart] = useState([]); //* For Storing the Products inside Cart
 
-  const handleAdd = (price) => {
-    setTotal(total + price);
-    setItem(item + 1);
+  /* 
+    Here we are only getting the price but instead of price we need to store 
+    whole variable so that we can show the item detail on the cart page and
+    as well as our total functionality works perfectly
+  */
+  const handleAdd = (item) => {
+    /* 
+      We Only put item inside the cart array when a new item is added to cart 
+      in case of existing item we need to increase the quantity instead of adding
+      new item
+    */
+
+    //* Check is item is present or not inside the array
+    const checkForPresence = cart.findIndex((p) => item.id === p.id);
+
+    //* In Case item not Present
+    if (checkForPresence === -1) {
+      /* 
+        Along with Storing we need another variable called qty which represent the 
+        Quantity of that product inside the cart 
+      */
+      setCart([...cart, { ...item, qty: 1 }]);
+    } else {
+      const copyCart = [...cart];
+      copyCart[checkForPresence].qty += 1;
+      setCart(copyCart);
+    }
+
+    setTotal(total + item.price);
   };
+  useEffect(() => {
+    console.log(cart);
+  }, [cart]);
 
   const toggleCart = () => {
     setShowCart(!showCart);
