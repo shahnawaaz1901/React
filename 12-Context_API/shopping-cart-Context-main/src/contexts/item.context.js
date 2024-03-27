@@ -17,7 +17,7 @@ function CustomProvider(props) {
     whole variable so that we can show the item detail on the cart page and
     as well as our total functionality works perfectly
   */
-  const handleAdd = (item) => {
+  const handleAdd = (pro) => {
     /* 
       We Only put item inside the cart array when a new item is added to cart 
       in case of existing item we need to increase the quantity instead of adding
@@ -25,7 +25,7 @@ function CustomProvider(props) {
     */
 
     //* Check is item is present or not inside the array
-    const checkForPresence = cart.findIndex((p) => item.id === p.id);
+    const checkForPresence = cart.findIndex((p) => pro.id === p.id);
 
     //* In Case item not Present
     if (checkForPresence === -1) {
@@ -33,23 +33,23 @@ function CustomProvider(props) {
         Along with Storing we need another variable called qty which represent the 
         Quantity of that product inside the cart 
       */
-      setCart([...cart, { ...item, qty: 1 }]);
+      setCart([...cart, { ...pro, qty: 1 }]);
     } else {
       const copyCart = [...cart];
       copyCart[checkForPresence].qty += 1;
       setCart(copyCart);
     }
-
-    setTotal(total + item.price);
+    setItem(item + 1);
   };
+
   useEffect(() => {
-    console.log(cart);
+    setTotal(cart.reduce((acc, curr) => acc + curr.qty * curr.price, 0));
   }, [cart]);
 
   const toggleCart = () => {
     setShowCart(!showCart);
   };
-  const handleRemove = (price) => {
+  const handleRemove = (id) => {
     /* 
       setTotal also written in the two form one is directly pass the value 
       and another one is by a callback function which takes state as argument
@@ -58,9 +58,21 @@ function CustomProvider(props) {
       setTotal(total - price)
     }
     */
+    const checkForPresence = cart.findIndex((each) => each.id === id);
+    if (checkForPresence === -1) {
+      return;
+    }
 
-    setTotal((prevState) => (prevState <= 0 ? prevState : prevState - price));
-    setItem((prevState) => (prevState <= 0 ? prevState : prevState - 1));
+    const copyCart = [...cart];
+    copyCart[checkForPresence].qty--;
+    /* If quantity is zero then we don't need that product inside the cart */
+    if (!copyCart[checkForPresence].qty) {
+      copyCart.splice(checkForPresence, 1);
+    }
+    setCart(copyCart);
+    setItem(item - 1);
+    // setTotal((prevState) => (prevState <= 0 ? prevState : prevState - price));
+    // setItem((prevState) => (prevState <= 0 ? prevState : prevState - 1));
   };
 
   /*
@@ -72,8 +84,14 @@ function CustomProvider(props) {
   */
 
   /* Reset the Values of total and Items */
-  const resetValues = () => {
-    setTotal(0);
+  /* Instead of this we can use resetCart to reset the total and cart */
+  // const resetValues = () => {
+  //   setTotal(0);
+  //   setItem(0);
+  // };
+
+  const resetCart = () => {
+    setCart([]);
     setItem(0);
   };
   /* 
@@ -87,7 +105,15 @@ function CustomProvider(props) {
 
   return (
     <ItemContext.Provider
-      value={{ total, item, handleAdd, handleRemove, resetValues, toggleCart }}
+      value={{
+        total,
+        item,
+        handleAdd,
+        handleRemove,
+        toggleCart,
+        cart,
+        resetCart,
+      }}
     >
       {/*
         Context.Provider is a default provider which helps us to provide the 

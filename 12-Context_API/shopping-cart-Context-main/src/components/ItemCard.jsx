@@ -4,8 +4,9 @@ import styles from "../styles/ItemCard.module.css";
 // import { ItemContext } from "../contexts/item.context";
 import { useValue } from "../contexts/item.context";
 
-function ItemCard({id, name, price }) {
+function ItemCard({id, name, price,qty }) {
   const {handleAdd, handleRemove} = useValue();
+  console.log(qty)
   /* Moving All the Handle Ful Logic inside the Context file
   const handleAdd = () => {
     setTotal(total + price);
@@ -28,13 +29,18 @@ function ItemCard({id, name, price }) {
 */
   return (
     <div className={styles.itemCard}>
+      {qty ? <div className={styles.count}>{qty}</div>:""} 
       <div className={styles.itemName}>{name}</div>
       <div className={styles.itemPrice}>&#x20B9; {price}</div>
       <div className={styles.itemButtonsWrapper}>
         <button className={styles.itemButton} onClick={() => handleAdd({id, name,price})}>
           Add
         </button>
-        <button className={styles.itemButton} onClick={() => handleRemove(price)}>
+        {/* 
+          Because we need to only find and remove the item that's why instead 
+          of passing whole object we need to pass just id
+        */}
+        <button className={styles.itemButton} onClick={() => handleRemove(id)}>
           Remove
         </button>
       </div>
