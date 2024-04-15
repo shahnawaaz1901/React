@@ -11,7 +11,7 @@ function AlbumList(props) {
   const collectionName = "albums";
   const [loaderVisible, updateLoaderVisiblity] = useState(true);
   const [formVisible, updateFormVisiblity] = useState(false);
-
+  const { notify } = props;
   function changeFormVisiblity(e) {
     e.preventDefault();
     updateFormVisiblity(!formVisible);
@@ -44,6 +44,7 @@ function AlbumList(props) {
       name: albumName,
       createdOn: new Date(),
     };
+    notify("Album Created Successfully !!");
     await addDoc(collection(db, collectionName), data);
   }
   return (
