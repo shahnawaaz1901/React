@@ -10,6 +10,7 @@ export default function ImageList(props) {
   const { dispatch, name: imageCategory } = props;
   const [formVisible, updateFormVisiblity] = useState(false);
   const [searchBarVisible, updateSearchBarVisiblity] = useState(false);
+
   const searchInputRef = useRef();
 
   function handleAddBtnClick() {
