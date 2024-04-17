@@ -4,8 +4,7 @@ import ImageList from "./ImageList";
 
 export default function ImageContainer(props) {
   const [loaderVisible, updateLoaderVisiblity] = useState(true);
-  const { dispatch } = props;
-  const { imageCategory } = props;
+  const { dispatch, imageCategory, updateCurrentImage, notify } = props;
 
   useEffect(() => {
     setTimeout(() => {
@@ -18,7 +17,12 @@ export default function ImageContainer(props) {
       {loaderVisible ? (
         <Loader />
       ) : (
-        <ImageList dispatch={dispatch} name={imageCategory.name} />
+        <ImageList
+          dispatch={dispatch}
+          name={imageCategory.name}
+          updateCurrentImage={updateCurrentImage}
+          notify={notify}
+        />
       )}
     </>
   );

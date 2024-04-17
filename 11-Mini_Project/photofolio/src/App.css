@@ -1,3 +1,14 @@
 * {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
+
+body::-webkit-scrollbar {
+  background-color: transparent;
+  width: 6px;
+}
+
+/* Adding Custom Scroll Bar */
+body::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(360deg, rgb(160, 160, 249), #007aff);
+  border-radius: 4px;
+}

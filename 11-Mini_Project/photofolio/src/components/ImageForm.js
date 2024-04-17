@@ -1,19 +1,29 @@
 import styles from "./imageForm.module.css";
 import { useRef } from "react";
-export default function ImageForm() {
+import db from "../firebase.config";
+import { addDoc, collection } from "firebase/firestore";
+export default function ImageForm(props) {
+  const { imageCategory, notify } = props;
+  console.log(notify);
   // const name = useRef();
   const titleRef = useRef(),
     imageURLRef = useRef();
 
   function addImage(e) {
-    console.log(titleRef.current.value);
-    console.log(imageURLRef.current.value);
+    const data = {
+      title: titleRef.current.value,
+      imageURL: imageURLRef.current.value,
+    };
     clearInputs();
+    addDoc(collection(db, imageCategory), data);
+    notify("Image Added Successfully !!");
   }
+
   function clearInputs() {
     titleRef.current.value = "";
     imageURLRef.current.value = "";
   }
+
   return (
     <div className={styles.imageFormContainer}>
       <div className={styles.heading}>

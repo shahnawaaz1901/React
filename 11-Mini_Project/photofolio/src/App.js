@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import ImageContainer from "./components/ImageContainer";
 import CurrentImage from "./components/CurrentImage";
+
 function App() {
   function reducer(state, action) {
     const { payload } = action;
@@ -28,7 +29,7 @@ function App() {
 
   const [state, dispatch] = useReducer(reducer, "");
   const [currentImageURL, setCurrentImageURL] = useState(
-    "https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg"
+    "https://i.scdn.co/image/ab6761610000e5eb3bcef85e105dfc42399ef0ba"
   );
 
   function updateCurrentImage(url) {

@@ -1,7 +1,8 @@
 import styles from "./image.module.css";
 export default function Image(props) {
-  const { title, imageURL } = props;
-  function functionApp(e) {
+  const { title, imageURL, updateCurrentImage } = props;
+
+  function handleRenderError(e) {
     e.target.setAttribute(
       "src",
       "https://cdn-icons-png.flaticon.com/128/159/159469.png"
@@ -9,9 +10,12 @@ export default function Image(props) {
   }
   return (
     <>
-      <div className={styles.imageContainer}>
+      <div
+        className={styles.imageContainer}
+        onClick={() => updateCurrentImage(imageURL)}
+      >
         <div className={styles.image}>
-          <img src={imageURL} alt="Img" onError={functionApp} />
+          <img src={imageURL} alt="Img" onError={handleRenderError} />
         </div>
         <div className={styles.operations}>
           <div

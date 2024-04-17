@@ -7,10 +7,9 @@ import crossBtn from "../images/remove.png";
 import Image from "./Image";
 
 export default function ImageList(props) {
-  const { dispatch, name: imageCategory } = props;
+  const { dispatch, name: imageCategory, updateCurrentImage, notify } = props;
   const [formVisible, updateFormVisiblity] = useState(false);
   const [searchBarVisible, updateSearchBarVisiblity] = useState(false);
-
   const searchInputRef = useRef();
 
   function handleAddBtnClick() {
@@ -29,7 +28,11 @@ export default function ImageList(props) {
 
   return (
     <>
-      {formVisible ? <ImageForm /> : ""}
+      {formVisible ? (
+        <ImageForm imageCategory={imageCategory} notify={notify} />
+      ) : (
+        ""
+      )}
       <div className={styles.imageListContainer}>
         <div className={styles.heading}>
           <div className={styles.startName}>
@@ -84,6 +87,7 @@ export default function ImageList(props) {
             imageURL={
               "https://cdn.pixabay.com/phto/2016/05/05/02/37/sunset-1373171_1280.jpg"
             }
+            updateCurrentImage={updateCurrentImage}
           />
         </div>
       </div>
