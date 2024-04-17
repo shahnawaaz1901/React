@@ -5,11 +5,14 @@ import backBtn from "../images/back.png";
 import searchBtn from "../images/search.png";
 import crossBtn from "../images/remove.png";
 import Image from "./Image";
+import db from "../firebase.config";
+import { onSnapshot, collection } from "firebase/firestore";
 
 export default function ImageList(props) {
   const { dispatch, name: imageCategory, updateCurrentImage, notify } = props;
   const [formVisible, updateFormVisiblity] = useState(false);
   const [searchBarVisible, updateSearchBarVisiblity] = useState(false);
+  const [images, updateImages] = useState([]);
   const searchInputRef = useRef();
 
   function handleAddBtnClick() {
@@ -25,6 +28,17 @@ export default function ImageList(props) {
       searchInputRef.current.focus();
     }
   }, [searchBarVisible]);
+
+  useEffect(() => {
+    onSnapshot(collection(db, imageCategory), (snapshot) => {
+      const data = [];
+      snapshot.forEach((each) => {
+        data.push({ id: each.id, ...each.data() });
+      });
+      console.log(data);
+      updateImages(data);
+    });
+  }, []);
 
   return (
     <>
@@ -82,13 +96,16 @@ export default function ImageList(props) {
           </div>
         </div>
         <div className={styles.imageList}>
-          <Image
-            title={"Ashu"}
-            imageURL={
-              "https://cdn.pixabay.com/phto/2016/05/05/02/37/sunset-1373171_1280.jpg"
-            }
-            updateCurrentImage={updateCurrentImage}
-          />
+          {images.map((eachImage) => (
+            <Image
+              title={eachImage.title}
+              imageURL={eachImage.imageURL}
+              updateCurrentImage={updateCurrentImage}
+              id={eachImage.id}
+              key={eachImage.id}
+              imageCategory={imageCategory}
+            />
+          ))}
         </div>
       </div>
     </>

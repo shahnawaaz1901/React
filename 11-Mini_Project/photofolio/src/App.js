@@ -28,11 +28,12 @@ function App() {
   }
 
   const [state, dispatch] = useReducer(reducer, "");
-  const [currentImageURL, setCurrentImageURL] = useState(
-    "https://i.scdn.co/image/ab6761610000e5eb3bcef85e105dfc42399ef0ba"
-  );
+  const [currentImageURL, setCurrentImageURL] = useState("");
 
-  function updateCurrentImage(url) {
+  function updateCurrentImage({ e, imageURL: url }) {
+    if (e.target.getAttribute("alt") === "delete-btn") {
+      return;
+    }
     setCurrentImageURL(url);
   }
 

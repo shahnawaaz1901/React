@@ -1,6 +1,9 @@
 import styles from "./image.module.css";
+import Swal from "sweetalert2";
+import { doc, deleteDoc } from "firebase/firestore";
+import db from "../firebase.config";
 export default function Image(props) {
-  const { title, imageURL, updateCurrentImage } = props;
+  const { title, imageURL, updateCurrentImage, id, imageCategory } = props;
 
   function handleRenderError(e) {
     e.target.setAttribute(
@@ -8,11 +11,31 @@ export default function Image(props) {
       "https://cdn-icons-png.flaticon.com/128/159/159469.png"
     );
   }
+  function deleteImage({ e, id }) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteDoc(doc(db, imageCategory, id));
+        Swal.fire({
+          title: "Deleted!",
+          text: "Image has been deleted from Album.",
+          icon: "success",
+        });
+      }
+    });
+  }
   return (
     <>
       <div
         className={styles.imageContainer}
-        onClick={() => updateCurrentImage(imageURL)}
+        onClick={(e) => updateCurrentImage({ e, imageURL })}
       >
         <div className={styles.image}>
           <img src={imageURL} alt="Img" onError={handleRenderError} />
@@ -29,7 +52,7 @@ export default function Image(props) {
           </div>
           <div
             className={styles.deleteBtn}
-            onClick={(e) => console.log(e.target)}
+            onClick={(e) => deleteImage({ e, id })}
           >
             <img
               src="https://cdn-icons-png.flaticon.com/128/9790/9790368.png"
