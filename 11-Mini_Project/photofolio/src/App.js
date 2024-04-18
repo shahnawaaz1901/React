@@ -31,7 +31,10 @@ function App() {
   const [currentImageURL, setCurrentImageURL] = useState("");
 
   function updateCurrentImage({ e, imageURL: url }) {
-    if (e.target.getAttribute("alt") === "delete-btn") {
+    if (
+      e.target.getAttribute("alt") === "delete-btn" ||
+      e.target.getAttribute("alt") === "update-btn"
+    ) {
       return;
     }
     setCurrentImageURL(url);

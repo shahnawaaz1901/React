@@ -13,6 +13,7 @@ export default function ImageList(props) {
   const [formVisible, updateFormVisiblity] = useState(false);
   const [searchBarVisible, updateSearchBarVisiblity] = useState(false);
   const [images, updateImages] = useState([]);
+  const [updateformImageData, setupdateformImageData] = useState(null);
   const searchInputRef = useRef();
 
   function handleAddBtnClick() {
@@ -23,6 +24,9 @@ export default function ImageList(props) {
     updateSearchBarVisiblity(!searchBarVisible);
   }
 
+  function renderUpdateForm(imageData) {
+    console.log(imageData);
+  }
   useEffect(() => {
     if (searchBarVisible) {
       searchInputRef.current.focus();
@@ -43,7 +47,11 @@ export default function ImageList(props) {
   return (
     <>
       {formVisible ? (
-        <ImageForm imageCategory={imageCategory} notify={notify} />
+        <ImageForm
+          imageCategory={imageCategory}
+          notify={notify}
+          data={updateformImageData}
+        />
       ) : (
         ""
       )}
@@ -104,6 +112,7 @@ export default function ImageList(props) {
               id={eachImage.id}
               key={eachImage.id}
               imageCategory={imageCategory}
+              renderUpdateForm={renderUpdateForm}
             />
           ))}
         </div>

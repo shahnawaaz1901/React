@@ -3,7 +3,14 @@ import Swal from "sweetalert2";
 import { doc, deleteDoc } from "firebase/firestore";
 import db from "../firebase.config";
 export default function Image(props) {
-  const { title, imageURL, updateCurrentImage, id, imageCategory } = props;
+  const {
+    title,
+    imageURL,
+    updateCurrentImage,
+    id,
+    imageCategory,
+    renderUpdateForm,
+  } = props;
 
   function handleRenderError(e) {
     e.target.setAttribute(
@@ -11,7 +18,8 @@ export default function Image(props) {
       "https://cdn-icons-png.flaticon.com/128/159/159469.png"
     );
   }
-  function deleteImage({ e, id }) {
+
+  function deleteImage(id) {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -30,6 +38,10 @@ export default function Image(props) {
         });
       }
     });
+  }
+
+  function updateImage(id) {
+    console.log(id);
   }
   return (
     <>
@@ -50,10 +62,7 @@ export default function Image(props) {
               alt="update-btn"
             />
           </div>
-          <div
-            className={styles.deleteBtn}
-            onClick={(e) => deleteImage({ e, id })}
-          >
+          <div className={styles.deleteBtn} onClick={(e) => deleteImage(id)}>
             <img
               src="https://cdn-icons-png.flaticon.com/128/9790/9790368.png"
               alt="delete-btn"

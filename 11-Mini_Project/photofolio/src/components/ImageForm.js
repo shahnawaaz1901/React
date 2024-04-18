@@ -4,7 +4,7 @@ import db from "../firebase.config";
 import { addDoc, collection } from "firebase/firestore";
 
 export default function ImageForm(props) {
-  const { imageCategory, notify } = props;
+  const { imageCategory, notify, data } = props;
   const titleRef = useRef(),
     imageURLRef = useRef();
 
