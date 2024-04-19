@@ -6,6 +6,8 @@ import Navbar from "./components/Navbar";
 //* for Creating the Routes
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
+import { createRoutesFromElements } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 function App() {
   const [currPage, setPage] = useState("home");
@@ -18,12 +20,47 @@ function App() {
     to use the RouterProvider which helps us to provide the routes to our app
   */
 
-  /* Storing the WhatEver Return value inside the routerPath variable */
-  const routerPath = createBrowserRouter([
-    { path: "/", element: <Home /> },
-    { path: "/about", element: <About /> },
-    { path: "/items", element: <Items /> },
-  ]);
+  /* 
+    Storing the WhatEver Return value inside the routerPath variable 
+    Here we define and create the routes at the same time, how ever we
+    can first define the routes and the create the routes seprately
+  */
+  // const routerPath = createBrowserRouter([
+  //   { path: "/", element: <Home /> },
+  //   { path: "/about", element: <About /> },
+  //   { path: "/items", element: <Items /> },
+  // ]);
+
+  /*
+    However we have another way to provide the routes where first we
+    define the routes and then we can provide the routes by using the
+    createBrowserRouter, for defining the Routes and providing we need 
+    to use createRoutesFromElement and Route which is the Component which
+    helps us to providing the Routes 
+  */
+
+  /*
+    CreateRoutesFromElements function takes JSX as argument in which we
+    need to return Route component which Route component takes props
+    path which is nothing but string which specify the path and another
+    is element which is nothing but the component which we want to render
+    for the path howEver because we use empty fragments we can add multiple
+    routes so that createRoutesFromElements returns Routes which we can
+    store in variable and by using the React Routes we can specify and
+    render the components for a specific routes, Route is nothing but a
+    component which comes along with react-router-dom internally working
+    is similar just like we define and create the routes simantanously,
+    This is method is called predefine routes where we define the routes
+    before the creation
+  */
+  const routes = createRoutesFromElements(
+    <>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/items" element={<Items />} />
+    </>
+  );
+  const router = createBrowserRouter(routes);
   return (
     <>
       {/* 
@@ -31,7 +68,13 @@ function App() {
         which takes a props "router" which is nothing but instance which is return 
         when we create the routes for our application
       */}
-      <RouterProvider router={routerPath} />
+      {/* 
+        Write by define and Creating routes same time by using the 
+        createBrowserRouter 
+        
+        <RouterProvider router={routerPath} /> 
+      */}
+      <RouterProvider router={router} />
       {/* <Navbar setPage={setPage} />
       {currPage === "home" && <Home />}
       {currPage === "about" && <About />}
