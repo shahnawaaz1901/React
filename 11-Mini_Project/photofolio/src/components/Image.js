@@ -9,7 +9,8 @@ export default function Image(props) {
     updateCurrentImage,
     id,
     imageCategory,
-    renderUpdateForm,
+    notify,
+    updateImage,
   } = props;
 
   function handleRenderError(e) {
@@ -31,18 +32,11 @@ export default function Image(props) {
     }).then((result) => {
       if (result.isConfirmed) {
         deleteDoc(doc(db, imageCategory, id));
-        Swal.fire({
-          title: "Deleted!",
-          text: "Image has been deleted from Album.",
-          icon: "success",
-        });
+        notify("Image Deleted Successfully !!");
       }
     });
   }
 
-  function updateImage(id) {
-    console.log(id);
-  }
   return (
     <>
       <div
@@ -55,7 +49,7 @@ export default function Image(props) {
         <div className={styles.operations}>
           <div
             className={styles.updateBtn}
-            onClick={(e) => console.log(e.target)}
+            onClick={(e) => updateImage({ title, imageURL })}
           >
             <img
               src="https://cdn-icons-png.flaticon.com/128/14026/14026269.png"

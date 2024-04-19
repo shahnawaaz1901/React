@@ -13,9 +13,9 @@ export default function ImageList(props) {
   const [formVisible, updateFormVisiblity] = useState(false);
   const [searchBarVisible, updateSearchBarVisiblity] = useState(false);
   const [images, updateImages] = useState([]);
-  const [updateformImageData, setupdateformImageData] = useState(null);
+  const [searchImageData, setSearchImageData] = useState([]);
+  const [searchBarValue, setSearchBarValue] = useState("");
   const searchInputRef = useRef();
-
   function handleAddBtnClick() {
     updateFormVisiblity(!formVisible);
   }
@@ -24,9 +24,16 @@ export default function ImageList(props) {
     updateSearchBarVisiblity(!searchBarVisible);
   }
 
-  function renderUpdateForm(imageData) {
-    console.log(imageData);
+  function updateImage(updatedData) {
+    console.log(updatedData);
   }
+  function handleSearchBarChange(e) {
+    setSearchBarValue(e.target.value);
+    setSearchImageData(
+      images.filter((each) => each.title.includes(e.target.value))
+    );
+  }
+
   useEffect(() => {
     if (searchBarVisible) {
       searchInputRef.current.focus();
@@ -39,7 +46,6 @@ export default function ImageList(props) {
       snapshot.forEach((each) => {
         data.push({ id: each.id, ...each.data() });
       });
-      console.log(data);
       updateImages(data);
     });
   }, []);
@@ -47,11 +53,7 @@ export default function ImageList(props) {
   return (
     <>
       {formVisible ? (
-        <ImageForm
-          imageCategory={imageCategory}
-          notify={notify}
-          data={updateformImageData}
-        />
+        <ImageForm imageCategory={imageCategory} notify={notify} />
       ) : (
         ""
       )}
@@ -77,6 +79,7 @@ export default function ImageList(props) {
                     placeholder="type anything.."
                     className={styles.searchBarInput}
                     ref={searchInputRef}
+                    onChange={handleSearchBarChange}
                   />
                 </div>
                 <div
@@ -88,7 +91,7 @@ export default function ImageList(props) {
               </div>
             ) : (
               <div className={styles.searchBtn} onClick={visibleSearchBar}>
-                <img src={searchBtn} alt="back-btn" />
+                <img src={searchBtn} alt="search-btn" />
               </div>
             )}
 
@@ -104,17 +107,31 @@ export default function ImageList(props) {
           </div>
         </div>
         <div className={styles.imageList}>
-          {images.map((eachImage) => (
-            <Image
-              title={eachImage.title}
-              imageURL={eachImage.imageURL}
-              updateCurrentImage={updateCurrentImage}
-              id={eachImage.id}
-              key={eachImage.id}
-              imageCategory={imageCategory}
-              renderUpdateForm={renderUpdateForm}
-            />
-          ))}
+          {searchBarVisible && searchBarValue
+            ? searchImageData.map((eachImage) => (
+                <Image
+                  title={eachImage.title}
+                  imageURL={eachImage.imageURL}
+                  updateCurrentImage={updateCurrentImage}
+                  id={eachImage.id}
+                  key={eachImage.id}
+                  imageCategory={imageCategory}
+                  notify={notify}
+                  updateImage={updateImage}
+                />
+              ))
+            : images.map((eachImage) => (
+                <Image
+                  title={eachImage.title}
+                  imageURL={eachImage.imageURL}
+                  updateCurrentImage={updateCurrentImage}
+                  id={eachImage.id}
+                  key={eachImage.id}
+                  imageCategory={imageCategory}
+                  notify={notify}
+                  updateImage={updateImage}
+                />
+              ))}
         </div>
       </div>
     </>
