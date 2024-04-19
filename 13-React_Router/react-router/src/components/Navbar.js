@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 function Navbar(props) {
   const { setPage } = props;
   return (
@@ -20,11 +20,13 @@ function Navbar(props) {
       */}
       <div className="nav">
         <h4>
-          <a href="/">HOME</a>
+          <Link to="/">HOME</Link>
         </h4>
-        <Link to="/about">ABOUT</Link>
         <h4>
-          <a href="/items">ITEMS</a>
+          <Link to="/about">ABOUT</Link>
+        </h4>
+        <h4>
+          <Link to="/items">ITEMS</Link>
         </h4>
       </div>
       {/* <div className="nav">
@@ -38,6 +40,7 @@ function Navbar(props) {
           <Link to="/items">ITEMS</Link>
         </h4>
       </div> */}
+      <Outlet />
     </>
   );
 }

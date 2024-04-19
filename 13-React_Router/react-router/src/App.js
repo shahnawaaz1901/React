@@ -55,9 +55,33 @@ function App() {
   */
   const routes = createRoutesFromElements(
     <>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/items" element={<Items />} />
+      {/* 
+        Define Navbar on "/" path so navbar can visible in the base
+        URL
+      */}
+      <Route
+        path="/"
+        element={<Navbar />}
+        children={
+          <>
+            {/* 
+              Because we need our home page in "/" path which is similer 
+              to navbar path so we can skip path attribute and instead of 
+              path attribute we can pass index attribute and value of index 
+              attribute is true and because we put all the page component
+              inside the children attribute of navbar component so for 
+              rendering the pages component we need to render the outlet
+              component which is equal to the page component which we put
+              inside the children attribute 
+            */}
+            {/* <Route path="/" element={<Home />} /> */}
+            <Route index={true} element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/items" element={<Items />} />
+          </>
+        }
+      />
+      ,
     </>
   );
   const router = createBrowserRouter(routes);
@@ -74,7 +98,22 @@ function App() {
         
         <RouterProvider router={routerPath} /> 
       */}
-      {/* <Navbar /> */}
+      {/* 
+        Because we need navbar in each and every page so instead
+        of directly render navbar in each and every component and
+        repeatedly write navbar component in each and every component
+        we can use the nested routes which helps us to render a single
+        component in multiple routes withOut repeatedly write the
+        navbar component in each and every page component, However
+        nested routes has many benefits like we can define parent child
+        relationship by using the nested routes and we can create a 
+        single route which redirect to the multiple components just through
+        a single path just like this :
+
+            /posts/viewPost
+            /posts/viewPostLikes
+            /posts/viewPostComments
+      */}
       <RouterProvider router={router} />
       {/* <Navbar setPage={setPage} />
       {currPage === "home" && <Home />}
