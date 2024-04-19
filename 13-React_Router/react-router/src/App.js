@@ -74,6 +74,7 @@ function App() {
         
         <RouterProvider router={routerPath} /> 
       */}
+      {/* <Navbar /> */}
       <RouterProvider router={router} />
       {/* <Navbar setPage={setPage} />
       {currPage === "home" && <Home />}
