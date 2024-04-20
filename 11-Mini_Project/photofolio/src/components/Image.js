@@ -49,7 +49,7 @@ export default function Image(props) {
         <div className={styles.operations}>
           <div
             className={styles.updateBtn}
-            onClick={(e) => updateImage({ title, imageURL })}
+            onClick={(e) => updateImage({ id, title, imageURL })}
           >
             <img
               src="https://cdn-icons-png.flaticon.com/128/14026/14026269.png"

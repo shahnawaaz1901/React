@@ -15,18 +15,23 @@ export default function ImageList(props) {
   const [images, updateImages] = useState([]);
   const [searchImageData, setSearchImageData] = useState([]);
   const [searchBarValue, setSearchBarValue] = useState("");
+  const [imageWhichUpdate, setImageWhichUpdate] = useState(null);
   const searchInputRef = useRef();
+
   function handleAddBtnClick() {
     updateFormVisiblity(!formVisible);
+    setImageWhichUpdate(null);
   }
 
   function visibleSearchBar() {
     updateSearchBarVisiblity(!searchBarVisible);
   }
 
-  function updateImage(updatedData) {
-    console.log(updatedData);
+  function updateImage(imageData) {
+    setImageWhichUpdate(imageData);
+    updateFormVisiblity(true);
   }
+
   function handleSearchBarChange(e) {
     setSearchBarValue(e.target.value);
     setSearchImageData(
@@ -54,7 +59,11 @@ export default function ImageList(props) {
   return (
     <>
       {formVisible ? (
-        <ImageForm imageCategory={imageCategory} notify={notify} />
+        <ImageForm
+          imageCategory={imageCategory}
+          notify={notify}
+          imageWhichUpdate={imageWhichUpdate}
+        />
       ) : (
         ""
       )}

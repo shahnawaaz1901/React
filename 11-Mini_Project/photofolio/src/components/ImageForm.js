@@ -1,10 +1,10 @@
 import styles from "./imageForm.module.css";
 import { useRef } from "react";
 import db from "../firebase.config";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 
 export default function ImageForm(props) {
-  const { imageCategory, notify, data } = props;
+  const { imageCategory, notify, imageWhichUpdate: imageData } = props;
   const titleRef = useRef(),
     imageURLRef = useRef();
 
@@ -24,8 +24,13 @@ export default function ImageForm(props) {
     };
 
     clearInputs();
-    addDoc(collection(db, imageCategory), data);
-    notify("Image Added Successfully !!");
+    if (imageData) {
+      setDoc(doc(db, imageCategory, imageData.id), data);
+      notify("Image updated Successfully !!");
+    } else {
+      addDoc(collection(db, imageCategory), data);
+      notify("Image Added Successfully !!");
+    }
   }
 
   function clearInputs() {
@@ -40,7 +45,13 @@ export default function ImageForm(props) {
       </div>
       <div className={styles.form}>
         <div className={styles.inputForm}>
-          <input type="text" placeholder="Title" ref={titleRef} required />
+          <input
+            type="text"
+            placeholder="Title"
+            ref={titleRef}
+            required
+            defaultValue={imageData ? imageData.title : ""}
+          />
         </div>
         <div className={styles.inputForm}>
           <input
@@ -48,6 +59,7 @@ export default function ImageForm(props) {
             placeholder="Image URL"
             ref={imageURLRef}
             required
+            defaultValue={imageData ? imageData.imageURL : ""}
           />
         </div>
         <div className={styles.buttons}>
@@ -55,7 +67,7 @@ export default function ImageForm(props) {
             Clear
           </div>
           <div className={styles.addBtn} onClick={addImage}>
-            Add Image
+            {imageData ? "Update Image" : "Add Image"}
           </div>
         </div>
       </div>

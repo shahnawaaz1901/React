@@ -12,8 +12,11 @@ function AlbumList(props) {
   const [loaderVisible, updateLoaderVisiblity] = useState(true);
   const [formVisible, updateFormVisiblity] = useState(false);
   const { notify } = props;
+
   function changeFormVisiblity(e) {
-    e.preventDefault();
+    if (e) {
+      e.preventDefault();
+    }
     updateFormVisiblity(!formVisible);
   }
 
@@ -46,6 +49,7 @@ function AlbumList(props) {
     };
     notify("Album Created Successfully !!");
     await addDoc(collection(db, collectionName), data);
+    changeFormVisiblity();
   }
   return (
     <>
