@@ -1,6 +1,6 @@
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 function Navbar(props) {
-  const { setPage } = props;
+  // const { setPage } = props;
   return (
     <>
       {/* 
@@ -18,17 +18,12 @@ function Navbar(props) {
         the path in "to" attribute and we can switch pages withOut re-
         load the page again and again
       */}
-      <div className="nav">
-        <h4>
-          <Link to="/">HOME</Link>
-        </h4>
-        <h4>
-          <Link to="/about">ABOUT</Link>
-        </h4>
-        <h4>
-          <Link to="/items">ITEMS</Link>
-        </h4>
-      </div>
+      {/* 
+        Because we want to Make Some Changes when we have on current Link so 
+        that instead of using Link we use the NavLink Component, which takes
+        a function in style attribute where we can made styling when link is
+        active
+      */}
       {/* <div className="nav">
         <h4>
           <Link to="/">HOME</Link>
@@ -40,6 +35,57 @@ function Navbar(props) {
           <Link to="/items">ITEMS</Link>
         </h4>
       </div> */}
+      {/* <div className="nav">
+        <h4>
+          <Link to="/">HOME</Link>
+        </h4>
+        <h4>
+          <Link to="/about">ABOUT</Link>
+        </h4>
+        <h4>
+          <Link to="/items">ITEMS</Link>
+        </h4>
+      </div> */}
+      {/* 
+        Instead of using the Link Component we need to use the NavLink Component 
+        Because NavLink component takes a function which takes an object as argument
+        in which a property isActive is exist which became true when we click on 
+        Link and according to isActive we can modify some styling, so that for 
+        navigation we use the NavLink Component 
+      */}
+      <div className="nav">
+        <h4>
+          <NavLink
+            to="/"
+            style={({ isActive }) =>
+              //* we Change the color is link is active
+              isActive ? { color: "blue" } : { color: undefined }
+            }
+          >
+            HOME
+          </NavLink>
+        </h4>
+        <h4>
+          <NavLink
+            to="/about"
+            style={({ isActive }) =>
+              isActive ? { color: "blue" } : { color: undefined }
+            }
+          >
+            ABOUT
+          </NavLink>
+        </h4>
+        <h4>
+          <NavLink
+            to="/items"
+            style={({ isActive }) =>
+              isActive ? { color: "blue" } : { color: undefined }
+            }
+          >
+            ITEMS
+          </NavLink>
+        </h4>
+      </div>
       <Outlet />
     </>
   );
