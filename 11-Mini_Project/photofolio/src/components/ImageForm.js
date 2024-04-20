@@ -9,6 +9,15 @@ export default function ImageForm(props) {
     imageURLRef = useRef();
 
   function addImage() {
+    if (!titleRef.current.value) {
+      notify("Title Can't be Empty !!", "warn");
+      return;
+    }
+
+    if (!imageURLRef.current.value) {
+      notify("Image URL Can't be Empty !!", "warn");
+      return;
+    }
     const data = {
       title: titleRef.current.value,
       imageURL: imageURLRef.current.value,
@@ -31,10 +40,15 @@ export default function ImageForm(props) {
       </div>
       <div className={styles.form}>
         <div className={styles.inputForm}>
-          <input type="text" placeholder="Title" ref={titleRef} />
+          <input type="text" placeholder="Title" ref={titleRef} required />
         </div>
         <div className={styles.inputForm}>
-          <input type="text" placeholder="Image URL" ref={imageURLRef} />
+          <input
+            type="text"
+            placeholder="Image URL"
+            ref={imageURLRef}
+            required
+          />
         </div>
         <div className={styles.buttons}>
           <div className={styles.clearBtn} onClick={clearInputs}>

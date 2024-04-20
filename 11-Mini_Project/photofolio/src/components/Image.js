@@ -32,7 +32,7 @@ export default function Image(props) {
     }).then((result) => {
       if (result.isConfirmed) {
         deleteDoc(doc(db, imageCategory, id));
-        notify("Image Deleted Successfully !!");
+        notify("Image Deleted Successfully !!", "delete");
       }
     });
   }

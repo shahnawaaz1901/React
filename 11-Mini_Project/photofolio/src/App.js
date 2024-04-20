@@ -23,8 +23,14 @@ function App() {
     }
   }
 
-  function notify(message) {
-    toast(message);
+  function notify(message, type) {
+    if (!type) {
+      toast(message);
+    } else if (type === "delete") {
+      toast.error(message);
+    } else if (type === "warn") {
+      toast.warn(message);
+    }
   }
 
   const [state, dispatch] = useReducer(reducer, "");

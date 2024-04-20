@@ -42,10 +42,11 @@ export default function ImageList(props) {
 
   useEffect(() => {
     onSnapshot(collection(db, imageCategory), (snapshot) => {
-      const data = [];
+      let data = [];
       snapshot.forEach((each) => {
         data.push({ id: each.id, ...each.data() });
       });
+      data = data.sort((a, b) => (a.title > b.title ? 1 : -1));
       updateImages(data);
     });
   }, []);
