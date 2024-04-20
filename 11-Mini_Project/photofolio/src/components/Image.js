@@ -1,6 +1,9 @@
-import styles from "./image.module.css";
+//* Packages
 import Swal from "sweetalert2";
 import { doc, deleteDoc } from "firebase/firestore";
+
+//* Internal Modules
+import styles from "./image.module.css";
 import db from "../firebase.config";
 export default function Image(props) {
   const {

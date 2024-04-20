@@ -1,4 +1,4 @@
-import React from "react";
+//* Internal Modules
 import styles from "./navbar.module.css";
 import navLogo from "../images/logo.png";
 function NavBar(props) {

@@ -19,7 +19,7 @@ export default function ImageContainer(props) {
       ) : (
         <ImageList
           dispatch={dispatch}
-          name={imageCategory.name}
+          imageCategory={imageCategory.name}
           updateCurrentImage={updateCurrentImage}
           notify={notify}
         />

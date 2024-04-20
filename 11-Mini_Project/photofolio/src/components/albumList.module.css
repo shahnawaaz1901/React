@@ -68,19 +68,3 @@
   flex-wrap: wrap;
   justify-content: space-around;
 }
-
-.album {
-  height: 180px;
-  width: 180px;
-  padding: 5px;
-  background-color: lightgrey;
-  border-radius: 8px 8px 0px 0px;
-  cursor: pointer;
-  margin: 10px 5px;
-  transition: all ease 0.5s;
-}
-
-.album:hover {
-  background-color: #007aff;
-  color: white;
-}

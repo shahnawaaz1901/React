@@ -1,8 +1,11 @@
-import NavBar from "./components/Navbar";
-import AlbumList from "./components/AlbumList";
+//* Packages
 import { useReducer, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+//* Internal Modules
+import NavBar from "./components/Navbar";
+import AlbumList from "./components/AlbumList";
 import "./App.css";
 import ImageContainer from "./components/ImageContainer";
 import CurrentImage from "./components/CurrentImage";

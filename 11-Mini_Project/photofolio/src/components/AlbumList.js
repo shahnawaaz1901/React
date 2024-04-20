@@ -1,23 +1,27 @@
+//* Packages
 import { useEffect, useState } from "react";
+import { onSnapshot, collection, addDoc } from "firebase/firestore";
+import db from "../firebase.config";
+
+//* Internal Modules
+import Loader from "./Loader";
 import styles from "./albumList.module.css";
 import AlbumForm from "./AlbumForm";
 import Album from "./Album";
-import { onSnapshot, collection, addDoc } from "firebase/firestore";
-import db from "../firebase.config";
-import Loader from "./Loader";
 
 function AlbumList(props) {
-  const [albums, setAlbums] = useState([]);
   const collectionName = "albums";
-  const [loaderVisible, updateLoaderVisiblity] = useState(true);
-  const [formVisible, updateFormVisiblity] = useState(false);
+
+  const [albums, setAlbums] = useState([]);
+  const [loaderVisible, setLoaderVisiblity] = useState(true);
+  const [formVisible, setFormVisiblity] = useState(false);
   const { notify } = props;
 
   function changeFormVisiblity(e) {
     if (e) {
       e.preventDefault();
     }
-    updateFormVisiblity(!formVisible);
+    setFormVisiblity(!formVisible);
   }
 
   const { dispatch } = props;
@@ -37,7 +41,7 @@ function AlbumList(props) {
         data = data.sort((a, b) => (a.name > b.name ? 1 : -1));
         setAlbums(data);
       });
-      updateLoaderVisiblity(false);
+      setLoaderVisiblity(false);
     }
     fetchAlbums();
   }, []);
@@ -72,15 +76,7 @@ function AlbumList(props) {
           </div>
           <div className={styles.albumList}>
             {albums.map((album, index) => (
-              <div
-                key={index}
-                className={styles.album}
-                onClick={() =>
-                  dispatch({ type: "images", payload: { name: album } })
-                }
-              >
-                <Album album={album} index={index} />
-              </div>
+              <Album album={album} dispatch={dispatch} key={index} />
             ))}
           </div>
         </div>

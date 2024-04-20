@@ -1,15 +1,20 @@
+//* Packages
 import { useRef, useState, useEffect } from "react";
+import { onSnapshot, collection } from "firebase/firestore";
+
+//* Internal Modules
+import db from "../firebase.config";
 import ImageForm from "./ImageForm";
 import styles from "./imageList.module.css";
 import backBtn from "../images/back.png";
 import searchBtn from "../images/search.png";
 import crossBtn from "../images/remove.png";
 import Image from "./Image";
-import db from "../firebase.config";
-import { onSnapshot, collection } from "firebase/firestore";
 
 export default function ImageList(props) {
-  const { dispatch, name: imageCategory, updateCurrentImage, notify } = props;
+  // const { dispatch, name: imageCategory, updateCurrentImage, notify } = props;
+  const [loaderVisible, setLoaderVisiblity] = useState(true);
+  const { dispatch, imageCategory, updateCurrentImage, notify } = props;
   const [formVisible, updateFormVisiblity] = useState(false);
   const [searchBarVisible, updateSearchBarVisiblity] = useState(false);
   const [images, updateImages] = useState([]);
@@ -53,6 +58,7 @@ export default function ImageList(props) {
       });
       data = data.sort((a, b) => (a.title > b.title ? 1 : -1));
       updateImages(data);
+      setLoaderVisiblity(false);
     });
   }, []);
 

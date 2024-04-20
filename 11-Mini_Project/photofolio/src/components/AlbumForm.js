@@ -1,4 +1,7 @@
+//* Packages
 import { useEffect, useRef } from "react";
+
+//* Internal Modules
 import styles from "./albumForm.module.css";
 
 export default function AlbumForm(props) {
