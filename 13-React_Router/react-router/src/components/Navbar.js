@@ -53,6 +53,12 @@ function Navbar(props) {
         Link and according to isActive we can modify some styling, so that for 
         navigation we use the NavLink Component 
       */}
+      {/* 
+        Here we use the relative path instead of absolute so that we need to remove
+        the slash in the to attribute and just add the direct path withOut using the
+        slash at the start, how ever we can use the slash "/" in the middle in the
+        case of nesting routes
+      */}
       <div className="nav">
         <h4>
           <NavLink
@@ -67,7 +73,7 @@ function Navbar(props) {
         </h4>
         <h4>
           <NavLink
-            to="/about"
+            to="about"
             style={({ isActive }) =>
               isActive ? { color: "blue" } : { color: undefined }
             }
@@ -77,7 +83,7 @@ function Navbar(props) {
         </h4>
         <h4>
           <NavLink
-            to="/items"
+            to="items"
             style={({ isActive }) =>
               isActive ? { color: "blue" } : { color: undefined }
             }

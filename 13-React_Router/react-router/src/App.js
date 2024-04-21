@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Items from "./pages/Items";
@@ -6,11 +6,11 @@ import Navbar from "./components/Navbar";
 //* for Creating the Routes
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
-import { createRoutesFromElements } from "react-router-dom";
-import { Route } from "react-router-dom";
+// import { createRoutesFromElements } from "react-router-dom";
+// import { Route } from "react-router-dom";
 
 function App() {
-  const [currPage, setPage] = useState("home");
+  // const [currPage, setPage] = useState("home");
   /* 
     createBrowserRouter takes array of objects in which objects is nothing 
     but individual routes, and each object must have two keys one is path
@@ -53,18 +53,19 @@ function App() {
     This is method is called predefine routes where we define the routes
     before the creation
   */
+  /*
   const routes = createRoutesFromElements(
     <>
-      {/* 
+      {
         Define Navbar on "/" path so navbar can visible in the base
         URL
-      */}
+      }
       <Route
         path="/"
         element={<Navbar />}
         children={
           <>
-            {/* 
+            { 
               Because we need our home page in "/" path which is similer 
               to navbar path so we can skip path attribute and instead of 
               path attribute we can pass index attribute and value of index 
@@ -73,8 +74,8 @@ function App() {
               rendering the pages component we need to render the outlet
               component which is equal to the page component which we put
               inside the children attribute 
-            */}
-            {/* <Route path="/" element={<Home />} /> */}
+            }
+            {/* <Route path="/" element={<Home />} /> }
             <Route index={true} element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/items" element={<Items />} />
@@ -85,6 +86,58 @@ function App() {
     </>
   );
   const router = createBrowserRouter(routes);
+  */
+  //* Another Way to Write
+  const router = createBrowserRouter([
+    /*
+      In react-router-dom we have two types of paths :
+      1. Absolute Path
+      2. Relative Path
+
+      1. Let's first Understand the Absolute path, we create first a default route
+      for the navbar and inside the navbar all the children come under the navbar
+      but we noticed one thing that is path which we created as children under the
+      navbar first we write slash "/" but why we need to write slash because here 
+      we give the absolute path not the relative path, so in absolute path first we
+      write the parent path after that we write whatever path we want to give that's
+      we need to write the "/" slash before the path in children path property for
+      Example for Navbar we write the path /root so for children we need to write
+      path like this :
+      in items : /root/items
+      in about : /root/about
+
+      {
+      path: "/root",
+      element: <Navbar />,
+      children: [
+        { index: true, element: <Home /> },
+        { path: "/root/items", element: <Items /> },
+        { path: "/root/about", element: <About /> },
+      ],
+      },
+
+      From this Example we understand what is the limitations of the Absolute Path
+      for Absolute Paths we need to give the full path instead of just one path which
+      directly related to the component, So always in nested routing use relative
+      paths instead of absolute path
+
+      so for preventing this we need to use the relative path
+      
+      2. Let's understand how to use the relative path, for relative path we need
+      to exclude the slash "/" in the children path how ever we can use the slash 
+      "/" in the parent because parent can be main page of the web page but children
+      is redirected to the another page, given is the example of relative path
+    */
+    {
+      path: "/",
+      element: <Navbar />,
+      children: [
+        { index: true, element: <Home /> },
+        { path: "items", element: <Items /> },
+        { path: "about", element: <About /> },
+      ],
+    },
+  ]);
   return (
     <>
       {/* 
