@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 //* for Creating the Routes
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
+import Item from "./pages/Item";
 // import { createRoutesFromElements } from "react-router-dom";
 // import { Route } from "react-router-dom";
 
@@ -133,7 +134,35 @@ function App() {
       element: <Navbar />,
       children: [
         { index: true, element: <Home /> },
-        { path: "items", element: <Items /> },
+        {
+          path: "items",
+          element: <Items />,
+        },
+        {
+          /* 
+            After Slash "/" we use the colon and just after the colon we write
+            item which is called params, whatever we write after the colon that
+            is created as variable in the component which we want to render and
+            that variable we can access by the "useParams" hook.
+          */
+          /*
+            If someone type "items/abcd" then in component when we access the param
+            using the "useParams" hook we get the object which contain the key value
+            pairs which key is whatEver we write after the colon, in our case we 
+            write the "item" so item is the key and whatever use type after items
+            in our case "abcd" is the value, so we get
+            {item : "abcd"} from useParams() hook
+          */
+
+          /*
+            Dynamic Routing : When We change the URL according to the some random
+            path this is called dynamic routing, dynamic routing helps us to render
+            multiple things by using the param from a single component, This is 
+            called Dynamic Routing
+          */
+          path: "items/:item",
+          element: <Item details={{ name: "Ashu", Age: 18 }} />,
+        },
         { path: "about", element: <About /> },
       ],
     },
