@@ -3,15 +3,14 @@ import Loader from "./Loader";
 import ImageList from "./ImageList";
 
 export default function ImageContainer(props) {
-  const [loaderVisible, updateLoaderVisiblity] = useState(true);
+  const [loaderVisible, setLoaderVisiblity] = useState(true);
   const { dispatch, imageCategory, updateCurrentImage, notify } = props;
 
   useEffect(() => {
     setTimeout(() => {
-      updateLoaderVisiblity(false);
+      setLoaderVisiblity(false);
     }, 1500);
-  });
-
+  }, []);
   return (
     <>
       {loaderVisible ? (

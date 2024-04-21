@@ -11,7 +11,6 @@ import Album from "./Album";
 
 function AlbumList(props) {
   const collectionName = "albums";
-
   const [albums, setAlbums] = useState([]);
   const [loaderVisible, setLoaderVisiblity] = useState(true);
   const [formVisible, setFormVisiblity] = useState(false);

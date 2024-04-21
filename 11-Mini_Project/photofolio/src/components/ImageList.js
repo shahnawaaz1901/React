@@ -13,7 +13,6 @@ import Image from "./Image";
 
 export default function ImageList(props) {
   // const { dispatch, name: imageCategory, updateCurrentImage, notify } = props;
-  const [loaderVisible, setLoaderVisiblity] = useState(true);
   const { dispatch, imageCategory, updateCurrentImage, notify } = props;
   const [formVisible, updateFormVisiblity] = useState(false);
   const [searchBarVisible, updateSearchBarVisiblity] = useState(false);
@@ -22,6 +21,7 @@ export default function ImageList(props) {
   const [searchBarValue, setSearchBarValue] = useState("");
   const [imageWhichUpdate, setImageWhichUpdate] = useState(null);
   const searchInputRef = useRef();
+  let data = searchBarVisible && searchBarValue ? searchImageData : images;
 
   function handleAddBtnClick() {
     updateFormVisiblity(!formVisible);
@@ -58,7 +58,7 @@ export default function ImageList(props) {
       });
       data = data.sort((a, b) => (a.title > b.title ? 1 : -1));
       updateImages(data);
-      setLoaderVisiblity(false);
+      // setLoaderVisiblity(false);
     });
   }, []);
 
@@ -123,31 +123,18 @@ export default function ImageList(props) {
           </div>
         </div>
         <div className={styles.imageList}>
-          {searchBarVisible && searchBarValue
-            ? searchImageData.map((eachImage) => (
-                <Image
-                  title={eachImage.title}
-                  imageURL={eachImage.imageURL}
-                  updateCurrentImage={updateCurrentImage}
-                  id={eachImage.id}
-                  key={eachImage.id}
-                  imageCategory={imageCategory}
-                  notify={notify}
-                  updateImage={updateImage}
-                />
-              ))
-            : images.map((eachImage) => (
-                <Image
-                  title={eachImage.title}
-                  imageURL={eachImage.imageURL}
-                  updateCurrentImage={updateCurrentImage}
-                  id={eachImage.id}
-                  key={eachImage.id}
-                  imageCategory={imageCategory}
-                  notify={notify}
-                  updateImage={updateImage}
-                />
-              ))}
+          {data.map((eachImage) => (
+            <Image
+              title={eachImage.title}
+              imageURL={eachImage.imageURL}
+              updateCurrentImage={updateCurrentImage}
+              id={eachImage.id}
+              key={eachImage.id}
+              imageCategory={imageCategory}
+              notify={notify}
+              updateImage={updateImage}
+            />
+          ))}
         </div>
       </div>
     </>
