@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import styles from "./albumForm.module.css";
 
 export default function AlbumForm(props) {
-  const { addNewAlbum } = props;
+  const { addNewAlbum, notify } = props;
   const inputRef = useRef("");
   useEffect(() => {
     inputRef.current.focus();
@@ -22,6 +22,8 @@ export default function AlbumForm(props) {
       addNewAlbum(albumName);
       inputRef.current.value = "";
       inputRef.current.focus();
+    } else {
+      notify("Album name can't be empty !!", "warn");
     }
   }
   return (

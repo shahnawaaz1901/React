@@ -1,13 +1,16 @@
+//* Packages
 import { useState, useEffect } from "react";
+import { onSnapshot, collection } from "firebase/firestore";
+
+//* Internal Modules
 import Loader from "./Loader";
 import ImageList from "./ImageList";
-import { onSnapshot, collection } from "firebase/firestore";
 import db from "../firebase.config";
 
 export default function ImageContainer(props) {
   const [loaderVisible, setLoaderVisiblity] = useState(true);
   const { dispatch, imageCategory, updateCurrentImage, notify } = props;
-  const [images, updateImages] = useState([]);
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
     onSnapshot(collection(db, imageCategory.name), (snapshot) => {
@@ -16,10 +19,11 @@ export default function ImageContainer(props) {
         data.push({ id: each.id, ...each.data() });
       });
       data = data.sort((a, b) => (a.title > b.title ? 1 : -1));
-      updateImages(data);
+      setImages(data);
       setLoaderVisiblity(false);
     });
   }, []);
+
   return (
     <>
       {loaderVisible ? (

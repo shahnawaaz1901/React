@@ -1,9 +1,7 @@
 //* Packages
 import { useRef, useState, useEffect } from "react";
-import { onSnapshot, collection } from "firebase/firestore";
 
 //* Internal Modules
-import db from "../firebase.config";
 import ImageForm from "./ImageForm";
 import styles from "./imageList.module.css";
 import backBtn from "../images/back.png";
@@ -13,26 +11,22 @@ import Image from "./Image";
 
 export default function ImageList(props) {
   const { dispatch, imageCategory, updateCurrentImage, notify, images } = props;
-  const [formVisible, updateFormVisiblity] = useState(false);
-  const [searchBarVisible, updateSearchBarVisiblity] = useState(false);
+  const [formVisible, setFormVisiblity] = useState(false);
+  const [searchBarVisible, setSearchBarVisiblity] = useState(false);
   const [searchImageData, setSearchImageData] = useState([]);
   const [searchBarValue, setSearchBarValue] = useState("");
   const [imageWhichUpdate, setImageWhichUpdate] = useState(null);
   const searchInputRef = useRef();
   let data = searchBarVisible && searchBarValue ? searchImageData : images;
 
-  function handleAddBtnClick() {
-    updateFormVisiblity(!formVisible);
+  function changeImageFormVisiblity() {
+    setFormVisiblity(!formVisible);
     setImageWhichUpdate(null);
-  }
-
-  function visibleSearchBar() {
-    updateSearchBarVisiblity(!searchBarVisible);
   }
 
   function updateImage(imageData) {
     setImageWhichUpdate(imageData);
-    updateFormVisiblity(true);
+    setFormVisiblity(true);
   }
 
   function handleSearchBarChange(e) {
@@ -55,7 +49,7 @@ export default function ImageList(props) {
           imageCategory={imageCategory}
           notify={notify}
           imageWhichUpdate={imageWhichUpdate}
-          updateFormVisiblity={updateFormVisiblity}
+          updateFormVisiblity={setFormVisiblity}
         />
       ) : (
         ""
@@ -87,18 +81,21 @@ export default function ImageList(props) {
                 </div>
                 <div
                   className={styles.searchBarCrossBtn}
-                  onClick={visibleSearchBar}
+                  onClick={() => setSearchBarVisiblity(!searchBarVisible)}
                 >
                   <img src={crossBtn} alt="cross button" />
                 </div>
               </div>
             ) : (
-              <div className={styles.searchBtn} onClick={visibleSearchBar}>
+              <div
+                className={styles.searchBtn}
+                onClick={() => setSearchBarVisiblity(!searchBarVisible)}
+              >
                 <img src={searchBtn} alt="search-btn" />
               </div>
             )}
 
-            <div onClick={handleAddBtnClick} className={styles.btn}>
+            <div onClick={changeImageFormVisiblity} className={styles.btn}>
               <button
                 className={
                   formVisible ? styles.cancelImageBtn : styles.addImageBtn

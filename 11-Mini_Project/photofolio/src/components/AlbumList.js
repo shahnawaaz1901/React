@@ -1,17 +1,14 @@
 //* Packages
-import { useEffect, useState } from "react";
-import { onSnapshot, collection, addDoc } from "firebase/firestore";
-import db from "../firebase.config";
+import { useState } from "react";
 
 //* Internal Modules
-import Loader from "./Loader";
 import styles from "./albumList.module.css";
 import AlbumForm from "./AlbumForm";
 import Album from "./Album";
 
 function AlbumList(props) {
   const [formVisible, setFormVisiblity] = useState(false);
-  const { notify, albums } = props;
+  const { newAlbum, albums, dispatch, notify } = props;
 
   function changeFormVisiblity(e) {
     if (e) {
@@ -19,21 +16,18 @@ function AlbumList(props) {
     }
     setFormVisiblity(!formVisible);
   }
-  const { dispatch } = props;
   async function addNewAlbum(albumName) {
-    const data = {
-      name: albumName,
-      createdOn: new Date(),
-    };
-    notify("Album Created Successfully !!");
-    await addDoc(collection(db, "albums"), data);
+    newAlbum(albumName);
     changeFormVisiblity();
   }
 
   return (
     <>
-      {formVisible ? <AlbumForm addNewAlbum={addNewAlbum} /> : ""}
-
+      {formVisible ? (
+        <AlbumForm addNewAlbum={addNewAlbum} notify={notify} />
+      ) : (
+        ""
+      )}
       <div className={styles.container}>
         <div className={styles.heading}>
           <div>
