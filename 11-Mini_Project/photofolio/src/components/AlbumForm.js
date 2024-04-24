@@ -26,6 +26,11 @@ export default function AlbumForm(props) {
       notify("Album name can't be empty !!", "warn");
     }
   }
+
+  function handleKeyPress(e) {
+    e.target.value = e.target.value.replace(/[^a-zA-Z0-9]/g, "");
+  }
+
   return (
     <>
       <div className={styles.formContainer}>
@@ -39,6 +44,7 @@ export default function AlbumForm(props) {
             placeholder="Album Name ..."
             className={styles.inputForm}
             ref={inputRef}
+            onKeyUp={handleKeyPress}
           />
           <div className={styles.clearBtn} onClick={handleClearBtnClick}>
             Clear

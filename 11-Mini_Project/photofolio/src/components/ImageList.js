@@ -64,7 +64,9 @@ export default function ImageList(props) {
               <img src={backBtn} alt="back-btn" />
             </div>
             <div>
-              <h1 className={styles.mainHeading}>Images in {imageCategory}</h1>
+              <h1 className={styles.mainHeading}>
+                {data.length ? "" : "No"} Images in {imageCategory}
+              </h1>
             </div>
           </div>
           <div className={styles.end}>
