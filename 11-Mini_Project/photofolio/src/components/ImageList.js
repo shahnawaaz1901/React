@@ -12,11 +12,9 @@ import crossBtn from "../images/remove.png";
 import Image from "./Image";
 
 export default function ImageList(props) {
-  // const { dispatch, name: imageCategory, updateCurrentImage, notify } = props;
-  const { dispatch, imageCategory, updateCurrentImage, notify } = props;
+  const { dispatch, imageCategory, updateCurrentImage, notify, images } = props;
   const [formVisible, updateFormVisiblity] = useState(false);
   const [searchBarVisible, updateSearchBarVisiblity] = useState(false);
-  const [images, updateImages] = useState([]);
   const [searchImageData, setSearchImageData] = useState([]);
   const [searchBarValue, setSearchBarValue] = useState("");
   const [imageWhichUpdate, setImageWhichUpdate] = useState(null);
@@ -50,18 +48,6 @@ export default function ImageList(props) {
     }
   }, [searchBarVisible]);
 
-  useEffect(() => {
-    onSnapshot(collection(db, imageCategory), (snapshot) => {
-      let data = [];
-      snapshot.forEach((each) => {
-        data.push({ id: each.id, ...each.data() });
-      });
-      data = data.sort((a, b) => (a.title > b.title ? 1 : -1));
-      updateImages(data);
-      // setLoaderVisiblity(false);
-    });
-  }, []);
-
   return (
     <>
       {formVisible ? (
@@ -69,6 +55,7 @@ export default function ImageList(props) {
           imageCategory={imageCategory}
           notify={notify}
           imageWhichUpdate={imageWhichUpdate}
+          updateFormVisiblity={updateFormVisiblity}
         />
       ) : (
         ""

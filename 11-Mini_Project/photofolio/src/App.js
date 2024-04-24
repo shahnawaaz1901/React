@@ -5,10 +5,10 @@ import "react-toastify/dist/ReactToastify.css";
 
 //* Internal Modules
 import NavBar from "./components/Navbar";
-import AlbumList from "./components/AlbumList";
 import "./App.css";
 import ImageContainer from "./components/ImageContainer";
 import CurrentImage from "./components/CurrentImage";
+import AlbumContainer from "./components/AlbumContainer";
 
 function App() {
   function reducer(state, action) {
@@ -63,7 +63,7 @@ function App() {
           updateCurrentImage={updateCurrentImage}
         />
       ) : (
-        <AlbumList dispatch={dispatch} notify={notify} />
+        <AlbumContainer dispatch={dispatch} notify={notify} />
       )}
       {currentImageURL ? (
         <CurrentImage

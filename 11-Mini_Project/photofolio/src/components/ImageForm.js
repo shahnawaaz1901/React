@@ -4,7 +4,12 @@ import db from "../firebase.config";
 import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 
 export default function ImageForm(props) {
-  const { imageCategory, notify, imageWhichUpdate: imageData } = props;
+  const {
+    imageCategory,
+    notify,
+    imageWhichUpdate: imageData,
+    updateFormVisiblity,
+  } = props;
   const titleRef = useRef(),
     imageURLRef = useRef();
 
@@ -41,6 +46,7 @@ export default function ImageForm(props) {
       addDoc(collection(db, imageCategory), data);
       notify("Image Added Successfully !!");
     }
+    updateFormVisiblity(false);
   }
 
   function clearInputs() {
