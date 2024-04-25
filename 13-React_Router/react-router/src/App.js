@@ -7,6 +7,7 @@ import Navbar from "./components/Navbar";
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
 import Item from "./pages/ItemDetail";
+import ErrorPage from "./pages/ErrorPage";
 // import { createRoutesFromElements } from "react-router-dom";
 // import { Route } from "react-router-dom";
 
@@ -132,6 +133,15 @@ function App() {
     {
       path: "/",
       element: <Navbar />,
+      /* 
+        When we Type Invalid Routes that is also handled by the errorElement and 
+        whatever component we will give that's render on the browser, One thing
+        that we need to understand that is errorElement which contains the fall
+        backUI that fallback UI is only render when error is occure on children
+        or siblings in parent component error fallback UI not responsible or not
+        render on the Browser
+      */
+      errorElement: <ErrorPage />,
       children: [
         // { index: true, element: <Navbar /> },
         { index: true, element: <Home /> },
