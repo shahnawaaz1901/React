@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar";
 //* for Creating the Routes
 import { createBrowserRouter } from "react-router-dom";
 import { RouterProvider } from "react-router-dom";
-import Item from "./pages/Item";
+import Item from "./pages/ItemDetail";
 // import { createRoutesFromElements } from "react-router-dom";
 // import { Route } from "react-router-dom";
 
@@ -133,10 +133,25 @@ function App() {
       path: "/",
       element: <Navbar />,
       children: [
+        // { index: true, element: <Navbar /> },
         { index: true, element: <Home /> },
         {
           path: "items",
-          element: <Items />,
+          children: [
+            /*
+              From items we have two paths one is /item and another one is 
+              /items/:item means one is for list of items and another is for
+              `the individual item 
+            */
+            {
+              index: true,
+              element: <Items />,
+            },
+            {
+              path: ":itemId",
+              element: <Item details={{ name: "Ashu", Age: 18 }} />,
+            },
+          ],
         },
         {
           /* 
@@ -159,6 +174,10 @@ function App() {
             path this is called dynamic routing, dynamic routing helps us to render
             multiple things by using the param from a single component, This is 
             called Dynamic Routing
+          */
+          /*
+            The Objective of react router is the combining the path not the using
+            the outlet and render the components as the children
           */
           path: "items/:item",
           element: <Item details={{ name: "Ashu", Age: 18 }} />,
