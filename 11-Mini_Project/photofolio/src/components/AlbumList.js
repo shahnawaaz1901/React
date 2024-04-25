@@ -7,15 +7,18 @@ import AlbumForm from "./AlbumForm";
 import Album from "./Album";
 
 function AlbumList(props) {
-  const [formVisible, setFormVisiblity] = useState(false);
+  const [formVisible, setFormVisiblity] = useState(false); //* For Form Visiblity
   const { newAlbum, albums, dispatch, notify } = props;
 
+  //* Change form Visiblity
   function changeFormVisiblity(e) {
     if (e) {
       e.preventDefault();
     }
     setFormVisiblity(!formVisible);
   }
+
+  //* For New Album
   async function addNewAlbum(albumName) {
     newAlbum(albumName);
     changeFormVisiblity();

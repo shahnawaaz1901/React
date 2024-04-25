@@ -7,15 +7,19 @@ import styles from "./albumForm.module.css";
 export default function AlbumForm(props) {
   const { addNewAlbum, notify } = props;
   const inputRef = useRef("");
+
+  //* Focus on Album form When form is Render
   useEffect(() => {
     inputRef.current.focus();
   }, []);
 
+  //* Clear Album Form
   function handleClearBtnClick() {
     inputRef.current.value = "";
     inputRef.current.focus();
   }
 
+  //* Add New Album
   function handleAddBtnClick() {
     const albumName = inputRef.current.value;
     if (albumName) {
@@ -27,8 +31,9 @@ export default function AlbumForm(props) {
     }
   }
 
+  //* Handle Search Bar Typing
   function handleKeyPress(e) {
-    e.target.value = e.target.value.replace(/[^a-zA-Z0-9]/g, "");
+    e.target.value = e.target.value.replace(/[^a-zA-Z0-9 ]/g, "");
   }
 
   return (

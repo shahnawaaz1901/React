@@ -1,5 +1,8 @@
-import styles from "./loader.module.css";
+//* Packages
 import ClipLoader from "react-spinners/ClipLoader";
+
+//* Internal Modules
+import styles from "./loader.module.css";
 
 export default function Loader() {
   const overRiden = {

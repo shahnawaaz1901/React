@@ -8,9 +8,9 @@ import Loader from "./Loader";
 import AlbumList from "./AlbumList";
 
 function AlbumContainer(props) {
-  const collectionName = "albums";
-  const [albums, setAlbums] = useState([]);
-  const [loaderVisible, setLoaderVisiblity] = useState(true);
+  const collectionName = "albums"; //* Collection Name for Database Operations
+  const [albums, setAlbums] = useState([]); //* Storing All Album Data
+  const [loaderVisible, setLoaderVisiblity] = useState(true); //* For Loader Visiblity
   const { dispatch, notify } = props;
 
   useEffect(() => {
@@ -20,8 +20,8 @@ function AlbumContainer(props) {
         data.push({ id: doc.id, ...doc.data() });
       });
       data = data.sort((a, b) => (a.name > b.name ? 1 : -1));
-      setAlbums(data);
-      setLoaderVisiblity(false);
+      setAlbums(data); //* Update State
+      setLoaderVisiblity(false); //* WhenEver Albums Data is Retrieved Loader should be Hide
     });
   }, []);
 
@@ -36,6 +36,7 @@ function AlbumContainer(props) {
 
   return (
     <>
+      {/* Conditional Rendering */}
       {loaderVisible ? (
         <Loader />
       ) : (

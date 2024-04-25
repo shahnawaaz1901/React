@@ -11,24 +11,35 @@ import Image from "./Image";
 
 export default function ImageList(props) {
   const { dispatch, imageCategory, updateCurrentImage, notify, images } = props;
-  const [formVisible, setFormVisiblity] = useState(false);
-  const [searchBarVisible, setSearchBarVisiblity] = useState(false);
-  const [searchImageData, setSearchImageData] = useState([]);
-  const [searchBarValue, setSearchBarValue] = useState("");
-  const [imageWhichUpdate, setImageWhichUpdate] = useState(null);
+  const [formVisible, setFormVisiblity] = useState(false); //* Image Add or Update Form Visiblity
+  const [searchBarVisible, setSearchBarVisiblity] = useState(false); //* Search bar Visiblity
+  const [searchImageData, setSearchImageData] = useState([]); //* For Storing WhatEver Data is Matched from user Search
+  const [searchBarValue, setSearchBarValue] = useState(""); //* For Storing the Search Data
+  const [imageWhichUpdate, setImageWhichUpdate] = useState(null); //* For Storing the ImageData which We Want to Update
   const searchInputRef = useRef();
+  /*
+    Storing the Data value from Images if searchBar not visible and searchBarValue
+    is Empty, otherWise search the images which matched with user search value
+  */
   let data = searchBarVisible && searchBarValue ? searchImageData : images;
 
+  //* Update visiblity of form Component
   function changeImageFormVisiblity() {
     setFormVisiblity(!formVisible);
     setImageWhichUpdate(null);
   }
 
+  /* 
+    WhenEver user Click on Edit Button Value of that Image is set to ImageWhichUpdate 
+    state so that we can easily get the imageData and fill the update form with the
+    Data    
+  */
   function updateImage(imageData) {
     setImageWhichUpdate(imageData);
     setFormVisiblity(true);
   }
 
+  //* When User Start Typing on Search Bar Images Should be filtered
   function handleSearchBarChange(e) {
     setSearchBarValue(e.target.value);
     setSearchImageData(
@@ -36,6 +47,7 @@ export default function ImageList(props) {
     );
   }
 
+  //* When Search Bar Visible focus on Search Bar
   useEffect(() => {
     if (searchBarVisible) {
       searchInputRef.current.focus();
@@ -119,6 +131,7 @@ export default function ImageList(props) {
               imageCategory={imageCategory}
               notify={notify}
               updateImage={updateImage}
+              setFormVisiblity={setFormVisiblity}
             />
           ))}
         </div>

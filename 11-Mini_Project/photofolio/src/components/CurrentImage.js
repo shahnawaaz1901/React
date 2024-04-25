@@ -1,12 +1,15 @@
 import styles from "./currentImage.module.css";
 function CurrentImage(props) {
   const { imageLink, resetCurrentImage } = props;
+
+  //* When a user Type Wrong Image URL then Instead of Not Render, Render a Error Image
   function handleImageRenderingError(e) {
     e.target.setAttribute(
       "src",
       "https://cdn-icons-png.flaticon.com/128/159/159469.png"
     );
   }
+
   return (
     <>
       <div className={styles.imageContainer}>

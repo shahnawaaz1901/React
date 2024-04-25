@@ -14,8 +14,10 @@ export default function Image(props) {
     imageCategory,
     notify,
     updateImage,
+    setFormVisiblity,
   } = props;
 
+  //* When a user Type Wrong Image URL then Instead of Not Render, Render a Error Image
   function handleRenderError(e) {
     e.target.setAttribute(
       "src",
@@ -23,6 +25,7 @@ export default function Image(props) {
     );
   }
 
+  //* Delete Image By Id
   function deleteImage(id) {
     Swal.fire({
       title: "Are you sure?",
@@ -35,6 +38,7 @@ export default function Image(props) {
     }).then((result) => {
       if (result.isConfirmed) {
         deleteDoc(doc(db, imageCategory, id));
+        setFormVisiblity(false);
         notify("Image Deleted Successfully !!", "delete");
       }
     });

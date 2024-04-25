@@ -15,6 +15,7 @@ function App() {
     const { payload } = action;
     switch (action.type) {
       case "images": {
+        //* Means user Click on Some Album so state Value Change to that Album Name
         return payload.name;
       }
       case "albums": {
@@ -26,6 +27,11 @@ function App() {
     }
   }
 
+  /* 
+    message and type is two arguments for the notify function so we can modify 
+    the message and as well as the styling of message according which type of
+    message user want to render
+  */
   function notify(message, type) {
     if (!type) {
       toast(message);
@@ -36,10 +42,18 @@ function App() {
     }
   }
 
+  /* 
+    Instead of useState we use the useReducer because we manipulate the state 
+    from multiple functions 
+  */
   const [state, dispatch] = useReducer(reducer, "");
   const [currentImageURL, setCurrentImageURL] = useState("");
 
+  /* 
+    When we Click on an Image, image Should be Render on 80% of Our Screen
+  */
   function updateCurrentImage({ e, imageURL: url }) {
+    //* If we Click on Update on Click Button Image Shouldn't render on Screen
     if (
       e.target.getAttribute("alt") === "delete-btn" ||
       e.target.getAttribute("alt") === "update-btn"
@@ -49,6 +63,7 @@ function App() {
     setCurrentImageURL(url);
   }
 
+  //* For Remove the Current Image Which is Render on 80% of our Screen
   function resetCurrentImage() {
     setCurrentImageURL("");
   }
