@@ -1,0 +1,27 @@
+* {
+  font-size: 20px;
+}
+.navContainer {
+  height: 80px;
+  width: 100%;
+  box-shadow: 0px 0px 4px 4px lightgray;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.start {
+  /* border: 1px solid #eee; */
+  /* height: 100%; */
+  /* width: 100%; */
+  padding-left: 100px;
+  padding-right: 50px;
+}
+
+.end {
+  display: flex;
+  width: 35%;
+  justify-content: space-between;
+  padding: 0px 100px 0px 50px;
+  overflow: hidden;
+}
