@@ -1,5 +1,6 @@
 * {
   font-size: 20px;
+  color: #7064e5;
 }
 .navContainer {
   height: 80px;
@@ -11,11 +12,9 @@
 }
 
 .start {
-  /* border: 1px solid #eee; */
-  /* height: 100%; */
-  /* width: 100%; */
   padding-left: 100px;
   padding-right: 50px;
+  text-decoration: none;
 }
 
 .end {
@@ -24,4 +23,23 @@
   justify-content: space-between;
   padding: 0px 100px 0px 50px;
   overflow: hidden;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+}
+
+.navItem div {
+  margin-left: 5px;
+}
+
+.logo {
+  height: 30px;
+  width: 30px;
+}
+
+img {
+  height: 100%;
+  width: 100%;
 }
