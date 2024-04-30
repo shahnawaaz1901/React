@@ -60,7 +60,7 @@ function App() {
                   element={<Learn />}
                   children={
                     <>
-                      <Route path=":chapterId" element={<Chapter />} />
+                      <Route path="chapter/:chapterId" element={<Chapter />} />
                     </>
                   }
                 />

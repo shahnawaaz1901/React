@@ -4,16 +4,14 @@ import coursesData from "../../../data/courses.json";
 // Task4: Import all the required elements from the react-router-dom
 import { Link, Outlet, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import Chapter from "../chapter/Chapter";
 
 function Learn() {
   const {courseId,chapterId} = useParams();
   const navigate = useNavigate();
   const mainCourse = coursesData.find((c)=> c.id === courseId);
   const chapter = mainCourse.chapters[chapterId]
-  console.log(chapter);
   function goToPreviousPage(){
-    navigate(-2);
+    navigate("/courses");
   }
   return (
     <div className={style.courses_container}>
@@ -30,7 +28,7 @@ function Learn() {
           <hr />
           <ul>{/*Task4: List of Chapters must be rendered here  */
           mainCourse.chapters.map((eachCourse,index)=>(
-            <Link key={index} to={`${index}`}>
+            <Link key={index} to={`chapter/${index}`}>
             <div  className={style.chapterId}>{eachCourse.title}</div>
             </Link>
           ))
@@ -40,7 +38,15 @@ function Learn() {
       <div className={style.courses}>
         {/**Task5:  Chapter Details Must be rendered here */}
         {/* {mainCourse.chapters.map((eachChapter, index)=> (<Chapter key={index} chapter={eachChapter}/>))} */}
-        <Outlet currentChapter={chapter}/>
+        {/* 
+          Because we want to pass data to the Outlet component so Outlet comes up
+          with the property called context which is nothing but like props which we
+          use to pass the data from parent component to child component, so we can
+          say instead of directly normal props it accept only one prop called 
+          "context" which value we can get at the child component by using the hook 
+          called "useOutletContext()"
+        */}
+        <Outlet context={chapter}/>
       </div>
     </div>
 </div>
