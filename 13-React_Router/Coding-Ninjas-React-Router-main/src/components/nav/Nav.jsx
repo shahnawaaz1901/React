@@ -1,24 +1,33 @@
 import React from "react";
 import style from "./Nav.module.css";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet} from "react-router-dom";
 
 function Nav() {
   return (
     <>
     <nav>
       <div className={style.nav_container}>
-        <div className={style.nav_title_wrapper}>
-          <NavLink to="/" >
+            <div className={style.nav_title_wrapper}>
+          <Link to="/" >
           <img
             className={style.logo}
             src="https://files.codingninjas.in/pl-ninja-16706.svg"
             alt="logo"
           />
-          </NavLink>
+          </Link>
           <h4>Coding Ninjas</h4>
         </div>
         <div className={style.nav_details}>
-            <NavLink to="courses" ><button>Courses</button></NavLink>
+          <button>
+            {/* 
+              One thing that we need to understand that is if we use NavLink tag 
+              and enclose some content to NavLink we use isActive only in the case 
+              in which we can't enclose another tag inside the NavLink,
+              we only use the isActive property inside the function is we directly
+              use that function withOut any wrapper tag
+            */}
+            <NavLink to="courses">{({isActive})=> isActive?"On Courses":"Go to Courses"}</NavLink>
+          </button>
         </div>
       </div>
     </nav>

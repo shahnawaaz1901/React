@@ -1,12 +1,14 @@
 import Hero from "./pages/app/hero/Hero";
 import Nav from "./components/nav/Nav";
 import Courses from "./pages/app/courses/Courses";
+import Details from "./pages/app/details/Details";
 import {
   createBrowserRouter,
   RouterProvider,
   Route,
   createRoutesFromElements,
 } from "react-router-dom";
+import Learn from "./pages/app/learn/Learn";
 function App() {
   /* 
     If we want to create routes from Elements we can create by importing a 
@@ -21,7 +23,23 @@ function App() {
       children={
         <>
           <Route index={true} element={<Hero />} />
-          <Route path="/courses" element={<Courses />} />
+          <Route
+            path="/courses"
+            children={
+              <>
+                <Route index={true} element={<Courses />} />
+                <Route
+                  path=":courseId"
+                  children={
+                    <>
+                      <Route index={true} element={<Details />} />
+                      <Route path="learn" element={<Learn />} />
+                    </>
+                  }
+                />
+              </>
+            }
+          />
         </>
       }
     />
