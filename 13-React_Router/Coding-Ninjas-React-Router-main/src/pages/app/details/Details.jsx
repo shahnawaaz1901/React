@@ -24,7 +24,7 @@ function Details() {
         </div>
       </div>
       {/* Task4: create Link to the Learn Page */}
-      <Link to="learn">
+      <Link to={`/learn/${courseId}`}>
       <button className={style.button}>Start Learning</button>
       </Link>
     </div>

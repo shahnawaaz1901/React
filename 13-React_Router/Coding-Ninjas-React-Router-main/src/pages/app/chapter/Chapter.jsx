@@ -1,14 +1,16 @@
 import React from "react";
 import styles from "./Chapter.module.css";
-
+import { useParams } from "react-router-dom";
 function Chapter(props) {
-  const {courseData} = props;
-  console.log(courseData);
+  // console.log(useParams());
+  console.log(props);
   return (
     <div>
-      <h1>{courseData.title}</h1>
-      <h2>{courseData.description}</h2>
-      <p className={styles.para}>{courseData.chapter}</p>
+      <p className={styles.para}></p>
+      <h1></h1>
+      <h2></h2>
+      <hr/>
+      <p className={styles.chapterDetails}></p>
       <br />
       <br />
       <div className={styles.videos}>
@@ -17,7 +19,7 @@ function Chapter(props) {
         <iframe
           width="800"
           height="560"
-          src={`${courseData.video}`}
+          src={`${"https://www.youtube.com/embed/FZ0cG47msEk"}`}
           title="React Video"
           frameBorder="1"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
