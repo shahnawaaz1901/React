@@ -8,8 +8,14 @@ function App() {
       element: <Navbar />,
       children: [
         { index: true, element: "" },
-        { path: "signin", element: "" },
-        { path: "signup", element: "" },
+        {
+          path: "users",
+          element: "",
+          children: [
+            { path: "signin", children: "" },
+            { path: "signup", element: "" },
+          ],
+        },
         { path: "cart", element: "" },
         { path: "my-orders", element: "" },
       ],

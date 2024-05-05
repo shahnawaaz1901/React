@@ -1,5 +1,7 @@
 body {
+  margin: auto;
   margin: 0px;
+  min-width: 300px;
 }
 
 .app-container {
