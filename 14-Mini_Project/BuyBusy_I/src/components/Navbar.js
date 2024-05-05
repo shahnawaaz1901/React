@@ -1,5 +1,6 @@
 //* Packages
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
 //* Internal Modules
 import styles from "./navbar.module.css";
@@ -9,8 +10,9 @@ import cart from "../data/download.png";
 import order from "../data/download (1).png";
 import user from "../data/download (2).png";
 import home from "../data/download (3).png";
-import hamburger from "../data/hamburger.png";
-import { useEffect, useState } from "react";
+import colorHamburger from "../data/menu (1).png";
+import closeIcon from "../data/close.png";
+
 function Navbar() {
   const [navListVisible, setNavListVisiblity] = useState(false);
   return (
@@ -29,25 +31,34 @@ function Navbar() {
                 </div>
               </NavLink>
             </li>
-            <li>
-              <NavLink to="orders">
-                <div className={styles.navItem}>
-                  <img src={order} alt="order" className={styles.logo} />
-                  <span className={styles.navText}>My Orders</span>
-                </div>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="cart">
-                <div className={styles.navItem}>
-                  <img src={cart} alt="cart" className={styles.logo} />
-                  <span className={styles.navText}>Cart</span>
-                </div>
-              </NavLink>
-            </li>
+            {localStorage.getItem("userLoggedIn") ? (
+              <>
+                <li>
+                  <NavLink to="orders">
+                    <div className={styles.navItem}>
+                      <img src={order} alt="order" className={styles.logo} />
+                      <span className={styles.navText}>My Orders</span>
+                    </div>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="cart">
+                    <div className={styles.navItem}>
+                      <img src={cart} alt="cart" className={styles.logo} />
+                      <span className={styles.navText}>Cart</span>
+                    </div>
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              ""
+            )}
             <li>
               <NavLink to="user">
-                <div className={styles.navItem}>
+                <div
+                  className={styles.navItem}
+                  onClick={localStorage.setItem("userLoggedIn", "Ashu")}
+                >
                   <img src={user} alt="user" className={styles.logo} />
                   <span className={styles.navText}>Signin</span>
                 </div>
@@ -59,7 +70,10 @@ function Navbar() {
           className={styles.navListIcon}
           onClick={() => setNavListVisiblity(!navListVisible)}
         >
-          <img src={hamburger} alt="hamburger-icon" />
+          <img
+            src={navListVisible ? closeIcon : colorHamburger}
+            alt="hamburger-icon"
+          />
         </div>
         <div
           className={styles.navList}

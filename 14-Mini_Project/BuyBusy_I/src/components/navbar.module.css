@@ -72,11 +72,12 @@
 .navListIcon img {
   height: 100%;
   width: 100%;
+  border: 1px dashed #7064e5;
 }
 
 .navList {
   display: none;
-  padding: 0px 20px;
+  padding: 0px 30px 0px 10px;
   position: absolute;
   border: 1px solid #7064e5;
   top: 9%;
@@ -90,7 +91,8 @@
 
 .navList li {
   /* margin-bottom: 20px; */
-  padding: 10px;
+  padding: 10px 40px 10px 10px;
+  border-radius: 5px;
 }
 
 .navList li:hover {
@@ -99,8 +101,8 @@
 
 .navList li:hover a {
   color: white;
-  /* background-color: #7064e5; */
 }
+
 .navList a {
   text-decoration: none;
 }
