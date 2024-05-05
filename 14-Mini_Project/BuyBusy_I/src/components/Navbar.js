@@ -9,6 +9,7 @@ import cart from "../data/download.png";
 import order from "../data/download (1).png";
 import user from "../data/download (2).png";
 import home from "../data/download (3).png";
+import hamburger from "../data/hamburger.png";
 function Navbar() {
   return (
     <div className={styles.navContainer}>
@@ -48,6 +49,25 @@ function Navbar() {
                 <span className={styles.navText}>Signin</span>
               </div>
             </NavLink>
+          </li>
+        </ul>
+      </div>
+      <div className={styles.navListIcon}>
+        <img src={hamburger} alt="hamburger-icon" />
+      </div>
+      <div className={styles.navList}>
+        <ul>
+          <li>
+            <NavLink>Home</NavLink>
+          </li>
+          <li>
+            <NavLink>My Order</NavLink>
+          </li>
+          <li>
+            <NavLink>Cart</NavLink>
+          </li>
+          <li>
+            <NavLink>Signin</NavLink>
           </li>
         </ul>
       </div>

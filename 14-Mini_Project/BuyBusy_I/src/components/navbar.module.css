@@ -16,14 +16,14 @@
   padding-right: 50px;
   text-decoration: none;
   font-size: 20px;
+  border: 1px solid black;
 }
 
 .end {
-  display: flex;
-  width: 60%;
-  justify-content: space-between;
   overflow: hidden;
   font-size: 16px;
+  border: 1px solid black;
+  padding-right: 50px;
 }
 
 .end a {
@@ -47,13 +47,13 @@
 
 ul li {
   display: inline-block;
-  padding: 0px 50px 0px 50px;
+  padding: 0px 20px 0px 20px;
 }
 
 .logo {
   height: 100%;
   width: 50%;
-  margin-right: 10px;
+  margin-right: 8px;
 }
 
 .navText {
@@ -63,53 +63,90 @@ ul li {
   transition: all 0.2s ease-in;
 }
 
-/*
-@media screen and (max-width: 1300px) {
-  .end {
-    width: 43%;
+.navListIcon {
+  display: none;
+  height: 30px;
+  width: 30px;
+  padding-right: 20px;
+  cursor: pointer;
+}
+
+.navListIcon img {
+  height: 100%;
+  width: 100%;
+}
+.navList {
+  display: none;
+}
+.navListIcon:hover .navList {
+  display: block;
+  position: absolute;
+}
+@media screen and (max-width: 1200px) {
+  .start {
+    padding-left: 90px;
+    padding-right: 45px;
   }
 
+  .end {
+    padding-right: 40px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
   .start {
     padding-left: 60px;
+    padding-right: 30px;
   }
-}
 
-@media screen and (max-width: 1300px) {
   .end {
-    width: 48%;
-    padding: 0px;
+    padding-right: 30px;
   }
-
-  .start {
-    padding-left: 40px;
-  }
-}
-
-@media screen and (max-width: 1270px) {
-  .start {
-    padding-left: 30px;
+  ul li {
+    display: inline-block;
+    padding: 0px 15px 0px 15px;
   }
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1050px) {
+  .start {
+    padding-left: 50px;
+    padding-right: 25px;
+  }
+
   .end {
-    width: 60%;
-    padding: 0px;
+    padding-right: 10px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .start {
+    padding-left: 35px;
+    padding-right: 20px;
   }
 
+  .end {
+    padding-right: 0px;
+  }
+
+  ul li {
+    display: inline-block;
+    padding: 0px 10px 0px 10px;
+  }
+}
+
+@media screen and (max-width: 700px) {
   .start {
     padding-left: 20px;
+    padding-right: 10px;
   }
-}
 
-@media screen and (max-width: 1060px) {
   .end {
+    padding-right: 0px;
     display: none;
   }
 
-  .start {
-    padding-left: 20px;
+  .navListIcon {
+    display: flex;
   }
 }
-
-*/
