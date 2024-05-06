@@ -1,7 +1,11 @@
 import "./app.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import { Grid } from "react-loader-spinner";
+import { useEffect, useState } from "react";
+import PrivateRoute from "./components/PrivateRoute";
 function App() {
+  const [time, setTime] = useState(false);
   const router = createBrowserRouter([
     {
       path: "/",
@@ -16,14 +20,39 @@ function App() {
             { path: "signup", element: "" },
           ],
         },
-        { path: "cart", element: "" },
-        { path: "my-orders", element: "" },
+        { path: "cart", element: <PrivateRoute></PrivateRoute> },
+        { path: "my-orders", element: <PrivateRoute></PrivateRoute> },
       ],
     },
   ]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setTime(true);
+    }, 10000);
+  }, []);
   return (
     <div className="app-container">
-      <RouterProvider router={router} />
+      {time ? (
+        <RouterProvider router={router} />
+      ) : (
+        <Grid
+          visible={true}
+          height="80"
+          width="80"
+          color="#7064e5"
+          ariaLabel="grid-loading"
+          radius="12.5"
+          wrapperStyle={{
+            display: "flex",
+            height: 80 + "vh",
+            width: 100 + "vw",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          wrapperClass="grid-wrapper"
+        />
+      )}
     </div>
   );
 }

@@ -15,6 +15,17 @@ import closeIcon from "../data/close.png";
 
 function Navbar() {
   const [navListVisible, setNavListVisiblity] = useState(false);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
+
+  function handleUserFeature() {
+    if (userLoggedIn) {
+      localStorage.setItem("userInfo", null);
+      setUserLoggedIn(false);
+    } else {
+      localStorage.setItem("userInfo", "Ashu");
+      setUserLoggedIn(true);
+    }
+  }
   return (
     <>
       <div className={styles.navContainer}>
@@ -31,7 +42,7 @@ function Navbar() {
                 </div>
               </NavLink>
             </li>
-            {localStorage.getItem("userLoggedIn") ? (
+            {userLoggedIn ? (
               <>
                 <li>
                   <NavLink to="orders">
@@ -54,13 +65,12 @@ function Navbar() {
               ""
             )}
             <li>
-              <NavLink to="user">
-                <div
-                  className={styles.navItem}
-                  onClick={localStorage.setItem("userLoggedIn", "Ashu")}
-                >
+              <NavLink>
+                <div className={styles.navItem} onClick={handleUserFeature}>
                   <img src={user} alt="user" className={styles.logo} />
-                  <span className={styles.navText}>Signin</span>
+                  <span className={styles.navText}>
+                    {userLoggedIn ? "Signout" : "Signin"}
+                  </span>
                 </div>
               </NavLink>
             </li>
