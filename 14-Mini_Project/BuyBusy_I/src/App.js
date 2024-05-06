@@ -31,7 +31,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setTime(true);
-    }, 10000);
+    }, 2000);
   }, []);
   return (
     <div className="app-container">

@@ -55,6 +55,12 @@
     right: 7%;
   }
   .form {
-    width: 79%;
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .crossBtn {
+    right: 5%;
   }
 }
