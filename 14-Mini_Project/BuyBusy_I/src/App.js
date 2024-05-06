@@ -1,6 +1,6 @@
 import "./app.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./components/navbar/Navbar";
 import { Grid } from "react-loader-spinner";
 import { useEffect, useState } from "react";
 import PrivateRoute from "./components/PrivateRoute";
