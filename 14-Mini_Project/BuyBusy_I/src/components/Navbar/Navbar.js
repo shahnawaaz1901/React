@@ -1,17 +1,17 @@
 //* Packages
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { useState } from "react";
 
 //* Internal Modules
 import styles from "./navbar.module.css";
 
 //* Images
-import cart from "../data/download.png";
-import order from "../data/download (1).png";
-import user from "../data/download (2).png";
-import home from "../data/download (3).png";
-import colorHamburger from "../data/menu (1).png";
-import closeIcon from "../data/close.png";
+import cart from "../../data/download.png";
+import order from "../../data/download (1).png";
+import user from "../../data/download (2).png";
+import home from "../../data/download (3).png";
+import colorHamburger from "../../data/menu (1).png";
+import closeIcon from "../../data/close.png";
 
 function Navbar() {
   const [navListVisible, setNavListVisiblity] = useState(false);
@@ -25,7 +25,9 @@ function Navbar() {
       localStorage.setItem("userInfo", "Ashu");
       setUserLoggedIn(true);
     }
+    setNavListVisiblity(false);
   }
+
   return (
     <>
       <div className={styles.navContainer}>
@@ -92,20 +94,30 @@ function Navbar() {
         >
           <ul>
             <li>
-              <NavLink>Home</NavLink>
+              <NavLink to="/">Home</NavLink>
             </li>
-            <li>
-              <NavLink>My Order</NavLink>
-            </li>
-            <li>
-              <NavLink>Cart</NavLink>
-            </li>
-            <li>
-              <NavLink>Signin</NavLink>
+            {userLoggedIn ? (
+              <>
+                <li>
+                  <NavLink to="my-orders">My Order</NavLink>
+                </li>
+                <li>
+                  <NavLink to="cart">Cart</NavLink>
+                </li>
+              </>
+            ) : (
+              ""
+            )}
+
+            <li onClick={handleUserFeature}>
+              <NavLink to={userLoggedIn ? "/users/signout" : "/users/signin"}>
+                {userLoggedIn ? "Signout" : "Signin"}
+              </NavLink>
             </li>
           </ul>
         </div>
       </div>
+      <Outlet />
     </>
   );
 }

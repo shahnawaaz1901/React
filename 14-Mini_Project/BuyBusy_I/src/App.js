@@ -1,9 +1,10 @@
 import "./app.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import { Grid } from "react-loader-spinner";
 import { useEffect, useState } from "react";
 import PrivateRoute from "./components/PrivateRoute";
+import Home from "./pages/home/home";
 function App() {
   const [time, setTime] = useState(false);
   const router = createBrowserRouter([
@@ -11,13 +12,14 @@ function App() {
       path: "/",
       element: <Navbar />,
       children: [
-        { index: true, element: "" },
+        { index: true, element: <Home /> },
         {
           path: "users",
           element: "",
           children: [
             { path: "signin", children: "" },
             { path: "signup", element: "" },
+            { path: "signout", element: <PrivateRoute></PrivateRoute> },
           ],
         },
         { path: "cart", element: <PrivateRoute></PrivateRoute> },

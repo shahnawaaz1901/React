@@ -1,0 +1,60 @@
+.searchContainer {
+  width: 100%;
+  color: #7064e5;
+  text-align: center;
+  margin: 20px 0px;
+  position: relative;
+}
+
+.form {
+  font-size: 18px;
+  width: 70%;
+  color: #7064e5;
+  padding: 10px 40px 10px 15px;
+  border-color: #7064e5;
+  border-radius: 15px;
+  border-width: 1px;
+}
+
+.form:focus {
+  outline: none;
+}
+
+.crossBtn {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  top: 10px;
+  right: 13.5%;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+  .crossBtn {
+    right: 13%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .crossBtn {
+    right: 12.5%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .crossBtn {
+    right: 8%;
+  }
+  .form {
+    width: 79%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .crossBtn {
+    right: 7%;
+  }
+  .form {
+    width: 79%;
+  }
+}
