@@ -2,6 +2,7 @@ body {
   margin: auto;
   margin: 0px;
   min-width: 300px;
+  overflow-x: hidden;
 }
 
 .appContainer {
