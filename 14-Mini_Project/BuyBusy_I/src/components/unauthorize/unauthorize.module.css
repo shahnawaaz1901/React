@@ -1,0 +1,102 @@
+.unAuthContainer {
+  background-color: #100;
+  color: white;
+  height: 100vh;
+  width: 100vw;
+}
+
+h1 {
+  color: red;
+}
+
+h6 {
+  color: red;
+  font-weight: 100;
+  text-decoration: none; /*underline;*/
+}
+
+.marginAuto {
+  margin: auto;
+}
+
+.main {
+  width: 50%;
+}
+
+.displayMiddle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.largeFont {
+  font-size: 64px;
+}
+
+.topAnimation {
+  position: relative;
+  animation: animatetop 0.4s;
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+.leftAnimation {
+  position: relative;
+  animation: animateleft 0.4s;
+}
+@keyframes animateleft {
+  from {
+    left: -300px;
+    opacity: 0;
+  }
+  to {
+    left: 0;
+    opacity: 1;
+  }
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.whiteBorder {
+  border-color: #fff;
+}
+
+.rightAnimation {
+  position: relative;
+  animation: animateright 0.4s;
+}
+@keyframes animateright {
+  from {
+    right: -300px;
+    opacity: 0;
+  }
+  to {
+    right: 0;
+    opacity: 1;
+  }
+}
+
+.zoomAnimation {
+  animation: animatezoom 0.6s;
+}
+@keyframes animatezoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}

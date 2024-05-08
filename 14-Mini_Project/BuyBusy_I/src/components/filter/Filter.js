@@ -12,6 +12,7 @@ function Filter() {
       <div className={styles.filterRange}>
         <input
           type="range"
+          height="5"
           min={0}
           max={100000}
           step={10}

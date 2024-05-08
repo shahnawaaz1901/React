@@ -1,7 +1,14 @@
-import UnAuthorized from "./navbar/Navbar";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 function PrivateRoute(props) {
+  const navigate = useNavigate();
   const userInfo = localStorage.getItem("userInfo");
-  return <>{userInfo ? props.children : <UnAuthorized />}</>;
+  useEffect(() => {
+    if (!userInfo) {
+      navigate("/unAuth");
+    }
+  }, []);
+  return <>{userInfo ? props.children : ""}</>;
 }
 
 export default PrivateRoute;
