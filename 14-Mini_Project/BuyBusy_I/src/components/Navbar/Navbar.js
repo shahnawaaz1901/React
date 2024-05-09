@@ -1,6 +1,6 @@
 //* Packages
 import { NavLink, Outlet } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 //* Internal Modules
 import styles from "./navbar.module.css";
@@ -19,7 +19,7 @@ function Navbar() {
 
   function handleUserFeature() {
     if (userLoggedIn) {
-      localStorage.setItem("userInfo", null);
+      localStorage.setItem("userInfo", "");
       setUserLoggedIn(false);
     } else {
       localStorage.setItem("userInfo", "Ashu");
@@ -28,6 +28,13 @@ function Navbar() {
     setNavListVisiblity(false);
   }
 
+  useEffect(() => {
+    window.addEventListener("resize", (e) => {
+      if (window.innerWidth > 700) {
+        setNavListVisiblity(false);
+      }
+    });
+  });
   return (
     <>
       <div className={styles.navContainer}>
