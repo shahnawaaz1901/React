@@ -7,6 +7,8 @@ import PrivateRoute from "./components/PrivateRoute";
 import Home from "./pages/home/home";
 import SignOut from "./pages/signout/SignOut";
 import UnAuthorizeAccess from "./components/unauthorize/UnAuthorize";
+import Signin from "./pages/signin/signin";
+
 function App() {
   const [time, setTime] = useState(false);
   const router = createBrowserRouter([
@@ -41,7 +43,7 @@ function App() {
           path: "users",
           element: "",
           children: [
-            { path: "signin", children: "" },
+            { path: "signin", element: <Signin /> },
             { path: "signup", element: "" },
             {
               path: "signout",

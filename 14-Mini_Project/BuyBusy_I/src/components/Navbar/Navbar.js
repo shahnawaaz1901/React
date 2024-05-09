@@ -74,7 +74,7 @@ function Navbar() {
               ""
             )}
             <li>
-              <NavLink>
+              <NavLink to={userLoggedIn ? "/users/signout" : "/users/signin"}>
                 <div className={styles.navItem} onClick={handleUserFeature}>
                   <img src={user} alt="user" className={styles.logo} />
                   <span className={styles.navText}>
@@ -106,7 +106,7 @@ function Navbar() {
             {userLoggedIn ? (
               <>
                 <li>
-                  <NavLink to="my-orders">My Order</NavLink>
+                  <NavLink to="orders">My Order</NavLink>
                 </li>
                 <li>
                   <NavLink to="cart">Cart</NavLink>

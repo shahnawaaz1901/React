@@ -1,0 +1,56 @@
+.signinContainer {
+  width: 40%;
+  margin: auto;
+  margin-top: 80px;
+}
+
+.title {
+  color: #224957;
+  text-align: center;
+}
+
+form {
+  text-align: center;
+}
+
+input {
+  width: 70%;
+  font-size: 16px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  color: #7064e5;
+  border: 1px solid #7064e5;
+}
+
+input:focus {
+  outline: none;
+}
+
+button {
+  width: 40%;
+  color: white;
+  background-color: #7064e5;
+  padding: 10px 15px;
+  border: 1px solid #7064e5;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all ease-in 0.1s;
+}
+
+button:hover {
+  border: 1px solid #7064e5;
+  background-color: white;
+  color: #7064e5;
+  border-radius: 18px;
+}
+
+.signupLinkContainer {
+  margin-top: 50px;
+  margin-left: 15%;
+}
+
+.signupLink {
+  text-decoration: none;
+  color: #224957;
+}
