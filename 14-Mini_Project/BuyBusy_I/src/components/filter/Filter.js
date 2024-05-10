@@ -23,6 +23,7 @@ function Filter() {
       </div>
       <div className={styles.categoryContainer}>
         <div className={styles.categoryTitle}>Category</div>
+        {/* 
         <div className={styles.category}>
           <span>
             <input
@@ -62,7 +63,7 @@ function Filter() {
             />
           </span>
           <span>Electronics</span>
-        </div>
+        </div> */}
       </div>
     </div>
   );
