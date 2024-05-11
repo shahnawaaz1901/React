@@ -9,11 +9,11 @@
   text-align: center;
 }
 
-form {
+.form {
   text-align: center;
 }
 
-input {
+.form input {
   width: 70%;
   font-size: 16px;
   padding: 15px 20px;
@@ -23,11 +23,11 @@ input {
   border: 1px solid #7064e5;
 }
 
-input:focus {
+.form input:focus {
   outline: none;
 }
 
-button {
+.form button {
   width: 40%;
   color: white;
   background-color: #7064e5;
@@ -38,7 +38,7 @@ button {
   transition: all ease-in 0.1s;
 }
 
-button:hover {
+.form button:hover {
   border: 1px solid #7064e5;
   background-color: white;
   color: #7064e5;
