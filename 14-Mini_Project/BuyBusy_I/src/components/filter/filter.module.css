@@ -31,4 +31,10 @@
 .filterRangeInput {
   cursor: pointer;
   height: 5px;
+  text-align: center;
+}
+
+.subBtn {
+  border: 1px solid rgb(65, 94, 92);
+  text-align: center;
 }

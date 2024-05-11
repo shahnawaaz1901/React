@@ -2,12 +2,18 @@ import { useState } from "react";
 import styles from "./filter.module.css";
 import { useForm } from "react-hook-form";
 function Filter() {
-  const [price, setPrice] = useState(205);
+  const [price, setPrice] = useState(0);
   const { register, handleSubmit } = useForm();
 
   function onChange(data) {
     console.log(data);
+    setPrice(data.range);
   }
+
+  function change(e) {
+    console.log(e.target);
+  }
+
   return (
     <div className={styles.filterContainer}>
       <div className={styles.filterTitle}>Filter</div>
@@ -15,7 +21,7 @@ function Filter() {
         <span>Price : </span>
         <span>{price}</span>
       </div>
-      <form onChange={handleSubmit(onChange)}>
+      <form onSubmit={handleSubmit(onChange)}>
         <div className={styles.filterRange}>
           <input
             type="range"
@@ -24,7 +30,6 @@ function Filter() {
             max={100000}
             step={10}
             className={styles.filterRangeInput}
-            onChange={(e) => setPrice(e.target.value)}
             defaultValue={price}
             {...register("range")}
           />
@@ -80,6 +85,7 @@ function Filter() {
             <label htmlFor="electronics">Electronics</label>
           </div>
         </div>
+        <input type="submit" className={styles.subBtn} />
       </form>
     </div>
   );
