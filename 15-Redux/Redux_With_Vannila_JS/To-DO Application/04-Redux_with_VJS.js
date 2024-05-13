@@ -78,3 +78,8 @@ store.dispatch(toggleTodo(0));
 
 //* Read the State from Store
 console.log(store.getState());
+
+/*
+  Because We use the Redux with the vanilla Script so our component is this program file 
+  because call the dispatch function from here
+*/
