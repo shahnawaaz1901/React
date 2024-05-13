@@ -25,12 +25,30 @@ const toggleTodo = (index) => ({ type: TOGGLE_TODO, index });
 
 //* Reducer
 /* Because Reducer only place which modify the state so it takes the state and action */
+/* 
+    One thing that we need to understand that reducer "must" be pure function so it returns the state
+    after doing the operation and whatEver state value it returns value of initialState will be change
+    according to that
+*/
 function todoReducer(state = initialState, action) {
   const { type } = action;
   switch (type) {
     case ADD_TODO: {
+      return {
+        ...state,
+        todos: [...state.todos, { text: action.text, completed: false }],
+      };
     }
     case TOGGLE_TODO: {
+      return {
+        ...state,
+        todos: state.todos.map((each, index) => {
+          if (index == action.index) {
+            each.completed = !each.completed;
+          }
+          return each;
+        }),
+      };
     }
     default: {
       return state;
