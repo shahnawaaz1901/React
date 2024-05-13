@@ -1,4 +1,4 @@
-.signinContainer {
+.signupContainer {
   width: 40%;
   margin: auto;
   margin-top: 80px;
@@ -60,37 +60,37 @@
 }
 
 @media screen and (max-width: 1000px) {
-  .signinContainer {
+  .signupContainer {
     width: 50%;
   }
 }
 
 @media screen and (max-width: 900px) {
-  .signinContainer {
+  .signupContainer {
     width: 55%;
   }
 }
 
 @media screen and (max-width: 800px) {
-  .signinContainer {
+  .signupContainer {
     width: 60%;
   }
 }
 
 @media screen and (max-width: 700px) {
-  .signinContainer {
+  .signupContainer {
     width: 65%;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .signinContainer {
+  .signupContainer {
     width: 70%;
   }
 }
 
 @media screen and (max-width: 450px) {
-  .signinContainer {
+  .signupContainer {
     min-width: 85%;
   }
 }

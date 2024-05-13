@@ -4,10 +4,11 @@ import Navbar from "./components/navbar/Navbar";
 import { Grid } from "react-loader-spinner";
 import { useEffect, useState } from "react";
 import PrivateRoute from "./components/PrivateRoute";
-import Home from "./pages/home/home";
+import Home from "./pages/home/Home";
 import SignOut from "./pages/signout/SignOut";
 import UnAuthorizeAccess from "./components/unauthorize/UnAuthorize";
-import Signin from "./pages/signin/signin";
+import Signin from "./pages/signin/Signin";
+import Signup from "./pages/signup/Signup";
 
 function App() {
   const [time, setTime] = useState(false);
@@ -44,7 +45,7 @@ function App() {
           element: "",
           children: [
             { path: "signin", element: <Signin /> },
-            { path: "signup", element: "" },
+            { path: "signup", element: <Signup /> },
             {
               path: "signout",
               element: (
