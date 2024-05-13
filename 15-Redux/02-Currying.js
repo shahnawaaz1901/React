@@ -5,7 +5,12 @@
 
 /*
     Closure : Closure is the Javascript Property which helps to retrieve outer function variables or 
-            anything values inside the inner function after removing the scope
+            anything values which's used inside the inner function after execution of outer function
+*/
+
+/*
+    Pure Functions : Pure function is the Javascript function which returns the same output given the
+            same input and has no side effects(No external I/O Operation)
 */
 
 /*
