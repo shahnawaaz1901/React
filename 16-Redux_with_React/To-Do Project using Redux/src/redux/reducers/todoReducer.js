@@ -1,34 +1,44 @@
-import { TOGGLE_TODO, ADD_TODO } from "../actions/todoAction.js";
-import { toggleTodo, addTodo } from "../actions/todoAction.js";
+//* Import Actions
+/* Because we need to check the Action that which Action User Want to Perform */
+import { ADD_TODO, TOGGLE_TODO } from "../actions/todoAction";
+
+//* Import Action Creators
+/* Create the Actions using the functions */
+import { addTodo, toggleTodo } from "../actions/todoAction";
+
+//* Create Initial State
 /* 
-    Reducer function not take any external data it takes data from the argument which 
-    first is state which we can be used to perform certain operation and another one
-    is action which contains two things one is type and another one is payload which
-    contains the data if required
+  Because state is only managed by the reducer so we need to export the reducer function 
+  not the state 
 */
-function todoReducers(state, action) {
+const initialState = {
+  todos: [],
+};
+
+/* Reducer function must be a pure function which returns the state */
+//* Pass the Default Value of State
+function reducer(state = initialState, action) {
   const { type } = action;
   switch (type) {
-    case ADD_TODO:
+    case ADD_TODO: {
+      return { ...state, todos: [...state.todos, action.payload] };
+    }
+    case TOGGLE_TODO: {
       return {
         ...state,
-        todos: [
-          ...state.todos,
-          { text: action.payload.text, completed: false },
-        ],
-      };
-    case TOGGLE_TODO:
-      return {
-        ...state,
-        todos: state.todos.map((eachTodo, index) => {
-          if (index === Number(action.payload.index)) {
-            eachTodo.completed = !eachTodo.completed;
+        todos: state.todos.map((each, index) => {
+          if (index === action.payload.index) {
+            each.completed = !each.completed;
           }
-          return eachTodo;
+          return each;
         }),
       };
-    default:
+    }
+    default: {
       return state;
+    }
   }
 }
-export default todoReducers;
+
+/* Because the reducer is used in another file so export */
+export default reducer;
