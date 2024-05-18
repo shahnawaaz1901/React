@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import styles from "./signin.module.css";
 import { useForm, FormProvider } from "react-hook-form";
-import InputText from "../../components/inputFields/text";
-import InputPassword from "../../components/inputFields/password";
+import InputText from "../../components/inputFields/Text";
+import InputPassword from "../../components/inputFields/Password";
 
 function Signin() {
   const methods = useForm();

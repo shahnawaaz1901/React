@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import styles from "./filter.module.css";
 import { useForm, FormProvider } from "react-hook-form";
-import InputCheckBox from "../inputFields/checkBox";
-import InputRange from "../inputFields/range";
+import InputCheckBox from "../inputFields/CheckBox";
+import InputRange from "../inputFields/Range";
 function Filter() {
   const [price, setPrice] = useState(0);
   const methods = useForm();
