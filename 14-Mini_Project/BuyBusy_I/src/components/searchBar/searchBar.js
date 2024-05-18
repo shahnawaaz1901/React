@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import styles from "./searchBar.module.css";
-import twitterIcon from "../../data/twitter.png";
+import { FaXmark } from "react-icons/fa6";
 function SearchBar() {
   const searchRef = useRef();
   const [searchData, setSearchData] = useState("");
@@ -19,12 +19,7 @@ function SearchBar() {
         onChange={() => setSearchData(searchRef.current.value)}
         value={searchData}
       />
-      <img
-        src={twitterIcon}
-        alt="cross-btn"
-        className={styles.crossBtn}
-        onClick={resetSearchData}
-      />
+      <FaXmark className={styles.crossBtn} onClick={resetSearchData} />
     </div>
   );
 }

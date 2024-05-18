@@ -10,8 +10,7 @@ import cart from "../../data/download.png";
 import order from "../../data/download (1).png";
 import user from "../../data/download (2).png";
 import home from "../../data/download (3).png";
-import colorHamburger from "../../data/menu (1).png";
-import closeIcon from "../../data/close.png";
+import { FaRectangleXmark, FaBars } from "react-icons/fa6";
 
 function Navbar() {
   const [navListVisible, setNavListVisiblity] = useState(false);
@@ -75,7 +74,7 @@ function Navbar() {
             )}
             <li>
               <NavLink to={userLoggedIn ? "/users/signout" : "/users/signin"}>
-                <div className={styles.navItem} onClick={handleUserFeature}>
+                <div className={styles.navItem}>
                   <img src={user} alt="user" className={styles.logo} />
                   <span className={styles.navText}>
                     {userLoggedIn ? "Signout" : "Signin"}
@@ -89,10 +88,19 @@ function Navbar() {
           className={styles.navListIcon}
           onClick={() => setNavListVisiblity(!navListVisible)}
         >
-          <img
+          {navListVisible ? (
+            <FaRectangleXmark
+              style={{ color: "red", height: 105 + "%", width: 105 + "%" }}
+            />
+          ) : (
+            <FaBars
+              style={{ color: "#7064e5", height: 100 + "%", width: 100 + "%" }}
+            />
+          )}
+          {/* <img
             src={navListVisible ? closeIcon : colorHamburger}
             alt="hamburger-icon"
-          />
+          /> */}
         </div>
         <div
           className={styles.navList}

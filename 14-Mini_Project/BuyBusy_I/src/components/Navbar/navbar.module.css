@@ -74,12 +74,7 @@
   width: 30px;
   padding-right: 20px;
   cursor: pointer;
-}
-
-.navListIcon img {
-  height: 100%;
-  width: 100%;
-  border: 1px dashed #7064e5;
+  border: 1px dashed #8ec5fc;
 }
 
 .navList {
