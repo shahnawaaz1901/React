@@ -1,9 +1,13 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function SignOut() {
   const navigate = useNavigate();
   localStorage.setItem("userInfo", "");
-  navigate("/");
+  useEffect(() => {
+    navigate("/");
+  });
+  return <></>;
 }
 
 export default SignOut;

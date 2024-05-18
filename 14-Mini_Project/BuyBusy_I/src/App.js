@@ -48,11 +48,7 @@ function App() {
             { path: "signup", element: <Signup /> },
             {
               path: "signout",
-              element: (
-                <PrivateRoute>
-                  <SignOut />
-                </PrivateRoute>
-              ),
+              element: <SignOut />,
             },
           ],
         },
