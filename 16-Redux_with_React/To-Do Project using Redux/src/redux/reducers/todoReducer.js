@@ -4,7 +4,7 @@ import { ADD_TODO, TOGGLE_TODO } from "../actions/todoAction";
 
 //* Import Action Creators
 /* Create the Actions using the functions */
-import { addTodo, toggleTodo } from "../actions/todoAction";
+// import { addTodo, toggleTodo } from "../actions/todoAction";
 
 //* Create Initial State
 /* 

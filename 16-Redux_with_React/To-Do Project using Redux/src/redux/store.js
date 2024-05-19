@@ -1,5 +1,5 @@
 import todoReducer from "./reducers/todoReducer";
-import redux from "redux";
+import * as redux from "redux";
 
 /*
     Create the Store using createStore which is Deprecated we Learn Latest 
