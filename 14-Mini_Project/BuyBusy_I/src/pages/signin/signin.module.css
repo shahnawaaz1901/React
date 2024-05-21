@@ -58,8 +58,13 @@
 .signupLink {
   text-decoration: none;
   color: #224957;
+  transition: all 1s ease-in;
+  padding-bottom: 5px;
 }
 
+.signupLink:hover {
+  border-bottom: 1px solid #7064e5;
+}
 @media screen and (max-width: 1000px) {
   .signinContainer {
     width: 50%;

@@ -49,18 +49,23 @@
   border-radius: 18px;
 }
 
-.signupLinkContainer {
+.signinLinkContainer {
   width: 80%;
   margin: auto;
   margin-top: 20px;
   text-align: end;
 }
 
-.signupLink {
+.signinLink {
   text-decoration: none;
   color: #224957;
+  transition: all 1s ease-in;
+  padding-bottom: 5px;
 }
 
+.signinLink:hover {
+  border-bottom: 1px solid #7064e5;
+}
 @media screen and (max-width: 1000px) {
   .signupContainer {
     width: 50%;

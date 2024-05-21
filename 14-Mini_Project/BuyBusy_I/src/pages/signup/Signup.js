@@ -27,8 +27,8 @@ function Signup() {
           <button type="submit">Create Account</button>
         </form>
       </FormProvider>
-      <div className={styles.signupLinkContainer}>
-        <Link to="/users/signin" className={styles.signupLink}>
+      <div className={styles.signinLinkContainer}>
+        <Link to="/users/signin" className={styles.signinLink}>
           Already User.?
         </Link>
       </div>
