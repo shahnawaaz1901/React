@@ -38,7 +38,7 @@ function NavBar() {
                 aria-current="page"
                 to="/todo"
                 style={({ isActive, isPending }) =>
-                  isActive ? { color: "blue" } : {}
+                  isActive ? { color: "blue", fontWeight: 650 } : {}
                 }
               >
                 To Do
@@ -55,7 +55,7 @@ function NavBar() {
                 className="nav-link active"
                 aria-current="page"
                 style={({ isActive, isPending }) =>
-                  isActive ? { color: "blue" } : {}
+                  isActive ? { color: "blue", fontWeight: 650 } : {}
                 }
               >
                 Note
