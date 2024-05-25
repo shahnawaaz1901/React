@@ -12,7 +12,10 @@ import { ADD_TODO, TOGGLE_TODO } from "../actions/todoAction";
   not the state 
 */
 const initialState = {
-  todos: [],
+  todos: [
+    { text: "Learn Redux in Weekend", completed: false, id: 1 },
+    { text: "Learn Redux Toolkit in Upcoming Months", completed: false, id: 2 },
+  ],
 };
 
 /* Reducer function must be a pure function which returns the state */
