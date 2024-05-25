@@ -1,6 +1,7 @@
 import "./ToDoList.css";
-import { useSelector } from "react-redux";
-
+import { useSelector } from "react-redux"; //* Import the useSelector to Access the Store
+import { useDispatch } from "react-redux"; //* Import the useDispatch to Perform the Operation
+import { toggleTodo } from "../../redux/actions/todoAction";
 /*
   For Accessing the store state we can directly import state and get the state by calling the 
   store.getState() function but for that we need to import that store every time and in every 
@@ -8,7 +9,7 @@ import { useSelector } from "react-redux";
   the store directly we use a hook named "useSelector" which comes from "react-redux", "useSelector"
   works as intermediater between developer and store it takes the state from store and gives us
 */
-function ToDoList({ /* todos,*/ onToggle }) {
+function ToDoList(/*{ todos, onToggle }*/) {
   /* 
     useSelector takes a function as argument which function takes the state as argument and from 
     that function we can either returns some part of state or can return the whole state from the
@@ -24,20 +25,38 @@ function ToDoList({ /* todos,*/ onToggle }) {
         by using the hook.
     2. Encapsulation
   */
+
+  /* 
+    useDispatch() function gives us dispatch function which helps us to perform operation on our 
+    state in store, and as soon as we made changes in our store using the dispatch function it 
+    automatically re render the consumer component which consume the state from store.
+  */
+
+  /*
+    dispatch() -> reducers() -> store
+    
+    internally we dispatch an action and basis on the action reducer perform the operation and reducer
+    changes the data on state inside the store and as soon as store is updated our components which 
+    consume that state in which changes has been done is also re render automatically, This is working
+    on publisher subscriber pattern, in which we subscribe the newsletter and if someone publish new
+    article we get notified that the new news is published
+  */
+  const dispatch = useDispatch();
   return (
     <div className="container">
       <ul>
         {todos.map((todo, index) => (
-          <li key={todo.id}>
+          <li key={index}>
             <span className="content">{todo.text}</span>
             <span className={todo.completed ? "completed" : "pending"}>
               {todo.completed ? "Completed" : "Pending"}
             </span>
             <button
               className="btn btn-warning"
-              onClick={() => {
-                onToggle(index);
-              }}
+              // onClick={() => {
+              //   onToggle(index);
+              // }}
+              onClick={() => dispatch(toggleTodo(index))}
             >
               Toggle
             </button>
