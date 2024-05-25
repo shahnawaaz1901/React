@@ -9,7 +9,7 @@ const noteReducer = (state = INITIAL_STATE, action) => {
       const { note } = action.payload;
       return {
         ...state,
-        notes: [...state.notes, { note, createdAt: new Date() }],
+        notes: [...state.notes, { note, createdOn: new Date() }],
       };
     }
     case DELETE_NOTE: {

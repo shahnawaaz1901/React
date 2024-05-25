@@ -1,5 +1,7 @@
-import todoReducer from "./reducers/todoReducer";
 import * as redux from "redux";
+import { combineReducers } from "redux"; //* For Combining the Multiple Reducer
+import todoReducer from "./reducers/todoReducer";
+import noteReducer from "./reducers/noteReducer";
 
 /*
     Create the Store using createStore which is Deprecated we Learn Latest 
@@ -24,5 +26,15 @@ import * as redux from "redux";
     So for this we maintain single store but maintain multiple reducer for each feature, so that we
     implement the best Practices for both.
 */
-const store = redux.createStore(todoReducer);
+
+/*
+    If we have multiple Reducers then we need to combine all the Reducers into the single one 
+    by using the "combineReducer" function, which takes the all reducers as argument in the form
+    of object, and it returns a single reducer which we named rootReducer means combination of
+    all reducer and instead of passing the single todoReducer or noteReducer we pass the rootReducer,
+    "combineReducers" function is an API function which comes from the "react-redux" library
+*/
+const rootReducer = combineReducers({ todoReducer, noteReducer });
+const store = redux.createStore(rootReducer);
+
 export default store;

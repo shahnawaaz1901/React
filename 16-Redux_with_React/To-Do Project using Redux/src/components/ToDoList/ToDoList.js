@@ -15,7 +15,15 @@ function ToDoList(/*{ todos, onToggle }*/) {
     that function we can either returns some part of state or can return the whole state from the
     callback function, in our case we want todos from our store
   */
-  const todos = useSelector((state) => state.todos);
+  console.log(useSelector((state) => state.noteReducer));
+  /* 
+    Because we change our store for multiple reducers so we can't directly access the todoState
+    we need to pass the key in which we pass the reducer function for that state, because we pass
+    todoReducer as it is so we need to access todoState by todoReducer property
+    
+    const todos = useSelector((state) => state.todos);
+  */
+  const { todos } = useSelector((state) => state.todoReducer);
   /*
     useSelector works as same like store.getState() function but we dont need to import the store,
     Reason of using the useSelector() function is to follow the two principles :
