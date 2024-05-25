@@ -4,7 +4,21 @@ import TodoList from "./components/ToDoList/ToDoList";
 import store from "./redux/store";
 import { Provider } from "react-redux";
 import "./App.css";
-import { useState } from "react";
+// import React, { useState } from "react";
+import {
+  /*
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+  */
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import Home from "./components/Home/Home";
+import NavBar from "./components/NavBar/NavBar";
+import NoteForm from "./components/NoteForm/NoteForm";
+import NoteList from "./components/NoteList/NoteList";
 
 /*
   In React we have Many thousands of Components, we need to provide the store to
@@ -18,6 +32,7 @@ import { useState } from "react";
 */
 
 function App() {
+  /*
   const [todos, setTodos] = useState([]);
   const createTodo = (text) => {
     setTodos([...todos, { id: todos.length + 1, text, completed: false }]);
@@ -27,17 +42,51 @@ function App() {
     const list = [...todos];
     list[index].completed = !list[index].completed;
     setTodos(list);
-  };
+  };*/
+  /*
+  Another Method For Routes
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/todo"
+          element={
+            <>
+              <NavBar />
+              <h1>Todos</h1>
+              <Provider store={store}>
+                <ToDoForm />
+                <TodoList />
+              </Provider>
+            </>
+          }
+        />
+        <Route
+          path="/notes"
+          element={
+            <>
+              <NavBar />
+              <h1>Notes</h1>
+              <NoteForm />
+              <NoteList />
+            </>
+          }
+        />
+      </>
+    )
+  );
   return (
+    <RouterProvider router={router} />
     <div>
       <h1>To Do App</h1>
-      {/* 
+      
         Provide the Context to the components which are required, provider contains
         the store props to provide which store we want to provide to this context
-        because in some applications we may have multiple stores that's why 
-        providing the store is necessory to use the Store value which values we 
+        because in some applications we may have multiple stores that's why
+        providing the store is necessory to use the Store value which values we
         want to use into the components
-      */}
+      
       <Provider store={store}>
         <TodoForm onCreateTodo={createTodo} />
         <TodoList todos={todos} onToggle={toggleTodo} />
@@ -45,5 +94,40 @@ function App() {
     </div>
   );
 }
-
+*/
+  //* Another way to Provide Routing
+  return (
+    <>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="todo"
+              element={
+                <>
+                  <NavBar />
+                  <h1>Todos</h1>
+                  <TodoForm />
+                  <TodoList />
+                </>
+              }
+            />
+            <Route
+              path="notes"
+              element={
+                <>
+                  <NavBar />
+                  <h1>Notes</h1>
+                  <NoteForm />
+                  <NoteList />
+                </>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </Provider>
+    </>
+  );
+}
 export default App;
