@@ -1,28 +1,38 @@
 import styles from "./password.module.css";
-import { useFormContext } from "react-hook-form";
 import { useState } from "react";
+import { useFormContext } from "react-hook-form";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { IconContext } from "react-icons/lib";
-function InputPassword({ name, placeholder }) {
+function InputPassword({ name, placeholder, formReg }) {
+  /*
+    If we Directly use the errors from useForm() instead of useFormContext() then our validations not working properly
+    const {
+      formState: { errors },
+    } = useForm();
+  */
+  const {
+    formState: { errors },
+  } = useFormContext();
+
   const [passwordVisible, setPasswordVisiblity] = useState(false);
-  const { register } = useFormContext();
   return (
     <>
       <div className={styles.passwordContainer}>
         <input
           type={passwordVisible ? "text" : "password"}
           name={name}
-          {...register(name)}
+          {...formReg}
           placeholder={placeholder}
         />
-        <IconContext.Provider value={{ style: { color: "#7064e5" } }}>
-          <span
-            className={styles.visibleIconContainer}
-            onClick={() => setPasswordVisiblity(!passwordVisible)}
-          >
-            {passwordVisible ? <FaRegEyeSlash /> : <FaRegEye />}
-          </span>
-        </IconContext.Provider>
+        <span
+          className={styles.visibleIconContainer}
+          style={{ top: errors[name] ? 21 + "%" : 24.3 + "%" }}
+          onClick={() => setPasswordVisiblity(!passwordVisible)}
+        >
+          {passwordVisible ? <FaRegEyeSlash /> : <FaRegEye />}
+        </span>
+        {errors[name] && (
+          <div className={styles.errors}>{errors[name].message}</div>
+        )}
       </div>
     </>
   );

@@ -19,7 +19,6 @@
   font-size: 16px;
   padding: 15px 20px;
   padding-right: 35px;
-
   border-radius: 10px;
   margin-bottom: 15px;
   color: #7064e5;
@@ -40,6 +39,7 @@
   border-radius: 5px;
   cursor: pointer;
   transition: all ease-in 0.1s;
+  margin-top: 20px;
 }
 
 .form button:hover {
@@ -60,7 +60,7 @@
   text-decoration: none;
   color: #224957;
   transition: all 1s ease-in;
-  padding-bottom: 5px;
+  padding: 0px 5px 5px 5px;
 }
 
 .signinLink:hover {

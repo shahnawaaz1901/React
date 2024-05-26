@@ -18,3 +18,11 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.errors {
+  text-align: end;
+  margin-right: 9%;
+  margin-top: -2%;
+  margin-bottom: -3%;
+  color: red;
+}

@@ -15,14 +15,90 @@ function Signup() {
       <h1 className={styles.title}>Signup</h1>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)} className={styles.form}>
-          <InputText name="name" placeholder="Enter Name" />
+          <InputText
+            name="name"
+            placeholder="Enter Name"
+            formReg={{
+              ...methods.register("name", {
+                required: {
+                  value: true,
+                  message: "Name is Required",
+                },
+                minLength: {
+                  value: 5,
+                  message: "Name must be greater then 5 Characters",
+                },
+                maxLength: {
+                  value: 25,
+                  message: "Name should be less then 25 Characters",
+                },
+                pattern: {
+                  value: /^[a-zA-Z\s]+$/,
+                  message: "Name Only Contains Alphabets",
+                },
+              }),
+            }}
+          />
           <br />
-          <InputText name="email" placeholder="Enter Email" />
+          <InputText
+            name="email"
+            placeholder="Enter Email"
+            formReg={{
+              ...methods.register("email", {
+                required: {
+                  value: true,
+                  message: "Email is Required",
+                },
+                pattern: {
+                  value: /^[a-zA-Z0-9.]+@[a-zA-Z0-9.-]+\.[a-z]{2,5}$/,
+                  message: "Email is Invalid",
+                },
+                validate: {
+                  notAdmin: (value) =>
+                    value !== "admin@buybusy.in" ||
+                    "Try to Use Different Email",
+                },
+              }),
+            }}
+          />
           <br />
-          <InputPassword name="password" placeholder="Enter Password" />
+          <InputPassword
+            name="password"
+            placeholder="Enter Password"
+            formReg={{
+              ...methods.register("password", {
+                required: { value: true, message: "Password is Required" },
+                minLength: {
+                  value: 8,
+                  message: "Password must be atleast 8 Characters",
+                },
+                maxLength: {
+                  value: 15,
+                  message: "Password must be within 15 Characters",
+                },
+                validate: (value) =>
+                  /^(?=.*[!@#$%^&*])(?=.*[a-zA-Z\d])/.test(value) ||
+                  "Password must be Combination of Characters",
+              }),
+            }}
+          />
           <InputPassword
             name="confirmPassword"
             placeholder="Confirm Password"
+            formReg={{
+              ...methods.register("confirmPassword", {
+                required: {
+                  value: true,
+                  message: "Confirm Password is Required",
+                },
+                validate: (value) => {
+                  if (value !== methods.watch("password")) {
+                    return "Password not matched";
+                  }
+                  return true;
+                },
+              }),
+            }}
           />
           <button type="submit">Create Account</button>
         </form>
