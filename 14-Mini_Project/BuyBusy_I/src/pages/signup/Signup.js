@@ -3,10 +3,19 @@ import styles from "./signup.module.css";
 import { useForm } from "react-hook-form";
 import InputText from "../../components/inputFields/Text";
 import InputPassword from "../../components/inputFields/Password";
-
+import { useDatabaseOperations } from "../../hooks/operations";
+import { toast } from "react-toastify";
 function Signup() {
   const methods = useForm();
+  const databaseOperations = useDatabaseOperations();
   function onSubmit(data) {
+    databaseOperations
+      .addData("users", data)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => console.log(err));
+    toast.success("Account Created Successfully !!");
     methods.reset();
     console.log(data);
   }

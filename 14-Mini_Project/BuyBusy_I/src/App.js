@@ -10,6 +10,8 @@ import Signin from "./pages/signin/Signin";
 import Signup from "./pages/signup/Signup";
 import CustomProvider from "./context/productContext";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   /* One Way to Provide Routing
@@ -51,43 +53,51 @@ function App() {
   )
 */
   return (
-    <div className="app-container">
-      {/* <RouterProvider router={router} /> */}
-      <CustomProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route
-              path="/"
-              element={<Navbar />}
-              children={
-                <>
-                  <Route index={true} element={<Home />} />
-                  <Route
-                    path="/users"
-                    children={
-                      <>
-                        <Route path="signin" element={<Signin />} />
-                        <Route path="signup" element={<Signup />} />
-                        <Route path="signout" element={<SignOut />} />
-                      </>
-                    }
-                  />
-                  <Route path="cart" element={<PrivateRoute></PrivateRoute>} />
-                  <Route
-                    path="my-orders"
-                    element={<PrivateRoute></PrivateRoute>}
-                  />
-                </>
-              }
-            />
-            <Route path="unAuth" element={<UnAuthorizeAccess />} />
-            {/* <Route />
-          <Route />
-          <Route /> */}
-          </Routes>
-        </BrowserRouter>
-      </CustomProvider>
-    </div>
+    <>
+      <div className="app-container">
+        {/* <RouterProvider router={router} /> */}
+        <CustomProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route
+                path="/"
+                element={<Navbar />}
+                children={
+                  <>
+                    <Route index={true} element={<Home />} />
+                    <Route
+                      path="/users"
+                      children={
+                        <>
+                          <Route path="signin" element={<Signin />} />
+                          <Route path="signup" element={<Signup />} />
+                          <Route path="signout" element={<SignOut />} />
+                        </>
+                      }
+                    />
+                    <Route
+                      path="cart"
+                      element={<PrivateRoute></PrivateRoute>}
+                    />
+                    <Route
+                      path="my-orders"
+                      element={<PrivateRoute></PrivateRoute>}
+                    />
+                  </>
+                }
+              />
+              <Route path="unAuth" element={<UnAuthorizeAccess />} />
+              {/* 
+              <Route />
+              <Route />
+              <Route /> 
+            */}
+            </Routes>
+          </BrowserRouter>
+        </CustomProvider>
+      </div>
+      <ToastContainer />
+    </>
   );
 }
 
