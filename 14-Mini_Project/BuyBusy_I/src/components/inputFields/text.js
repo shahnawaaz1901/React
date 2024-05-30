@@ -1,10 +1,9 @@
-import { useFormContext } from "react-hook-form";
-function InputText({ name, placeholder, formReg }) {
-  //* Get errors from formState for Rendering Error on user End
+function InputText({ name, placeholder, formReg, errors }) {
+  //* Get errors from formState for Rendering Error on user End or directly Get By Props
 
-  const {
-    formState: { errors },
-  } = useFormContext();
+  // const {
+  //   formState: { errors },
+  // } = useFormContext();
 
   return (
     <>

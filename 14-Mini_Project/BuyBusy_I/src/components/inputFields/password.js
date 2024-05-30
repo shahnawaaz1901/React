@@ -2,16 +2,16 @@ import styles from "./password.module.css";
 import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-function InputPassword({ name, placeholder, formReg }) {
+function InputPassword({ name, placeholder, formReg, errors }) {
   /*
     If we Directly use the errors from useForm() instead of useFormContext() then our validations not working properly
     const {
       formState: { errors },
     } = useForm();
   */
-  const {
-    formState: { errors },
-  } = useFormContext();
+  // const {
+  //   formState: { errors },
+  // } = useFormContext();
 
   const [passwordVisible, setPasswordVisiblity] = useState(false);
   return (
