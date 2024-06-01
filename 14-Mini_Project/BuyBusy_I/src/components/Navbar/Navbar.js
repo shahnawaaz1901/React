@@ -16,16 +16,11 @@ import useLocalStorageForUser from "../../hooks/localstorage";
 function Navbar() {
   const localStorage = useLocalStorageForUser();
   const [navListVisible, setNavListVisiblity] = useState(false);
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [userLoggedIn, setUserLoggedIn] = useState(
+    localStorage.getUser() ? true : false
+  );
 
   function handleUserFeature() {
-    if (userLoggedIn) {
-      localStorage.setItem("userInfo", "");
-      setUserLoggedIn(false);
-    } else {
-      localStorage.setItem("userInfo", "Ashu");
-      setUserLoggedIn(true);
-    }
     setNavListVisiblity(false);
   }
 
@@ -35,6 +30,7 @@ function Navbar() {
         setNavListVisiblity(false);
       }
     });
+    setUserLoggedIn(localStorage.getUser() ? true : false);
   });
   return (
     <>
@@ -52,7 +48,7 @@ function Navbar() {
                 </div>
               </NavLink>
             </li>
-            {localStorage.getUser() ? (
+            {userLoggedIn ? (
               <>
                 <li>
                   <NavLink to="orders">
@@ -75,9 +71,7 @@ function Navbar() {
               ""
             )}
             <li>
-              <NavLink
-                to={localStorage.getUser() ? "/users/signout" : "/users/signin"}
-              >
+              <NavLink to={userLoggedIn ? "/users/signout" : "/users/signin"}>
                 <div className={styles.navItem}>
                   <img src={user} alt="user" className={styles.logo} />
                   <span className={styles.navText}>
@@ -129,8 +123,10 @@ function Navbar() {
             )}
 
             <li onClick={handleUserFeature}>
-              <NavLink to={userLoggedIn ? "/users/signout" : "/users/signin"}>
-                {userLoggedIn ? "Signout" : "Signin"}
+              <NavLink
+                to={localStorage.getUser() ? "/users/signout" : "/users/signin"}
+              >
+                {localStorage.getUser() ? "Signout" : "Signin"}
               </NavLink>
             </li>
           </ul>

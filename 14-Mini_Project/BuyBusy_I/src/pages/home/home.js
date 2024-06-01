@@ -1,9 +1,9 @@
 import MainContainer from "../../components/mainContainer/MainContainer";
 import SearchBar from "../../components/searchBar/SearchBar";
-import { useProductValue } from "../../hooks/productValue";
+// import { useProductValue } from "../../hooks/productValue";
 
 function Home() {
-  const { productList, setProductList } = useProductValue();
+  // const { productList, setProductList } = useProductValue();
 
   return (
     <>
