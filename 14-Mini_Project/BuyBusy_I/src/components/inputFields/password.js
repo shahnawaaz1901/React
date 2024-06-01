@@ -1,6 +1,5 @@
 import styles from "./password.module.css";
 import { useState } from "react";
-import { useFormContext } from "react-hook-form";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 function InputPassword({ name, placeholder, formReg, errors }) {
   /*

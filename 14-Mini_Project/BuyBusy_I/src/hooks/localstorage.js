@@ -1,20 +1,16 @@
-import { useEffect, useState } from "react";
-
 function useLocalStorageForUser() {
-  const { user, setUser } = useState(null);
+  function setUser(key, value) {
+    localStorage.setItem(key, value);
+  }
+  function getUser() {
+    return localStorage.getItem("user");
+  }
 
-  useEffect(() => {
-    const userInformation = localStorage.getItem("userInformation");
-    if (userInformation) {
-      setUser(userInformation);
-    }
-  }, []);
+  function resetUser() {
+    localStorage.setItem("user", "");
+  }
 
-  useEffect(() => {
-    localStorage.setItem("userInformation", user);
-  }, [user]);
-
-  return { user, setUser };
+  return { setUser, getUser, resetUser };
 }
 
 export default useLocalStorageForUser;

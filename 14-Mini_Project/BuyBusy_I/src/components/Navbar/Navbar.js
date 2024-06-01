@@ -11,8 +11,10 @@ import order from "../../data/download (1).png";
 import user from "../../data/download (2).png";
 import home from "../../data/download (3).png";
 import { FaRectangleXmark, FaBars } from "react-icons/fa6";
+import useLocalStorageForUser from "../../hooks/localstorage";
 
 function Navbar() {
+  const localStorage = useLocalStorageForUser();
   const [navListVisible, setNavListVisiblity] = useState(false);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
 
@@ -50,7 +52,7 @@ function Navbar() {
                 </div>
               </NavLink>
             </li>
-            {userLoggedIn ? (
+            {localStorage.getUser() ? (
               <>
                 <li>
                   <NavLink to="orders">
@@ -73,11 +75,13 @@ function Navbar() {
               ""
             )}
             <li>
-              <NavLink to={userLoggedIn ? "/users/signout" : "/users/signin"}>
+              <NavLink
+                to={localStorage.getUser() ? "/users/signout" : "/users/signin"}
+              >
                 <div className={styles.navItem}>
                   <img src={user} alt="user" className={styles.logo} />
                   <span className={styles.navText}>
-                    {userLoggedIn ? "Signout" : "Signin"}
+                    {localStorage.getUser() ? "Signout" : "Signin"}
                   </span>
                 </div>
               </NavLink>

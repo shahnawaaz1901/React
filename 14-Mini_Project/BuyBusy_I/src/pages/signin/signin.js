@@ -1,14 +1,39 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./signin.module.css";
 import { useForm } from "react-hook-form";
 import InputText from "../../components/inputFields/Text";
 import InputPassword from "../../components/inputFields/Password";
+import { useDatabaseOperations } from "../../hooks/operations";
+import { toast } from "react-toastify";
+import useLocalStorageForUser from "../../hooks/localstorage";
 
 function Signin() {
   const methods = useForm();
-  function onSubmit(data) {
-    methods.reset();
-    console.log(data);
+  const navigate = useNavigate();
+  const databaseOperations = useDatabaseOperations();
+  const localStorage = useLocalStorageForUser();
+  async function onSubmit(data) {
+    try {
+      const checkForUser = await databaseOperations.getUserByEmail(
+        "users",
+        data.email
+      );
+      if (!checkForUser) {
+        methods.reset();
+        toast.error("User Not Exist !!");
+        return;
+      }
+
+      if (data.password !== checkForUser.password) {
+        toast.error("Incorrect Password !!");
+        return;
+      }
+      localStorage.setUser("user", checkForUser);
+      toast.success("Login Successfull !!");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (

@@ -1,18 +1,20 @@
-import { Link } from "react-router-dom";
-import styles from "./signup.module.css";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import InputText from "../../components/inputFields/Text";
 import InputPassword from "../../components/inputFields/Password";
 import { useDatabaseOperations } from "../../hooks/operations";
 import { toast } from "react-toastify";
+import styles from "./signup.module.css";
 function Signup() {
   const methods = useForm();
+  const navigate = useNavigate();
   const databaseOperations = useDatabaseOperations();
   function onSubmit(data) {
     databaseOperations
       .addData("users", data)
       .then((response) => {
         console.log(response);
+        navigate("/users/signin");
       })
       .catch((err) => console.log(err));
     toast.success("Account Created Successfully !!");

@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import useLocalStorageForUser from "../../hooks/localstorage";
 
 function SignOut() {
   const navigate = useNavigate();
-  localStorage.setItem("userInfo", "");
+  const localStorage = useLocalStorageForUser();
+  localStorage.resetUser();
   useEffect(() => {
     navigate("/");
   });
-  return <></>;
 }
 
 export default SignOut;

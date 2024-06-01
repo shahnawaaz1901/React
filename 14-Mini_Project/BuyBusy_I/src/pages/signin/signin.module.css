@@ -8,6 +8,7 @@
   color: #224957;
   text-align: center;
   font-weight: 900;
+  margin: 22px 0px;
 }
 
 .form {
@@ -16,6 +17,7 @@
 
 .form input {
   width: 70%;
+  box-sizing: content-box !important;
   font-size: 16px;
   padding: 15px 20px;
   padding-right: 35px;
