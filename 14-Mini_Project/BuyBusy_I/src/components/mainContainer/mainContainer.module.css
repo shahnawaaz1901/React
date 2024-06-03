@@ -47,11 +47,12 @@
   border: 1px solid black;
 }
 
-.name,
+.name {
+  height: 10%;
+}
+
 .about {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: justify;
+  height: 90%;
 }
 
 .productPrice {
