@@ -63,9 +63,11 @@
   padding: 0px 5px 5px 5px;
 }
 
-.signinLink:hover {
-  border-bottom: 1px solid #7064e5;
+.oAuthButtons {
+  display: flex;
+  width: 100%;
 }
+
 @media screen and (max-width: 1000px) {
   .signupContainer {
     width: 50%;

@@ -12,7 +12,7 @@ import CustomProvider from "./context/productContext";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { GoogleOAuthProvider } from "@react-oauth/google";
 function App() {
   /* One Way to Provide Routing
   const router = createBrowserRouter([
@@ -69,7 +69,14 @@ function App() {
                       path="/users"
                       children={
                         <>
-                          <Route path="signin" element={<Signin />} />
+                          <Route
+                            path="signin"
+                            element={
+                              <GoogleOAuthProvider clientId="43025516532-ne6hf8mgru68pt3168sgkpmn3q7j4p4e.apps.googleusercontent.com">
+                                <Signin />
+                              </GoogleOAuthProvider>
+                            }
+                          />
                           <Route path="signup" element={<Signup />} />
                           <Route path="signout" element={<SignOut />} />
                         </>

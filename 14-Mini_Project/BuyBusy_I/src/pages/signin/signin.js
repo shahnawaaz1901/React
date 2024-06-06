@@ -6,12 +6,18 @@ import InputPassword from "../../components/inputFields/Password";
 import { useDatabaseOperations } from "../../hooks/operations";
 import { toast } from "react-toastify";
 import useLocalStorageForUser from "../../hooks/localstorage";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 
 function Signin() {
   const methods = useForm();
   const navigate = useNavigate();
   const databaseOperations = useDatabaseOperations();
   const localStorage = useLocalStorageForUser();
+
+  function handleLoginViaOAuth(token) {
+    console.log(jwtDecode(token.credential));
+  }
   async function onSubmit(data) {
     try {
       const checkForUser = await databaseOperations.getUserByEmail(
@@ -83,6 +89,12 @@ function Signin() {
         <Link to="/users/signup" className={styles.signupLink}>
           Or Instead signup
         </Link>
+      </div>
+      <div className={styles.oAuth}>
+        <div className={styles.loginOpt}>Signin with</div>
+        <div className={styles.oAuthButtons}>
+          <GoogleLogin onSuccess={handleLoginViaOAuth} />
+        </div>
       </div>
     </div>
   );
