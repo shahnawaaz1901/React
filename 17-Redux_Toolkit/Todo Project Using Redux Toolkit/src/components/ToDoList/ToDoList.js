@@ -56,8 +56,8 @@ function ToDoList(/*{ todos, onToggle }*/) {
         {todos.map((todo, index) => (
           <li key={index}>
             <span className="content">{todo.text}</span>
-            <span className={todo.completed ? "completed" : "pending"}>
-              {todo.completed ? "Completed" : "Pending"}
+            <span className={todo.isCompleted ? "completed" : "pending"}>
+              {todo.isCompleted ? "Completed" : "Pending"}
             </span>
             <button
               className="btn btn-warning"
