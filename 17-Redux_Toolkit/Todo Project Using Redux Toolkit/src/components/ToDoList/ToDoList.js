@@ -1,7 +1,8 @@
 import "./ToDoList.css";
 import { useSelector } from "react-redux"; //* Import the useSelector to Access the Store
 import { useDispatch } from "react-redux"; //* Import the useDispatch to Perform the Operation
-import { toggleTodo } from "../../redux/actions/todoAction";
+// import { toggleTodo } from "../../redux/actions/todoAction";
+import { todoActions } from "../../redux/reducers/todoReducer";
 /*
   For Accessing the store state we can directly import state and get the state by calling the 
   store.getState() function but for that we need to import that store every time and in every 
@@ -15,7 +16,6 @@ function ToDoList(/*{ todos, onToggle }*/) {
     that function we can either returns some part of state or can return the whole state from the
     callback function, in our case we want todos from our store
   */
-  console.log(useSelector((state) => state.noteReducer));
   /* 
     Because we change our store for multiple reducers so we can't directly access the todoState
     we need to pass the key in which we pass the reducer function for that state, because we pass
@@ -64,7 +64,8 @@ function ToDoList(/*{ todos, onToggle }*/) {
               // onClick={() => {
               //   onToggle(index);
               // }}
-              onClick={() => dispatch(toggleTodo(index))}
+              // onClick={() => dispatch(toggleTodo(index))} //* Using Redux
+              onClick={() => dispatch(todoActions.toggle({ index }))}
             >
               Toggle
             </button>

@@ -26,6 +26,7 @@ const noteReducer = (state = INITIAL_STATE, action) => {
 export default noteReducer;
 */
 
+//* Reducer Using Redux Toolkit
 import { createSlice } from "@reduxjs/toolkit";
 
 const noteSlice = createSlice({
@@ -34,11 +35,19 @@ const noteSlice = createSlice({
   reducers: {
     add: (state, action) => {
       const { text } = action.payload;
-      state.notes.push({ note: text, createdOn: new Date() });
+      state.notes.push({
+        note: text,
+        createdOn: new Date().toLocaleDateString(),
+      });
     },
     delete: (state, action) => {
       const { index } = action.payload;
-      state.notes.filter((value, i) => index !== i);
+      // state.notes.filter((value, i) => index !== i);
+      state.notes.splice(index, 1);
     },
   },
 });
+
+export const noteReducer = noteSlice.reducer;
+
+export const noteActions = noteSlice.actions;

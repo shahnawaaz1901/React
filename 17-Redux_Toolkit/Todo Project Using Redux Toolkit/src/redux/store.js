@@ -1,7 +1,8 @@
-import * as redux from "redux";
-import { combineReducers } from "redux"; //* For Combining the Multiple Reducer
-import todoReducer from "./reducers/todoReducer";
-import noteReducer from "./reducers/noteReducer";
+// import * as redux from "redux";
+// import { combineReducers } from "redux"; //* For Combining the Multiple Reducer
+import { todoReducer } from "./reducers/todoReducer";
+import { noteReducer } from "./reducers/noteReducer";
+import { configureStore } from "@reduxjs/toolkit";
 
 /*
     Create the Store using createStore which is Deprecated we Learn Latest 
@@ -34,7 +35,11 @@ import noteReducer from "./reducers/noteReducer";
     all reducer and instead of passing the single todoReducer or noteReducer we pass the rootReducer,
     "combineReducers" function is an API function which comes from the "react-redux" library
 */
-const rootReducer = combineReducers({ todoReducer, noteReducer });
-const store = redux.createStore(rootReducer);
+// const rootReducer = combineReducers({ todoReducer, noteReducer });
+// const store = redux.createStore(rootReducer);
 
+// export default store;
+
+//* Store using the Redux Toolkit
+const store = configureStore({ reducer: { todoReducer, noteReducer } });
 export default store;

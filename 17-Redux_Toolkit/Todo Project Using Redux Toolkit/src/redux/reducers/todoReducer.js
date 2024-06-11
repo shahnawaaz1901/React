@@ -84,14 +84,27 @@ const todoSlice = createSlice({
       state.todos.push({ text, isCompleted: false });
     },
     toggle: (state, action) => {
+      console.log(action);
       //* Get the Index Value from Payload
       const { index } = action.payload;
-      state.todos.map((value, i) => {
-        if (i === index) {
+      // state.todos.map((value, i) => {
+      //   if (i === index) {
+      //     value.isCompleted = !value.isCompleted;
+      //   }
+      //   return value;
+      // });
+      debugger;
+      state.todos.forEach((value, i) => {
+        if (i == index) {
           value.isCompleted = !value.isCompleted;
         }
-        return value;
+        console.log(value);
       });
+      console.log(state);
     },
   },
 });
+
+export const todoReducer = todoSlice.reducer;
+
+export const todoActions = todoSlice.actions;
