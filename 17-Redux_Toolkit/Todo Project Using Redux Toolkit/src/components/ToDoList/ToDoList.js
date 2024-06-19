@@ -1,8 +1,8 @@
 import "./ToDoList.css";
-import { useSelector } from "react-redux"; //* Import the useSelector to Access the Store
-import { useDispatch } from "react-redux"; //* Import the useDispatch to Perform the Operation
+import { useDispatch, useSelector } from "react-redux"; //* Import the useDispatch to Perform the Operation
 // import { toggleTodo } from "../../redux/actions/todoAction";
-import { todoActions } from "../../redux/reducers/todoReducer";
+import { todoActions, todoSelector } from "../../redux/reducers/todoReducer";
+import useTodoValue from "../../hooks/todo.hook";
 /*
   For Accessing the store state we can directly import state and get the state by calling the 
   store.getState() function but for that we need to import that store every time and in every 
@@ -23,7 +23,14 @@ function ToDoList(/*{ todos, onToggle }*/) {
     
     const todos = useSelector((state) => state.todos);
   */
-  const { todos } = useSelector((state) => state.todoReducer);
+  //* One Method
+  // const { todos } = useSelector((state) => state.todoReducer);
+
+  //* Second Method
+  // const { todos } = useSelector(todoSelector);
+
+  //* Third Method
+  const todos = useTodoValue();
   /*
     useSelector works as same like store.getState() function but we dont need to import the store,
     Reason of using the useSelector() function is to follow the two principles :
