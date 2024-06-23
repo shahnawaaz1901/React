@@ -1,6 +1,7 @@
 //* Packages
 import Swal from "sweetalert2";
 import { doc, deleteDoc } from "firebase/firestore";
+import { MdDelete } from "react-icons/md";
 
 //* Internal Modules
 import styles from "./image.module.css";

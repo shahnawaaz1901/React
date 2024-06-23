@@ -1,10 +1,13 @@
 //* Packages
 import { useRef, useState, useEffect } from "react";
+import { TiArrowBack } from "react-icons/ti";
+import { FaSearch } from "react-icons/fa";
+import { MdCancel } from "react-icons/md";
 
 //* Internal Modules
 import ImageForm from "./ImageForm";
 import styles from "./imageList.module.css";
-import backBtn from "../images/back.png";
+// import backBtn from "../images/back.png";
 import searchBtn from "../images/search.png";
 import crossBtn from "../images/remove.png";
 import Image from "./Image";
@@ -73,7 +76,12 @@ export default function ImageList(props) {
               className={styles.previousBtn}
               onClick={() => dispatch({ type: "albums" })}
             >
-              <img src={backBtn} alt="back-btn" />
+              {/* <img src={backBtn} alt="back-btn" /> */}
+              <TiArrowBack
+                size={30}
+                // style={{}}
+                onMouseEnter={(e) => console.log(e.target)}
+              />
             </div>
             <div>
               <h1 className={styles.mainHeading}>
@@ -97,7 +105,8 @@ export default function ImageList(props) {
                   className={styles.searchBarCrossBtn}
                   onClick={() => setSearchBarVisiblity(!searchBarVisible)}
                 >
-                  <img src={crossBtn} alt="cross button" />
+                  {/* <img src={crossBtn} alt="cross button" /> */}
+                  <MdCancel size={20} />
                 </div>
               </div>
             ) : (
@@ -105,7 +114,8 @@ export default function ImageList(props) {
                 className={styles.searchBtn}
                 onClick={() => setSearchBarVisiblity(!searchBarVisible)}
               >
-                <img src={searchBtn} alt="search-btn" />
+                {/* <img src={searchBtn} alt="search-btn" /> */}
+                <FaSearch size={20} />
               </div>
             )}
 
