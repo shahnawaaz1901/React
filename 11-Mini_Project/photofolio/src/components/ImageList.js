@@ -77,11 +77,7 @@ export default function ImageList(props) {
               onClick={() => dispatch({ type: "albums" })}
             >
               {/* <img src={backBtn} alt="back-btn" /> */}
-              <TiArrowBack
-                size={30}
-                // style={{}}
-                onMouseEnter={(e) => console.log(e.target)}
-              />
+              <TiArrowBack size={30} />
             </div>
             <div>
               <h1 className={styles.mainHeading}>
