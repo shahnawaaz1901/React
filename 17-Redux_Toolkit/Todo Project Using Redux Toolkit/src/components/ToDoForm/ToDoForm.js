@@ -4,8 +4,11 @@ import "./ToDoForm.css";
 import { useDispatch } from "react-redux";
 // import { addTodo } from "../../redux/actions/todoAction";
 import { todoActions } from "../../redux/reducers/todoReducer";
+import { useNotification } from "../../hooks/notification.hook";
+import { notificationActions } from "../../redux/reducers/notificationReducer";
 function ToDoForm(/*{ onCreateTodo }*/) {
   const [todoText, setTodoText] = useState("");
+  const notificatioObject = useNotification();
   /* Get the Dispatch function */
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
@@ -15,8 +18,19 @@ function ToDoForm(/*{ onCreateTodo }*/) {
     setTodoText("");
   };
 
+  if (notificatioObject.type === "Todo" && notificatioObject.message) {
+    window.setTimeout(() => {
+      dispatch(notificationActions.reset());
+    }, 2500);
+  }
   return (
     <div className="container">
+      {/* Notification for Todo App */}
+      {notificatioObject.type === "Todo" && (
+        <div className="alert alert-success" role="alert">
+          {notificatioObject.message}
+        </div>
+      )}
       <form onSubmit={handleSubmit}>
         <input
           type="text"

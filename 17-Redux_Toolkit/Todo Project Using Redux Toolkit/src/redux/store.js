@@ -2,6 +2,7 @@
 // import { combineReducers } from "redux"; //* For Combining the Multiple Reducer
 import { todoReducer } from "./reducers/todoReducer";
 import { noteReducer } from "./reducers/noteReducer";
+import { notificationReducer } from "./reducers/notificationReducer";
 import { configureStore } from "@reduxjs/toolkit";
 
 /*
@@ -41,5 +42,7 @@ import { configureStore } from "@reduxjs/toolkit";
 // export default store;
 
 //* Store using the Redux Toolkit
-const store = configureStore({ reducer: { todoReducer, noteReducer } });
+const store = configureStore({
+  reducer: { todoReducer, noteReducer, notificationReducer },
+});
 export default store;

@@ -1,7 +1,7 @@
 import "./ToDoList.css";
-import { useDispatch, useSelector } from "react-redux"; //* Import the useDispatch to Perform the Operation
+import { useDispatch } from "react-redux"; //* Import the useDispatch to Perform the Operation
 // import { toggleTodo } from "../../redux/actions/todoAction";
-import { todoActions, todoSelector } from "../../redux/reducers/todoReducer";
+import { todoActions } from "../../redux/reducers/todoReducer";
 import useTodoValue from "../../hooks/todo.hook";
 /*
   For Accessing the store state we can directly import state and get the state by calling the 

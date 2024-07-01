@@ -51,6 +51,7 @@ function Signup() {
             }),
           }}
           errors={methods.formState.errors}
+          autoFocus
         />
         <br />
         <InputText

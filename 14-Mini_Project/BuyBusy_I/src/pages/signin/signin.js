@@ -16,7 +16,8 @@ function Signin() {
   const localStorage = useLocalStorageForUser();
 
   function handleLoginViaOAuth(token) {
-    console.log(jwtDecode(token.credential));
+    const { name, email, picture } = jwtDecode(token.credential);
+    console.log(name, email, picture);
   }
   async function onSubmit(data) {
     try {
@@ -62,6 +63,7 @@ function Signin() {
             }),
           }}
           errors={methods.formState.errors}
+          autoFocus
         />
         <br />
         <InputPassword
