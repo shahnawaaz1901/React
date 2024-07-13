@@ -10,6 +10,7 @@ function Signup() {
   const navigate = useNavigate();
   const databaseOperations = useDatabaseOperations();
   function onSubmit(data) {
+    delete data.confirmPassword;
     databaseOperations
       .addData("users", data)
       .then((response) => {

@@ -28,7 +28,6 @@ export function useDatabaseOperations() {
     const querySnap = await getDocs(queryRef);
     let doc;
     querySnap.forEach((val) => {
-      console.log(val.id);
       doc = { ...val.data(), id: val.id };
     });
     return doc;

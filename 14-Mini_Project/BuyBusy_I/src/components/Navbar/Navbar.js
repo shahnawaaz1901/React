@@ -12,16 +12,26 @@ import user from "../../data/download (2).png";
 import home from "../../data/download (3).png";
 import { FaRectangleXmark, FaBars } from "react-icons/fa6";
 import useLocalStorageForUser from "../../hooks/localstorage";
+import { useUserValue } from "../../hooks/userValue";
 
 function Navbar() {
   const localStorage = useLocalStorageForUser();
+  const { isUserLoggedIn, setUserLoggedIn } = useUserValue();
   const [navListVisible, setNavListVisiblity] = useState(false);
-  const [userLoggedIn, setUserLoggedIn] = useState(
-    localStorage.getUser() ? true : false
-  );
 
   function handleUserFeature() {
     setNavListVisiblity(false);
+  }
+
+  useEffect(() => {
+    setUserLoggedIn(localStorage.getUser() ? true : false);
+  });
+
+  function handleClick() {
+    if (isUserLoggedIn) {
+      setUserLoggedIn(false);
+      localStorage.resetUser();
+    }
   }
 
   useEffect(() => {
@@ -30,7 +40,6 @@ function Navbar() {
         setNavListVisiblity(false);
       }
     });
-    setUserLoggedIn(localStorage.getUser() ? true : false);
   });
   return (
     <>
@@ -48,7 +57,7 @@ function Navbar() {
                 </div>
               </NavLink>
             </li>
-            {userLoggedIn ? (
+            {isUserLoggedIn ? (
               <>
                 <li>
                   <NavLink to="orders">
@@ -71,8 +80,8 @@ function Navbar() {
               ""
             )}
             <li>
-              <NavLink to={userLoggedIn ? "/users/signout" : "/users/signin"}>
-                <div className={styles.navItem}>
+              <NavLink to={isUserLoggedIn ? "/users/signout" : "/users/signin"}>
+                <div className={styles.navItem} onClick={handleClick}>
                   <img src={user} alt="user" className={styles.logo} />
                   <span className={styles.navText}>
                     {localStorage.getUser() ? "Signout" : "Signin"}
@@ -95,10 +104,6 @@ function Navbar() {
               style={{ color: "#7064e5", height: 100 + "%", width: 100 + "%" }}
             />
           )}
-          {/* <img
-            src={navListVisible ? closeIcon : colorHamburger}
-            alt="hamburger-icon"
-          /> */}
         </div>
         <div
           className={styles.navList}
@@ -109,7 +114,7 @@ function Navbar() {
             <li>
               <NavLink to="/">Home</NavLink>
             </li>
-            {userLoggedIn ? (
+            {isUserLoggedIn ? (
               <>
                 <li>
                   <NavLink to="orders">My Order</NavLink>

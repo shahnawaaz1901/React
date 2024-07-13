@@ -1,13 +1,13 @@
 function useLocalStorageForUser() {
-  function setUser(key, value) {
-    localStorage.setItem(key, value);
+  function setUser(user) {
+    localStorage.setItem("userEmail", user.email);
   }
   function getUser() {
-    return localStorage.getItem("user");
+    return localStorage.getItem("userEmail");
   }
 
   function resetUser() {
-    localStorage.setItem("user", "");
+    localStorage.setItem("userEmail", "");
   }
 
   return { setUser, getUser, resetUser };

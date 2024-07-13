@@ -9,7 +9,6 @@ function Filter() {
   const watchedData = methods.watch();
 
   function handleFilterChange(data) {
-    console.log(data);
     setPrice(data.priceRange);
   }
   useEffect(() => {

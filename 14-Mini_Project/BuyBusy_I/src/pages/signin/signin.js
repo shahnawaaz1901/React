@@ -8,10 +8,12 @@ import { toast } from "react-toastify";
 import useLocalStorageForUser from "../../hooks/localstorage";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
+import { useUserValue } from "../../hooks/userValue";
 
 function Signin() {
   const methods = useForm();
   const navigate = useNavigate();
+  const { isUserLoggedIn, setUserLoggedIn } = useUserValue();
   const databaseOperations = useDatabaseOperations();
   const localStorage = useLocalStorageForUser();
 
@@ -25,6 +27,7 @@ function Signin() {
         "users",
         data.email
       );
+      console.log(checkForUser);
       if (!checkForUser) {
         methods.reset();
         toast.error("User Not Exist !!");
@@ -35,7 +38,8 @@ function Signin() {
         toast.error("Incorrect Password !!");
         return;
       }
-      localStorage.setUser("user", checkForUser);
+      localStorage.setUser(checkForUser);
+      setUserLoggedIn(true);
       toast.success("Login Successfull !!");
       navigate("/");
     } catch (error) {

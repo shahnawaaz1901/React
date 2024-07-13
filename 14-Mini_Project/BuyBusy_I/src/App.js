@@ -8,7 +8,7 @@ import SignOut from "./pages/signout/SignOut";
 import UnAuthorizeAccess from "./components/unauthorize/UnAuthorize";
 import Signin from "./pages/signin/Signin";
 import Signup from "./pages/signup/Signup";
-import CustomProvider from "./context/productContext";
+import CustomProvider from "./context/mainContext";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -55,7 +55,6 @@ function App() {
   return (
     <>
       <div className="app-container">
-        {/* <RouterProvider router={router} /> */}
         <CustomProvider>
           <BrowserRouter>
             <Routes>
@@ -94,11 +93,6 @@ function App() {
                 }
               />
               <Route path="unAuth" element={<UnAuthorizeAccess />} />
-              {/* 
-              <Route />
-              <Route />
-              <Route /> 
-            */}
             </Routes>
           </BrowserRouter>
         </CustomProvider>
