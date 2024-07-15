@@ -1,5 +1,10 @@
+import { useUserValue } from "./userValue";
+
 function useLocalStorageForUser() {
+  const { setUserLoggedIn } = useUserValue();
+
   function setUser(user) {
+    setUserLoggedIn(true);
     localStorage.setItem("userEmail", user.email);
   }
   function getUser() {
@@ -7,6 +12,7 @@ function useLocalStorageForUser() {
   }
 
   function resetUser() {
+    setUserLoggedIn(false);
     localStorage.setItem("userEmail", "");
   }
 

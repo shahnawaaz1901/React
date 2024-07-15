@@ -1,10 +1,10 @@
 //* Packages
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 //* Internal Modules
 import styles from "./navbar.module.css";
-
+import confirm from "../../utilities/Swal";
 //* Images
 import cart from "../../data/download.png";
 import order from "../../data/download (1).png";
@@ -16,21 +16,16 @@ import { useUserValue } from "../../hooks/userValue";
 
 function Navbar() {
   const localStorage = useLocalStorageForUser();
-  const { isUserLoggedIn, setUserLoggedIn } = useUserValue();
+  const navigate = useNavigate();
+  const { isUserLoggedIn } = useUserValue();
   const [navListVisible, setNavListVisiblity] = useState(false);
 
-  function handleUserFeature() {
-    setNavListVisiblity(false);
-  }
-
-  useEffect(() => {
-    setUserLoggedIn(localStorage.getUser() ? true : false);
-  });
-
-  function handleClick() {
+  async function handleLogoutClick() {
     if (isUserLoggedIn) {
-      setUserLoggedIn(false);
-      localStorage.resetUser();
+      const confirmByUser = await confirm();
+      if (confirmByUser) {
+        navigate("/users/signout");
+      }
     }
   }
 
@@ -80,8 +75,8 @@ function Navbar() {
               ""
             )}
             <li>
-              <NavLink to={isUserLoggedIn ? "/users/signout" : "/users/signin"}>
-                <div className={styles.navItem} onClick={handleClick}>
+              <NavLink to={isUserLoggedIn ? "/" : "/users/signin"}>
+                <div className={styles.navItem} onClick={handleLogoutClick}>
                   <img src={user} alt="user" className={styles.logo} />
                   <span className={styles.navText}>
                     {localStorage.getUser() ? "Signout" : "Signin"}
@@ -127,10 +122,8 @@ function Navbar() {
               ""
             )}
 
-            <li onClick={handleUserFeature}>
-              <NavLink
-                to={localStorage.getUser() ? "/users/signout" : "/users/signin"}
-              >
+            <li onClick={handleLogoutClick}>
+              <NavLink to={localStorage.getUser() ? "/" : "/users/signin"}>
                 {localStorage.getUser() ? "Signout" : "Signin"}
               </NavLink>
             </li>

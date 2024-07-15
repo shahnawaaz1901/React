@@ -8,12 +8,10 @@ import { toast } from "react-toastify";
 import useLocalStorageForUser from "../../hooks/localstorage";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
-import { useUserValue } from "../../hooks/userValue";
 
 function Signin() {
   const methods = useForm();
   const navigate = useNavigate();
-  const { isUserLoggedIn, setUserLoggedIn } = useUserValue();
   const databaseOperations = useDatabaseOperations();
   const localStorage = useLocalStorageForUser();
 
@@ -21,6 +19,7 @@ function Signin() {
     const { name, email, picture } = jwtDecode(token.credential);
     console.log(name, email, picture);
   }
+
   async function onSubmit(data) {
     try {
       const checkForUser = await databaseOperations.getUserByEmail(
@@ -39,7 +38,6 @@ function Signin() {
         return;
       }
       localStorage.setUser(checkForUser);
-      setUserLoggedIn(true);
       toast.success("Login Successfull !!");
       navigate("/");
     } catch (error) {
