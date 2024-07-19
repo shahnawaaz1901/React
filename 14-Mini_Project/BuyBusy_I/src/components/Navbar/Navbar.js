@@ -24,9 +24,18 @@ function Navbar() {
     if (isUserLoggedIn) {
       const confirmByUser = await confirm();
       if (confirmByUser) {
+        hideNav();
         navigate("/users/signout");
       }
     }
+  }
+
+  function hideNav() {
+    setNavListVisiblity(false);
+  }
+
+  function showNav() {
+    setNavListVisiblity(true);
   }
 
   useEffect(() => {
@@ -55,7 +64,7 @@ function Navbar() {
             {isUserLoggedIn ? (
               <>
                 <li>
-                  <NavLink to="orders">
+                  <NavLink to="my-orders">
                     <div className={styles.navItem}>
                       <img src={order} alt="order" className={styles.logo} />
                       <span className={styles.navText}>My Orders</span>
@@ -75,7 +84,7 @@ function Navbar() {
               ""
             )}
             <li>
-              <NavLink to={isUserLoggedIn ? "/" : "/users/signin"}>
+              <NavLink to={isUserLoggedIn ? "#" : "/users/signin"}>
                 <div className={styles.navItem} onClick={handleLogoutClick}>
                   <img src={user} alt="user" className={styles.logo} />
                   <span className={styles.navText}>
@@ -88,7 +97,7 @@ function Navbar() {
         </div>
         <div
           className={styles.navListIcon}
-          onClick={() => setNavListVisiblity(!navListVisible)}
+          onClick={() => (navListVisible ? hideNav() : showNav())}
         >
           {navListVisible ? (
             <FaRectangleXmark
@@ -104,6 +113,7 @@ function Navbar() {
           className={styles.navList}
           style={navListVisible ? { display: "block" } : { display: "none" }}
           id="nav-list"
+          onClick={hideNav}
         >
           <ul>
             <li>
@@ -112,7 +122,7 @@ function Navbar() {
             {isUserLoggedIn ? (
               <>
                 <li>
-                  <NavLink to="orders">My Order</NavLink>
+                  <NavLink to="my-orders">My Order</NavLink>
                 </li>
                 <li>
                   <NavLink to="cart">Cart</NavLink>

@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { Grid } from "react-loader-spinner";
 
 export const ProductContext = createContext();
@@ -8,6 +8,9 @@ function CustomProductProvider(props) {
   const [productList, setProductList] = useState(["Ashu"]);
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
 
+  useEffect(() => {
+    setUserLoggedIn(localStorage.getItem("userEmail") ? true : false);
+  }, []);
   return (
     <>
       <UserContext.Provider value={{ isUserLoggedIn, setUserLoggedIn }}>

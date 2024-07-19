@@ -1,14 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useUserValue } from "../hooks/userValue";
+
 function PrivateRoute(props) {
   const navigate = useNavigate();
-  const userInfo = localStorage.getItem("userInfo");
+  const { isUserLoggedIn } = useUserValue();
   useEffect(() => {
-    if (!userInfo) {
+    if (!isUserLoggedIn) {
       navigate("/unAuth");
     }
-  }, []);
-  return <>{userInfo ? props.children : ""}</>;
+  });
+  return <>{isUserLoggedIn ? props.children : ""}</>;
 }
 
 export default PrivateRoute;

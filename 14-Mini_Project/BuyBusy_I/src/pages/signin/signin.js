@@ -8,16 +8,18 @@ import { toast } from "react-toastify";
 import useLocalStorageForUser from "../../hooks/localstorage";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
+import { useEffect } from "react";
 
 function Signin() {
   const methods = useForm();
   const navigate = useNavigate();
   const databaseOperations = useDatabaseOperations();
-  const localStorage = useLocalStorageForUser();
+  const { setUser, getUser } = useLocalStorageForUser();
 
   function handleLoginViaOAuth(token) {
-    const { name, email, picture } = jwtDecode(token.credential);
-    console.log(name, email, picture);
+    const { email } = jwtDecode(token.credential);
+    setUser(email);
+    navigate("/");
   }
 
   async function onSubmit(data) {
@@ -37,7 +39,7 @@ function Signin() {
         toast.error("Incorrect Password !!");
         return;
       }
-      localStorage.setUser(checkForUser);
+      setUser(checkForUser);
       toast.success("Login Successfull !!");
       navigate("/");
     } catch (error) {
@@ -45,6 +47,11 @@ function Signin() {
     }
   }
 
+  useEffect(() => {
+    if (getUser()) {
+      navigate("/");
+    }
+  });
   return (
     <div className={styles.signinContainer}>
       <h1 className={styles.title}>Signin</h1>
