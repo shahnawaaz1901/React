@@ -3,7 +3,6 @@ import {
   addDoc,
   collection,
   doc,
-  getDoc,
   getDocs,
   query,
   where,
@@ -13,14 +12,13 @@ export function useDatabaseOperations() {
     return await addDoc(collection(db, collectionName), data);
   }
   async function getData(collectionName) {
-    const documentReference = doc(collection(db, collectionName));
-    return getDoc(documentReference)
-      .then((doc) => {
-        return doc;
-      })
-      .catch((err) => {
-        return err;
-      });
+    const collectionReference = collection(db, collectionName);
+    const querySnapshot = await getDocs(collectionReference);
+    const data = [];
+    querySnapshot.forEach((val) => {
+      data.push({ ...val.data(), id: val.id });
+    });
+    return data;
   }
 
   async function getUserByEmail(collec, email) {

@@ -1,25 +1,50 @@
+import { useEffect, useState } from "react";
 import styles from "./product.module.css";
-function Product() {
+function Product({ title, imageURL, about, price }) {
+  const [cartBtnClick, setCartBtnClick] = useState(false);
+
+  useEffect(() => {
+    if (cartBtnClick) {
+      setTimeout(() => {
+        setCartBtnClick(false);
+      }, 3000);
+    }
+  }, [cartBtnClick]);
   return (
     <>
       <div className={styles.productContainer}>
         <div className={styles.productImageContainer}>
-          <img
-            src="https://m.media-amazon.com/images/I/41p7Iq8lLyL.jpg"
-            alt="Product Img"
-          />
+          <img src={`${imageURL}`} alt="Product Img" />
         </div>
         <div className={styles.aboutProduct}>
-          <div className={styles.name}>Weekender Travel Backpack</div>
-          <div className={styles.about}>
-            FUR JADEN 40L Weekender Travel Laptop Backpack with Anti Theft
-            Pocket, Organizer, 15.6 Inch Padded Laptop Sleeve and Dual Handles
-          </div>
+          <div className={styles.name}>{title}</div>
+          <div className={styles.about}>{about}</div>
         </div>
-        <div className={styles.productPrice}>Price : &nbsp; &#x20B9; 1999</div>
-        <div className={styles.productCartBtn}>Add to Cart</div>
+        <div className={styles.productPrice}>
+          Price : &nbsp; &#x20B9; {price}
+        </div>
+        <div
+          className={styles.productCartBtn}
+          onClick={() => setCartBtnClick(true)}
+        >
+          {cartBtnClick ? (
+            <span className={styles.loading}>
+              .&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.&nbsp;.
+            </span>
+          ) : (
+            <span>Add to Cart</span>
+          )}
+        </div>
       </div>
     </>
   );
 }
+
+const dta = {
+  category: "Electronics",
+  imageURL: "https://m.media-amazon.com/images/I/71GLMJ7TQiL._SX679_.jpg",
+  price: "49999",
+  about: "",
+  title: "Apple IPhone 13 (128 GB)",
+};
 export default Product;

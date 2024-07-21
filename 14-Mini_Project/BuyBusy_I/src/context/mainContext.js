@@ -1,16 +1,24 @@
 import { createContext, useEffect, useState } from "react";
 import { Grid } from "react-loader-spinner";
+import { useDatabaseOperations } from "../hooks/operations";
 
 export const ProductContext = createContext();
 export const UserContext = createContext();
 
 function CustomProductProvider(props) {
-  const [productList, setProductList] = useState(["Ashu"]);
+  const { getData } = useDatabaseOperations();
+  const [productList, setProductList] = useState([]);
   const [isUserLoggedIn, setUserLoggedIn] = useState(false);
 
   useEffect(() => {
     setUserLoggedIn(localStorage.getItem("userEmail") ? true : false);
+    fetchProducts();
   }, []);
+
+  async function fetchProducts() {
+    const data = await getData("productList");
+    setProductList(data);
+  }
   return (
     <>
       <UserContext.Provider value={{ isUserLoggedIn, setUserLoggedIn }}>
