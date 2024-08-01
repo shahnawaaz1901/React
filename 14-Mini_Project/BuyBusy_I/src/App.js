@@ -13,6 +13,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import Cart from "./pages/cart/Cart";
 function App() {
   /* One Way to Provide Routing
   const router = createBrowserRouter([
@@ -83,7 +84,11 @@ function App() {
                     />
                     <Route
                       path="cart"
-                      element={<PrivateRoute></PrivateRoute>}
+                      element={
+                        <PrivateRoute>
+                          <Cart />
+                        </PrivateRoute>
+                      }
                     />
                     <Route
                       path="my-orders"

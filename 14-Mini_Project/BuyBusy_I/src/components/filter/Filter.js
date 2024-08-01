@@ -1,34 +1,45 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styles from "./filter.module.css";
 import { useForm, FormProvider } from "react-hook-form";
 import InputCheckBox from "../inputFields/CheckBox";
 import InputRange from "../inputFields/Range";
+import useFilterValue from "../../hooks/filterValue";
 function Filter() {
-  const [price, setPrice] = useState(0);
+  const { filterData, setFilterData } = useFilterValue();
   const methods = useForm();
   const watchedData = methods.watch();
 
   function handleFilterChange(data) {
-    setPrice(data.priceRange);
+    let isDataSame = true;
+    for (let i in watchedData) {
+      if (filterData[i] !== watchedData[i]) {
+        isDataSame = false;
+        break;
+      }
+    }
+    if (!isDataSame) {
+      setFilterData(watchedData);
+    }
   }
   useEffect(() => {
     handleFilterChange(watchedData);
   }, [watchedData]);
+
   return (
     <div className={styles.filterContainer}>
       <div className={styles.filterTitle}>Filter</div>
       <div className={styles.filterPrice}>
         <span>Price : </span>
-        <span>{price}</span>
+        <span>{filterData.PriceRange || 0}</span>
       </div>
       <FormProvider {...methods}>
         <form>
           <div className={styles.filterRange}>
             <InputRange
-              name="priceRange"
-              price={price}
+              name="PriceRange"
+              price={1000000}
               min={0}
-              max={100000}
+              max={1000000}
               step={10}
             />
           </div>
@@ -48,13 +59,13 @@ function Filter() {
             </div>
             <div className={styles.category}>
               <span>
-                <InputCheckBox name="caegory" id="jwellery" />
+                <InputCheckBox name="caegory" id="Jwellery" />
               </span>
               <label htmlFor="jwellery">Jwellery</label>
             </div>
             <div className={styles.category}>
               <span>
-                <InputCheckBox name="category" id="electronics" />
+                <InputCheckBox name="category" id="Electronics" />
               </span>
               <label htmlFor="electronics">Electronics</label>
             </div>

@@ -1,0 +1,26 @@
+.cartContainer {
+  width: 100vw;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+}
+
+.cartPriceSection {
+  width: 20%;
+  height: 200px;
+  border: 1px solid black;
+  position: fixed;
+}
+
+.cartItemsContainer {
+  width: 80%;
+  height: 500px;
+  border: 1px solid black;
+  margin-left: 20%;
+}
+
+.cartPriceContainer {
+  height: 200px;
+  /* width: 200px; */
+  border: 1px solid black;
+}

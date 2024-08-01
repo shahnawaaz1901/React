@@ -40,11 +40,4 @@ function Product({ title, imageURL, about, price }) {
   );
 }
 
-const dta = {
-  category: "Electronics",
-  imageURL: "https://m.media-amazon.com/images/I/71GLMJ7TQiL._SX679_.jpg",
-  price: "49999",
-  about: "",
-  title: "Apple IPhone 13 (128 GB)",
-};
 export default Product;
