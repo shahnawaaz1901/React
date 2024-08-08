@@ -14,8 +14,8 @@ function MainContainer() {
         filterOutput.push(product);
       }
     });
-    console.log(filterOutput);
   }
+
   function filter(products, filterData) {
     let data =
       filterData.PriceRange >= 0
@@ -33,7 +33,6 @@ function MainContainer() {
       }
     }
 
-    console.log(filterCategoryData);
     if (!filteredByCategory) {
       return data;
     }
@@ -51,6 +50,7 @@ function MainContainer() {
             imageURL={value.imageURL}
             about={value.about}
             price={value.price}
+            id={value.id}
           />
         ))}
       </div>

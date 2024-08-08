@@ -4,6 +4,7 @@ import { useForm, FormProvider } from "react-hook-form";
 import InputCheckBox from "../inputFields/CheckBox";
 import InputRange from "../inputFields/Range";
 import useFilterValue from "../../hooks/filterValue";
+
 function Filter() {
   const { filterData, setFilterData } = useFilterValue();
   const methods = useForm();
@@ -11,14 +12,14 @@ function Filter() {
 
   function handleFilterChange(data) {
     let isDataSame = true;
-    for (let i in watchedData) {
-      if (filterData[i] !== watchedData[i]) {
+    for (let i in data) {
+      if (filterData[i] !== data[i]) {
         isDataSame = false;
         break;
       }
     }
     if (!isDataSame) {
-      setFilterData(watchedData);
+      setFilterData(data);
     }
   }
   useEffect(() => {
@@ -30,14 +31,14 @@ function Filter() {
       <div className={styles.filterTitle}>Filter</div>
       <div className={styles.filterPrice}>
         <span>Price : </span>
-        <span>{filterData.PriceRange || 0}</span>
+        <span>{filterData.PriceRange || 1000000}</span>
       </div>
       <FormProvider {...methods}>
         <form>
           <div className={styles.filterRange}>
             <InputRange
               name="PriceRange"
-              price={1000000}
+              price={filterData.PriceRange || 1000000}
               min={0}
               max={1000000}
               step={10}

@@ -3,14 +3,9 @@ import { useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 function InputPassword({ name, placeholder, formReg, errors }) {
   /*
-    If we Directly use the errors from useForm() instead of useFormContext() then our validations not working properly
-    const {
-      formState: { errors },
-    } = useForm();
+    If we Directly use the errors from useForm() instead of useFormContext() 
+    then our validations not working properly
   */
-  // const {
-  //   formState: { errors },
-  // } = useFormContext();
 
   const [passwordVisible, setPasswordVisiblity] = useState(false);
   return (

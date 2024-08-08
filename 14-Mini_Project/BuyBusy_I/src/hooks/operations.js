@@ -1,12 +1,6 @@
 import db from "../config/firebase";
-import {
-  addDoc,
-  collection,
-  doc,
-  getDocs,
-  query,
-  where,
-} from "firebase/firestore";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+
 export function useDatabaseOperations() {
   async function addData(collectionName, data) {
     return await addDoc(collection(db, collectionName), data);

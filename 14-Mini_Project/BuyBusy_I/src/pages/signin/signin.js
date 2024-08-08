@@ -28,7 +28,6 @@ function Signin() {
         "users",
         data.email
       );
-      console.log(checkForUser);
       if (!checkForUser) {
         methods.reset();
         toast.error("User Not Exist !!");
@@ -39,7 +38,7 @@ function Signin() {
         toast.error("Incorrect Password !!");
         return;
       }
-      setUser(checkForUser);
+      setUser(checkForUser.email);
       toast.success("Login Successfull !!");
       navigate("/");
     } catch (error) {
