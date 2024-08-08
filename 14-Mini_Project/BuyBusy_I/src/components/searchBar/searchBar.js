@@ -1,15 +1,17 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import styles from "./searchBar.module.css";
 import { GiCrossedBones } from "react-icons/gi";
+import useSearchValue from "../../hooks/searchValue";
 
 function SearchBar() {
+  const { searchData, setSearchData } = useSearchValue();
   const searchRef = useRef();
-  const [searchData, setSearchData] = useState("");
 
   function resetSearchData() {
     searchRef.current.value = "";
     setSearchData(searchRef.current.value);
   }
+
   return (
     <div className={styles.searchContainer}>
       <input

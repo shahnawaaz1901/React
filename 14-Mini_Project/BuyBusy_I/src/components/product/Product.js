@@ -18,7 +18,7 @@ function Product({ title, imageURL, about, price, id }) {
         return;
       }
       setCartBtnValue(". . . . . . .");
-      await addData("cart", { ...productDetail, user: getUser() });
+      await addData("cart", { ...productDetail, user: getUser(), qty: 1 });
       toast.success("Item added to Cart");
     } catch (error) {
       console.log(error);
@@ -27,6 +27,7 @@ function Product({ title, imageURL, about, price, id }) {
       setCartBtnValue("Add to Cart");
     }
   }
+
   return (
     <div className={styles.productContainer}>
       <div className={styles.productImageContainer}>

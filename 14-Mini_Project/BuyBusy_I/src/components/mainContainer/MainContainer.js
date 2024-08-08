@@ -3,10 +3,12 @@ import Filter from "../../components/filter/Filter";
 import Product from "../product/Product";
 import styles from "./mainContainer.module.css";
 import useFilterValue from "../../hooks/filterValue";
+import useSearchValue from "../../hooks/searchValue";
 
 function MainContainer() {
   const { productList } = useProductValue();
   const { filterData } = useFilterValue();
+  const { searchData } = useSearchValue();
 
   function filterByCategory(filter, data, filterOutput) {
     data.forEach((product) => {
@@ -43,16 +45,22 @@ function MainContainer() {
     <div className={styles.mainContainer}>
       <Filter />
       <div className={styles.productListContainer}>
-        {filter(productList, filterData).map((value, index) => (
-          <Product
-            key={index}
-            title={value.title}
-            imageURL={value.imageURL}
-            about={value.about}
-            price={value.price}
-            id={value.id}
-          />
-        ))}
+        {filter(productList, filterData)
+          .filter(
+            (product) =>
+              product.title.includes(searchData) ||
+              product.about.includes(searchData)
+          )
+          .map((value, index) => (
+            <Product
+              key={index}
+              title={value.title}
+              imageURL={value.imageURL}
+              about={value.about}
+              price={value.price}
+              id={value.id}
+            />
+          ))}
       </div>
     </div>
   );
