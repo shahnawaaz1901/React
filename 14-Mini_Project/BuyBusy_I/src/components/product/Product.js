@@ -4,6 +4,15 @@ import { useDatabaseOperations } from "../../hooks/operations";
 import useLocalStorageForUser from "../../hooks/localstorage";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  setDoc,
+  doc,
+} from "firebase/firestore";
+import db from "../../config/firebase";
 
 function Product({ title, imageURL, about, price, id }) {
   const [cartBtnValue, setCartBtnValue] = useState("Add to Cart");
@@ -18,10 +27,17 @@ function Product({ title, imageURL, about, price, id }) {
         return;
       }
       setCartBtnValue(". . . . . . .");
-      await addData("cart", { ...productDetail, user: getUser(), qty: 1 });
+      const itemQuery = query(
+        collection(db, "cart"),
+        where("user", "==", `${getUser()}`),
+        where("id", "==", productDetail.id)
+      );
+      const itemPresent = await getDocs(itemQuery);
+      if (!itemPresent.size) {
+        await addData("cart", { ...productDetail, user: getUser(), qty: 1 });
+      }
       toast.success("Item added to Cart");
     } catch (error) {
-      console.log(error);
       toast.error("Something went wrong !!");
     } finally {
       setCartBtnValue("Add to Cart");
