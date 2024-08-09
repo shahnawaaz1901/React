@@ -4,14 +4,7 @@ import { useDatabaseOperations } from "../../hooks/operations";
 import useLocalStorageForUser from "../../hooks/localstorage";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import {
-  collection,
-  query,
-  where,
-  getDocs,
-  setDoc,
-  doc,
-} from "firebase/firestore";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import db from "../../config/firebase";
 
 function Product({ title, imageURL, about, price, id }) {
@@ -26,7 +19,7 @@ function Product({ title, imageURL, about, price, id }) {
         navigate("/users/signin");
         return;
       }
-      setCartBtnValue(". . . . . . .");
+      setCartBtnValue("Adding...");
       const itemQuery = query(
         collection(db, "cart"),
         where("user", "==", `${getUser()}`),

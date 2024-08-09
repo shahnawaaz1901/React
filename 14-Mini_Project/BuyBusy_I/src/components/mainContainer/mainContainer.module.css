@@ -6,7 +6,6 @@
 .productListContainer {
   width: 75%;
   margin-left: 200px;
-  /* border: 1px solid black; */
   display: flex;
   justify-content: space-around;
   padding: 10px;
