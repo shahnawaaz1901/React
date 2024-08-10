@@ -31,16 +31,16 @@ function Filter() {
       <div className={styles.filterTitle}>Filter</div>
       <div className={styles.filterPrice}>
         <span>Price : </span>
-        <span>{filterData.PriceRange || 1000000}</span>
+        <span>{filterData.PriceRange || 500000}</span>
       </div>
       <FormProvider {...methods}>
         <form>
           <div className={styles.filterRange}>
             <InputRange
               name="PriceRange"
-              price={filterData.PriceRange || 1000000}
+              price={filterData.PriceRange || 500000}
               min={0}
-              max={1000000}
+              max={500000}
               step={10}
             />
           </div>

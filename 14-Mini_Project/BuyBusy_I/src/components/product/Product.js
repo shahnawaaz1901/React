@@ -13,7 +13,7 @@ function Product({ title, imageURL, about, price, id }) {
   const { getUser } = useLocalStorageForUser();
   const navigate = useNavigate();
 
-  async function handleCartBtnClick(productDetail) {
+  async function handleCartBtnClick(product) {
     try {
       if (!getUser()) {
         navigate("/users/signin");
@@ -23,11 +23,15 @@ function Product({ title, imageURL, about, price, id }) {
       const itemQuery = query(
         collection(db, "cart"),
         where("user", "==", `${getUser()}`),
-        where("id", "==", productDetail.id)
+        where("productId", "==", product.productId)
       );
       const itemPresent = await getDocs(itemQuery);
       if (!itemPresent.size) {
-        await addData("cart", { ...productDetail, user: getUser(), qty: 1 });
+        await addData("cart", {
+          ...product,
+          user: getUser(),
+          qty: 1,
+        });
       }
       toast.success("Item added to Cart");
     } catch (error) {
@@ -49,7 +53,9 @@ function Product({ title, imageURL, about, price, id }) {
       <div className={styles.productPrice}>Price : &nbsp; &#x20B9; {price}</div>
       <div
         className={styles.productCartBtn}
-        onClick={() => handleCartBtnClick({ id, title, imageURL, price })}
+        onClick={() =>
+          handleCartBtnClick({ productId: id, title, imageURL, price, about })
+        }
       >
         {cartBtnValue}
       </div>

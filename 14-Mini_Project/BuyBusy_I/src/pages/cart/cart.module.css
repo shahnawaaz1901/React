@@ -14,11 +14,11 @@
   background-color: rgb(241, 241, 241);
   margin: 5px;
   border-radius: 10px;
+  text-align: center;
 }
 
 .cartItemsContainer {
   width: 75%;
-  /* height: 500px; */
   margin-left: 235px;
   margin-top: 64px;
   display: flex;
@@ -26,7 +26,6 @@
   padding: 10px 0px;
   box-sizing: border-box;
   flex-wrap: wrap;
-  border: 1px solid black;
 }
 
 .purchaseBtn {
