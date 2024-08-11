@@ -8,14 +8,18 @@ import SignOut from "./pages/signout/SignOut";
 import UnAuthorizeAccess from "./components/unauthorize/UnAuthorize";
 import Signin from "./pages/signin/Signin";
 import Signup from "./pages/signup/Signup";
-import CustomProvider from "./context/mainContext";
+import UserProvider from "./context/userContext";
+import FilterAndSearchContext from "./context/filterAndSearchContext";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Cart from "./pages/cart/Cart";
+import MyOrders from "./pages/order/MyOrders";
+
 function App() {
-  /* One Way to Provide Routing
+  /* 
+  *One Way to Provide Routing
   const router = createBrowserRouter([
     {
       path: "/",
@@ -53,10 +57,12 @@ function App() {
     </div>
   )
 */
+
+  //* Another Way to Provide Routing
   return (
     <>
       <div className="app-container">
-        <CustomProvider>
+        <UserProvider>
           <BrowserRouter>
             <Routes>
               <Route
@@ -64,7 +70,14 @@ function App() {
                 element={<Navbar />}
                 children={
                   <>
-                    <Route index={true} element={<Home />} />
+                    <Route
+                      index={true}
+                      element={
+                        <FilterAndSearchContext>
+                          <Home />
+                        </FilterAndSearchContext>
+                      }
+                    />
                     <Route
                       path="/users"
                       children={
@@ -92,7 +105,11 @@ function App() {
                     />
                     <Route
                       path="my-orders"
-                      element={<PrivateRoute></PrivateRoute>}
+                      element={
+                        <PrivateRoute>
+                          <MyOrders />
+                        </PrivateRoute>
+                      }
                     />
                   </>
                 }
@@ -100,7 +117,7 @@ function App() {
               <Route path="unAuth" element={<UnAuthorizeAccess />} />
             </Routes>
           </BrowserRouter>
-        </CustomProvider>
+        </UserProvider>
       </div>
       <ToastContainer />
     </>

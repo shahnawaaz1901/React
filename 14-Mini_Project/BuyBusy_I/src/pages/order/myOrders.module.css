@@ -1,0 +1,46 @@
+.ordersContainer {
+  width: 70%;
+  margin: auto;
+  border: 1px solid black;
+  height: 400px;
+  text-align: center;
+}
+
+.orderListContainer {
+  border: 1px solid black;
+}
+
+.order {
+  width: 70%;
+  margin: auto;
+  height: 200px;
+  border: 1px solid black;
+}
+
+.orderDate {
+  color: rgb(65, 94, 92);
+  font-weight: 550;
+}
+
+table {
+  width: 100%;
+  font-size: 18px;
+}
+
+.orderTitle {
+  width: 30%;
+  max-width: 30%;
+}
+
+th,
+td {
+  border: 1px solid #eee;
+  padding: 10px 15px;
+  text-wrap: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+th {
+  border-bottom: 1px solid black;
+}

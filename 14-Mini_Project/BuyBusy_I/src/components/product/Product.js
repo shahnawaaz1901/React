@@ -1,46 +1,15 @@
 import { useState } from "react";
 import styles from "./product.module.css";
-import { useDatabaseOperations } from "../../hooks/operations";
-import useLocalStorageForUser from "../../hooks/localstorage";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { collection, query, where, getDocs } from "firebase/firestore";
-import db from "../../config/firebase";
 
-function Product({ title, imageURL, about, price, id }) {
+function Product({ productDetail, addedToCart }) {
   const [cartBtnValue, setCartBtnValue] = useState("Add to Cart");
-  const { addData } = useDatabaseOperations();
-  const { getUser } = useLocalStorageForUser();
-  const navigate = useNavigate();
+  const { title, imageURL, about, price, id } = productDetail;
 
   async function handleCartBtnClick(product) {
-    try {
-      if (!getUser()) {
-        navigate("/users/signin");
-        return;
-      }
-      setCartBtnValue("Adding...");
-      const itemQuery = query(
-        collection(db, "cart"),
-        where("user", "==", `${getUser()}`),
-        where("productId", "==", product.productId)
-      );
-      const itemPresent = await getDocs(itemQuery);
-      if (!itemPresent.size) {
-        await addData("cart", {
-          ...product,
-          user: getUser(),
-          qty: 1,
-        });
-      }
-      toast.success("Item added to Cart");
-    } catch (error) {
-      toast.error("Something went wrong !!");
-    } finally {
-      setCartBtnValue("Add to Cart");
-    }
+    setCartBtnValue("Adding....");
+    await addedToCart(product);
+    setCartBtnValue("Add to Cart");
   }
-
   return (
     <div className={styles.productContainer}>
       <div className={styles.productImageContainer}>

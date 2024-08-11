@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./cart.module.css";
+
 import useLocalStorageForUser from "../../hooks/localstorage";
 import {
   query,
@@ -12,6 +13,7 @@ import {
 } from "firebase/firestore";
 import db from "../../config/firebase";
 import CartItem from "../../components/cartItem/CartItem";
+import { Grid } from "react-loader-spinner";
 
 function Cart() {
   const { getUser } = useLocalStorageForUser();
@@ -80,28 +82,49 @@ function Cart() {
   }, [cartItems]);
 
   return (
-    <div className={styles.cartContainer}>
-      <div className={styles.cartPriceContainer}>
-        <div className={styles.priceContainer}>
-          <span>Total Price : &nbsp;</span>
-          <span>&#8377;{cartTotal}/-</span>
+    <>
+      {cartItems.length ? (
+        <div className={styles.cartContainer}>
+          <div className={styles.cartPriceContainer}>
+            <div className={styles.priceContainer}>
+              <span>Total Price : &nbsp;</span>
+              <span>&#8377;{cartTotal}/-</span>
+            </div>
+            <div className={styles.purchaseBtn}>
+              <button>Purchase</button>
+            </div>
+          </div>
+          <div className={styles.cartItemsContainer}>
+            {cartItems.map((item, index) => (
+              <CartItem
+                item={item}
+                key={index}
+                increaseCartItem={increaseCartItem}
+                decreaseCartItem={decreaseCartItem}
+                removeFromCart={removeFromCart}
+              />
+            ))}
+          </div>
         </div>
-        <div className={styles.purchaseBtn}>
-          <button>Purchase</button>
-        </div>
-      </div>
-      <div className={styles.cartItemsContainer}>
-        {cartItems.map((item, index) => (
-          <CartItem
-            item={item}
-            key={index}
-            increaseCartItem={increaseCartItem}
-            decreaseCartItem={decreaseCartItem}
-            removeFromCart={removeFromCart}
-          />
-        ))}
-      </div>
-    </div>
+      ) : (
+        <Grid
+          visible={true}
+          height="60"
+          width="60"
+          color="#7064e5"
+          ariaLabel="grid-loading"
+          radius="12.5"
+          wrapperStyle={{
+            display: "flex",
+            height: 60 + "vh",
+            width: 100 + "vw",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          wrapperClass="grid-wrapper"
+        />
+      )}
+    </>
   );
 }
 export default Cart;

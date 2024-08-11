@@ -5,11 +5,11 @@
   width: 100vw;
 }
 
-h1 {
+.heading {
   color: red;
 }
 
-h6 {
+.errorMessage {
   color: red;
   font-weight: 100;
   text-decoration: none; /*underline;*/

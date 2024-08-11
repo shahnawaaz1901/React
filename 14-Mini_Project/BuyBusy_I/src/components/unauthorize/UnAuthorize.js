@@ -13,7 +13,7 @@ function UnAuthorizeAccess() {
   return (
     <div className={`${styles.displayMiddle} ${styles.unAuthContainer}`}>
       <h1
-        className={`${styles.largeFont} ${styles.topAnimation} ${styles.textCenter}`}
+        className={`${styles.largeFont} ${styles.topAnimation} ${styles.textCenter} ${styles.heading}`}
       >
         <code>Access Denied</code>
       </h1>
@@ -26,7 +26,9 @@ function UnAuthorizeAccess() {
       <h3 className={`${styles.textCenter} ${styles.zoomAnimation}`}>
         🚫🚫🚫🚫
       </h3>
-      <h6 className={`${styles.textCenter} ${styles.zoomAnimation}`}>
+      <h6
+        className={`${styles.textCenter} ${styles.zoomAnimation} ${styles.errorMessage}`}
+      >
         <strong>Error Code</strong>: 403 forbidden
       </h6>
     </div>

@@ -1,4 +1,4 @@
-import { FilterContext } from "../context/mainContext";
+import { FilterContext } from "../context/filterAndSearchContext";
 import { useContext } from "react";
 function useFilterValue() {
   const context = useContext(FilterContext);
